@@ -19,13 +19,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    <LinearLayout
-        android:id="@+id/linear_search_pv"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent">
 
-<!--        <include layout="@layout/activity_view_pager" />-->
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
