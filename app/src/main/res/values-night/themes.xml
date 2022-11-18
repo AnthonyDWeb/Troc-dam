@@ -2,13 +2,15 @@
     <!-- Base application theme. -->
     <style name="Theme.Troc" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorPrimary">#3949ab</item>
+        <item name="colorPrimaryVariant">#6f74dd</item>
+        <item name="colorOnPrimary">#00227b</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSecondary">#1e88e5</item>
+        <item name="colorSecondaryVariant">#6ab7ff</item>
+        <item name="colorOnSecondary">#005cb2</item>
+        <item name="android:textColorPrimary">#ffffff</item>
+        <item name="android:textColorSecondary">#000000</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
