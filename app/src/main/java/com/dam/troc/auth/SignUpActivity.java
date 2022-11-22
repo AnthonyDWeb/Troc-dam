@@ -1,19 +1,19 @@
-package com.dam.troc;
+package com.dam.troc.auth;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 //import android.os.PatternMatcher;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dam.troc.MainActivity;
+import com.dam.troc.ProfilActivity;
+import com.dam.troc.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -90,7 +90,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                     Toast.makeText(getApplicationContext(),"Inscription réussie", Toast.LENGTH_LONG).show();
 
 
-                    Intent intent = new Intent(SignUpActivity.this,ProfilActivity.class);
+                    Intent intent = new Intent(SignUpActivity.this, ProfilActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
