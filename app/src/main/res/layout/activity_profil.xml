@@ -7,7 +7,7 @@
     tools:context=".ProfilActivity">
 
     <ImageView
-        android:id="@+id/imageView23"
+        android:id="@+id/iv_profile_photo"
         android:layout_width="match_parent"
         android:layout_height="240dp"
         android:layout_margin="8dp"
