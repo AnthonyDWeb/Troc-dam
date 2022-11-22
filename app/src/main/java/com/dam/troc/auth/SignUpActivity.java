@@ -1,19 +1,19 @@
-package com.dam.troc;
+package com.dam.troc.auth;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 //import android.os.PatternMatcher;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dam.troc.MainActivity;
+import com.dam.troc.ProfilActivity;
+import com.dam.troc.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -38,15 +38,15 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
 
 
-        emailUser = findViewById(R.id.sign_email);
-        tvPass = findViewById(R.id.sign_pass);
+        emailUser = findViewById(R.id.et_signup_email);
+        tvPass = findViewById(R.id.et_signup_password);
 
 
 
         findViewById(R.id.sign_old_user).setOnClickListener(this);
-        findViewById(R.id.sign_email).setOnClickListener(this);
-        findViewById(R.id.sign_pass).setOnClickListener(this);
-        findViewById(R.id.sign_register).setOnClickListener(this);
+        findViewById(R.id.et_signup_email).setOnClickListener(this);
+        findViewById(R.id.et_signup_password).setOnClickListener(this);
+        findViewById(R.id.btn_signup).setOnClickListener(this);
 
     }
 
@@ -90,7 +90,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                     Toast.makeText(getApplicationContext(),"Inscription réussie", Toast.LENGTH_LONG).show();
 
 
-                    Intent intent = new Intent(SignUpActivity.this,ProfilActivity.class);
+                    Intent intent = new Intent(SignUpActivity.this, ProfilActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
@@ -116,7 +116,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.sign_register:
+            case R.id.btn_signup:
                 registerUser();
                 break;
             case R.id.sign_old_user:
