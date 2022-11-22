@@ -6,19 +6,279 @@
     android:layout_height="match_parent"
     tools:context=".ProfilActivity">
 
+    <ImageView
+        android:id="@+id/iv_profile_photo"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:layout_margin="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/user_profile_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.714"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.065"
+        app:srcCompat="@drawable/photoprofil" />
+
     <TextView
-        android:id="@+id/tv_profil_title"
+        android:id="@+id/user_profile_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="165dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="188dp"
-        android:text="Profil Page"
-        android:textColor="@color/black"
-        android:textSize="20sp"
+        android:layout_margin="8dp"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:hint="Your name"
+        android:inputType="textMultiLine|textPersonName"
+        android:textColor="#F30000"
+        android:textColorHighlight="#00BCD4"
+        android:textColorHint="#00BCD4"
+        android:textSize="36sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/nestedScrollView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:ignore="MissingConstraints" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="406dp"
+        android:layout_height="445dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/emailField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_weight="0"
+                    app:srcCompat="@drawable/ic_baseline_mail_outline_24" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="Email :"
+                    android:textColor="#3F51B5"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:ems="10"
+                    android:hint="votre@email.com"
+                    android:inputType="textPersonName"
+                    android:textColor="#03A9F4"
+                    android:textColorHint="#03A9F4"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/telField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_weight="0"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_weight="0"
+                    app:srcCompat="@drawable/ic_baseline_phone_android_24" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="Telephone :"
+                    android:textColor="#3F51B5"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:ems="10"
+                    android:hint="0102030405"
+                    android:inputType="textPersonName"
+                    android:textColor="#03A9F4"
+                    android:textColorHint="#03A9F4"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/adressField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_weight="0"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageView20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_weight="0"
+                        app:srcCompat="@drawable/ic_baseline_location_on_24" />
+
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:text="Adresse :"
+                        android:textColor="#3F51B5"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/adressText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:autoText="false"
+                    android:ems="10"
+                    android:hint="10 rue Damtroc, 75019, Paris, France"
+                    android:inputType="textMultiLine"
+                    android:textAlignment="center"
+                    android:textColor="#03A9F4"
+                    android:textColorHint="#03A9F4"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/skillField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="0"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:gravity="center"
+                    android:text="Competences :"
+                    android:textColor="#3F51B5"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:background="@drawable/input_text_container"
+                    android:ems="10"
+                    android:hint="comp1"
+                    android:inputType="textPersonName"
+                    android:textAlignment="center"
+                    android:textColor="#03A9F4"
+                    android:textColorHint="#00BCD4"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName15"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:background="@drawable/input_text_container"
+                    android:ems="10"
+                    android:hint="comp2"
+                    android:inputType="textPersonName"
+                    android:textAlignment="center"
+                    android:textColor="#03A9F4"
+                    android:textColorHint="#00BCD4"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:background="@drawable/input_text_container"
+                    android:ems="10"
+                    android:hint="comp3"
+                    android:inputType="textPersonName"
+                    android:textAlignment="center"
+                    android:textColor="#03A9F4"
+                    android:textColorHint="#00BCD4"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_profil_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="Description :"
+                android:textAlignment="center"
+                android:textColor="#3F51B5"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_profil_descriptionText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:ems="10"
+                android:hint="votre texte ici blablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablabla"
+                android:inputType="textMultiLine"
+                android:textColor="#03A9F4"
+                android:textColorHint="#00BCD4"
+                android:textSize="24sp" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
