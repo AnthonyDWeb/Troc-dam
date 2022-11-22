@@ -7,25 +7,47 @@
     tools:context=".ProfilActivity">
 
     <ImageView
-        android:id="@+id/imageView8"
+        android:id="@+id/imageView23"
         android:layout_width="match_parent"
-        android:layout_height="237dp"
+        android:layout_height="240dp"
         android:layout_margin="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/user_profile_name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_weight="0"
+        app:layout_constraintHorizontal_bias="0.714"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_weight="0"
-        app:srcCompat="@mipmap/ic_launcher"
-        tools:layout_editor_absoluteY="-4dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.065"
+        app:srcCompat="@drawable/photoprofil" />
+
+    <TextView
+        android:id="@+id/user_profile_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:hint="Your name"
+        android:inputType="textMultiLine|textPersonName"
+        android:textColor="#F30000"
+        android:textColorHighlight="#00BCD4"
+        android:textColorHint="#00BCD4"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/nestedScrollView"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="406dp"
         android:layout_height="445dp"
         android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView8">
+        app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -153,15 +175,13 @@
                 <EditText
                     android:id="@+id/adressText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="0"
                     android:autoText="false"
                     android:ems="10"
                     android:hint="10 rue Damtroc, 75019, Paris, France"
-                    android:inputType="textImeMultiLine"
-                    android:lines="3"
-                    android:maxLines="3"
-                    android:minLines="3"
+                    android:inputType="textMultiLine"
+                    android:textAlignment="center"
                     android:textColor="#03A9F4"
                     android:textColorHint="#03A9F4"
                     android:textSize="24sp"
@@ -198,7 +218,7 @@
                     android:inputType="textPersonName"
                     android:textAlignment="center"
                     android:textColor="#03A9F4"
-                    android:textColorHint="#3F51B5"
+                    android:textColorHint="#00BCD4"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -212,7 +232,7 @@
                     android:inputType="textPersonName"
                     android:textAlignment="center"
                     android:textColor="#03A9F4"
-                    android:textColorHint="#3F51B5"
+                    android:textColorHint="#00BCD4"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -226,7 +246,7 @@
                     android:inputType="textPersonName"
                     android:textAlignment="center"
                     android:textColor="#03A9F4"
-                    android:textColorHint="#3F51B5"
+                    android:textColorHint="#00BCD4"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -249,11 +269,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)."
+                android:hint="votre texte ici blablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablabla"
+                android:inputType="textMultiLine"
                 android:textColor="#03A9F4"
-                android:textSize="24sp"
-                tools:text="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)." />
+                android:textColorHint="#00BCD4"
+                android:textSize="24sp" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
