@@ -6,4 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".auth.Forgotten_Pass">
 
+    <EditText
+        android:id="@+id/editTextTextEmailAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        tools:layout_editor_absoluteX="103dp"
+        tools:layout_editor_absoluteY="311dp" />
+
+    <Button
+        android:id="@+id/fp_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/secondaryLightColor"
+        android:text="Submit"
+        android:textColor="#E8EBEC"
+        android:textColorHighlight="#2196F3"
+        android:textColorHint="#03A9F4"
+        android:textColorLink="#03A9F4"
+        app:rippleColor="#2196F3"
+        tools:layout_editor_absoluteX="156dp"
+        tools:layout_editor_absoluteY="400dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
