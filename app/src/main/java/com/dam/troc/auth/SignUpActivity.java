@@ -38,15 +38,15 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
 
 
-        emailUser = findViewById(R.id.sign_email);
-        tvPass = findViewById(R.id.sign_pass);
+        emailUser = findViewById(R.id.et_signup_email);
+        tvPass = findViewById(R.id.et_signup_password);
 
 
 
         findViewById(R.id.sign_old_user).setOnClickListener(this);
-        findViewById(R.id.sign_email).setOnClickListener(this);
-        findViewById(R.id.sign_pass).setOnClickListener(this);
-        findViewById(R.id.sign_register).setOnClickListener(this);
+        findViewById(R.id.et_signup_email).setOnClickListener(this);
+        findViewById(R.id.et_signup_password).setOnClickListener(this);
+        findViewById(R.id.btn_signup).setOnClickListener(this);
 
     }
 
@@ -116,7 +116,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.sign_register:
+            case R.id.btn_signup:
                 registerUser();
                 break;
             case R.id.sign_old_user:
