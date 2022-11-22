@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dam.troc.MainActivity;
 import com.dam.troc.ProfilActivity;
 import com.dam.troc.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -36,7 +35,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         findViewById(R.id.forgotPass).setOnClickListener(this);
         findViewById(R.id.TvEmail).setOnClickListener(this);
         findViewById(R.id.tvpassWord).setOnClickListener(this);
-        findViewById(R.id.main_btn_register).setOnClickListener(this);
+        findViewById(R.id.btn_login).setOnClickListener(this);
 
         emailUser = findViewById(R.id.TvEmail);
         tvPass = findViewById(R.id.tvpassWord);
@@ -113,7 +112,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 startActivity( new Intent(this, SignUpActivity.class));
                 break;
 
-            case R.id.main_btn_register:
+            case R.id.btn_login:
 
                 userLogin();
                 break;
