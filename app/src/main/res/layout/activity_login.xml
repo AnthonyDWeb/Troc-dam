@@ -8,15 +8,16 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="390dp"
-        android:layout_height="121dp"
+        android:layout_width="363dp"
+        android:layout_height="228dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <EditText
         android:id="@+id/TvEmail"
@@ -25,14 +26,9 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="50dp"
-        android:background="@drawable/input_text_container"
         android:hint="Email"
         android:inputType="textEmailAddress"
-        android:textAlignment="center"
         android:textColor="#000000"
-        android:textColorHint="#000000"
-        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/tvpassWord"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,15 +41,11 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="32dp"
         android:background="@drawable/input_text_container"
-        android:hint="Mot de passe"
+        android:hint="Password"
         android:inputType="textPassword"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textColorHint="#000000"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/main_btn_register"
+        app:layout_constraintBottom_toTopOf="@+id/btn_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,49 +53,39 @@
 
 
     <Button
-        android:id="@+id/main_btn_register"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/btn_login"
+        android:layout_width="361dp"
+        android:layout_height="41dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/input_text_container"
-        android:backgroundTint="#00BCD4"
-        android:backgroundTintMode="add"
-        android:text="Se connecter"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        android:textStyle="bold"
+        android:backgroundTint="#03A9F4"
+        android:text="Login"
+        android:textColorHint="#03A9F4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvpassWord" />
 
     <TextView
         android:id="@+id/forgotPass"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:gravity="center"
-        android:text="Mot de passe oublié"
-        android:textColor="#FF0000"
-        android:textSize="16sp"
-        android:textStyle="bold"
+        android:layout_width="115dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="forgot password"
+        android:textColor="#E80707"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_btn_register" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/newUser"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:gravity="center"
-        android:text="Créer un compte"
+        android:layout_width="74dp"
+        android:layout_height="23dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="New User"
         android:textColor="#E60F0F"
-        android:textSize="16sp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_btn_register" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
