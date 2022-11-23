@@ -5,51 +5,56 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+//import android.os.PatternMatcher;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dam.troc.MainActivity;
 import com.dam.troc.ProfilActivity;
 import com.dam.troc.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+
+public class SignUpActivity extends AppCompatActivity implements View.OnClickListener{
+
+
     TextView emailUser, tvPass;
-    FirebaseAuth mAuth;
 
-
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
 
         mAuth = FirebaseAuth.getInstance();
 
+        setContentView(R.layout.activity_sign_up);
 
-        findViewById(R.id.newUser).setOnClickListener(this);
-        findViewById(R.id.forgotPass).setOnClickListener(this);
-        findViewById(R.id.TvEmail).setOnClickListener(this);
-        findViewById(R.id.tvpassWord).setOnClickListener(this);
-        findViewById(R.id.btn_login).setOnClickListener(this);
 
-        emailUser = findViewById(R.id.TvEmail);
-        tvPass = findViewById(R.id.tvpassWord);
 
+        emailUser = findViewById(R.id.et_signup_email);
+        tvPass = findViewById(R.id.et_signup_password);
+
+
+
+        findViewById(R.id.btn_signup).setOnClickListener(this);
+        findViewById(R.id.et_signup_email).setOnClickListener(this);
+        findViewById(R.id.et_signup_password).setOnClickListener(this);
+        findViewById(R.id.btn_signup).setOnClickListener(this);
 
     }
 
-
-
-    private void userLogin(){
+    private void registerUser(){
 
         String email = emailUser.getText().toString().trim();
         String Pass = tvPass.getText().toString().trim();
-
+        TextView accueil = findViewById(R.id.btn_signup);
 
         if (email.isEmpty()){
             emailUser.setError("Email obligatoire!");
@@ -78,50 +83,41 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         }
 
-        mAuth.signInWithEmailAndPassword(email,Pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        mAuth.createUserWithEmailAndPassword(email,Pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-
-                if (task.isSuccessful()) {
-
-                    Toast.makeText(getApplicationContext(),"Login réussi.", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(LoginActivity.this, ProfilActivity.class);
+                if (task.isSuccessful()){
+                    Toast.makeText(getApplicationContext(),"Inscription réussie", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(SignUpActivity.this, ProfilActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
-
                 }
                 else {
-                    Toast.makeText(getApplicationContext(), task.getException().getMessage(),Toast.LENGTH_LONG).show();
+
+                    if (task.getException() instanceof FirebaseAuthUserCollisionException){
+                        Toast.makeText(getApplicationContext(),"Email déjà enregistrée", Toast.LENGTH_LONG).show();
+                        accueil.setVisibility(View.VISIBLE);
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(), task.getException().getMessage(),Toast.LENGTH_LONG).show();
+                        accueil.setVisibility(View.VISIBLE);
+                    }
                 }
+
             }
+
         });
 
-
     }
-
-
 
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-
-
-            case R.id.newUser:
-
-                startActivity( new Intent(this, SignUpActivity.class));
+            case R.id.btn_signup:
+                registerUser();
+                startActivity(new Intent(this, MainActivity.class));
                 break;
-
-            case R.id.btn_login:
-
-                userLogin();
-                break;
-
-            case R.id.forgotPass:
-
-                startActivity( new Intent(this, Forgotten_Pass.class));
-                break;
-
         }
 
     }
