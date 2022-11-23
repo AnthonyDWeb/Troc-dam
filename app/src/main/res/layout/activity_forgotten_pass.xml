@@ -28,4 +28,15 @@
         app:rippleColor="#2196F3"
         tools:layout_editor_absoluteX="156dp"
         tools:layout_editor_absoluteY="400dp" />
+
+    <TextView
+        android:id="@+id/fp_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.844"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fp_submit"
+        app:layout_constraintVertical_bias="0.81" />
 </androidx.constraintlayout.widget.ConstraintLayout>
