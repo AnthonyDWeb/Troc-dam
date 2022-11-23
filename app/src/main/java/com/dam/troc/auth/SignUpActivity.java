@@ -43,7 +43,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
 
 
-        findViewById(R.id.sign_old_user).setOnClickListener(this);
+        findViewById(R.id.btn_signup).setOnClickListener(this);
         findViewById(R.id.et_signup_email).setOnClickListener(this);
         findViewById(R.id.et_signup_password).setOnClickListener(this);
         findViewById(R.id.btn_signup).setOnClickListener(this);
@@ -54,7 +54,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         String email = emailUser.getText().toString().trim();
         String Pass = tvPass.getText().toString().trim();
-        TextView accueil = findViewById(R.id.sign_old_user);
+        TextView accueil = findViewById(R.id.btn_signup);
 
         if (email.isEmpty()){
             emailUser.setError("Email obligatoire!");
@@ -88,8 +88,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
                     Toast.makeText(getApplicationContext(),"Inscription réussie", Toast.LENGTH_LONG).show();
-
-
                     Intent intent = new Intent(SignUpActivity.this, ProfilActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
@@ -118,12 +116,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         switch (view.getId()){
             case R.id.btn_signup:
                 registerUser();
-                break;
-            case R.id.sign_old_user:
                 startActivity(new Intent(this, MainActivity.class));
                 break;
-
-
         }
 
     }
