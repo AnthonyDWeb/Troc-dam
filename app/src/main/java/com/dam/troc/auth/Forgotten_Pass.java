@@ -78,8 +78,8 @@ public class Forgotten_Pass extends AppCompatActivity implements View.OnClickLis
                 .addOnCompleteListener(task -> {
 
                     if (task.isSuccessful()) {
-                        Toast.makeText(Forgotten_Pass.this, "An email has been sent to you.", Toast.LENGTH_SHORT).show();
-                        finish();
+                        Toast.makeText(Forgotten_Pass.this, "Un email vous a été envoyé.", Toast.LENGTH_SHORT).show();
+                        //finish();
                     } else {
                         Toast.makeText(Forgotten_Pass.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
