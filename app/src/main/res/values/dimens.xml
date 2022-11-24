@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="page_title">30sp</dimen>
+    <dimen name="title">20sp</dimen>
+    <dimen name="sectionTitle">18sp</dimen>
+    <dimen name="textSize">16sp</dimen>
+</resources>

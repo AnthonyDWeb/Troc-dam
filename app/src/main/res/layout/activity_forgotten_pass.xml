@@ -8,21 +8,23 @@
 
     <EditText
         android:id="@+id/fp_email"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="300dp"
         android:layout_marginEnd="16dp"
+        android:background="@drawable/input_text_container"
         android:ems="10"
+        android:hint="Enter your mail adress"
         android:inputType="textEmailAddress"
-        android:textColor="#0B0000"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/fp_submit"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
@@ -30,7 +32,7 @@
         android:layout_marginBottom="300dp"
         android:backgroundTint="@color/secondaryLightColor"
         android:text="Submit"
-        android:textColor="#000C10"
+        android:textColor="#E8EBEC"
         android:textColorHighlight="#2196F3"
         android:textColorHint="#03A9F4"
         android:textColorLink="#03A9F4"
@@ -39,4 +41,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fp_email"
         app:rippleColor="#2196F3" />
+
+    <TextView
+        android:id="@+id/fp_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Main Menu"
+        android:textColor="#E80707"
+        android:textColorLink="#E80707"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fp_submit" />
 </androidx.constraintlayout.widget.ConstraintLayout>
