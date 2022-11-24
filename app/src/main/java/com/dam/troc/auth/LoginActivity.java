@@ -33,12 +33,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         findViewById(R.id.newUser).setOnClickListener(this);
         findViewById(R.id.forgotPass).setOnClickListener(this);
-        findViewById(R.id.TvEmail).setOnClickListener(this);
-        findViewById(R.id.tvpassWord).setOnClickListener(this);
+        findViewById(R.id.et_login_email).setOnClickListener(this);
+        findViewById(R.id.et_login_password).setOnClickListener(this);
         findViewById(R.id.btn_login).setOnClickListener(this);
 
-        emailUser = findViewById(R.id.TvEmail);
-        tvPass = findViewById(R.id.tvpassWord);
+        emailUser = findViewById(R.id.et_login_email);
+        tvPass = findViewById(R.id.et_login_password);
 
 
     }

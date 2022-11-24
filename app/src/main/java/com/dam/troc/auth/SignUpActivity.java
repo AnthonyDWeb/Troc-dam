@@ -8,6 +8,7 @@ import android.os.Bundle;
 //import android.os.PatternMatcher;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +17,7 @@ import com.dam.troc.ProfilActivity;
 import com.dam.troc.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
@@ -24,7 +26,7 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener{
 
 
-    TextView emailUser, tvPass;
+    TextInputEditText emailUser, password,confirmPassword;
 
     private FirebaseAuth mAuth;
 
@@ -39,7 +41,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
 
         emailUser = findViewById(R.id.et_signup_email);
-        tvPass = findViewById(R.id.et_signup_password);
+        password = findViewById(R.id.et_signup_password);
+        confirmPassword = findViewById(R.id.et_signup_password_verification);
 
 
 
@@ -53,34 +56,31 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     private void registerUser(){
 
         String email = emailUser.getText().toString().trim();
-        String Pass = tvPass.getText().toString().trim();
+        String Pass = password.getText().toString().trim();
         TextView accueil = findViewById(R.id.btn_signup);
 
         if (email.isEmpty()){
             emailUser.setError("Email obligatoire!");
             emailUser.requestFocus();
             return;
-        }
-
-        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+        } else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             emailUser.setError("Adresse email non conforme!!");
             emailUser.requestFocus();
             return;
-
-        }
-
-        if (Pass.isEmpty()) {
-            tvPass.setError("Password obligatoire");
-            tvPass.requestFocus();
+        } else if (Pass.isEmpty()) {
+            password.setError("mot de passe obligatoire");
+            password.requestFocus();
             return;
-
-        }
-
-        if (Pass.length() <6) {
-            tvPass.setError("Minimum 6 chars!");
-            tvPass.requestFocus();
+        } else if (password != confirmPassword) {
+            confirmPassword.setError("mot de passe non identique");
+            confirmPassword.requestFocus();
             return;
-
+        } else if (Pass.length() <6) {
+            password.setError("Minimum 6 charactere!");
+            password.requestFocus();
+            return;
+        } else {
+            startActivity(new Intent(this, MainActivity.class));
         }
 
         mAuth.createUserWithEmailAndPassword(email,Pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -116,9 +116,13 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         switch (view.getId()){
             case R.id.btn_signup:
                 registerUser();
-                startActivity(new Intent(this, MainActivity.class));
                 break;
         }
 
+    }
+
+    public void backToLogin(View view){
+        Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+        startActivity(intent);
     }
 }
