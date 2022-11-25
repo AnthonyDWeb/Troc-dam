@@ -6,15 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".auth.Forgotten_Pass">
 
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="67dp"
+        android:layout_marginEnd="286dp"
+        android:text="Entrer votre adresse mail"
+        android:textColor="@color/secondaryTextColor"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/fp_email"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <EditText
         android:id="@+id/fp_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="300dp"
-        android:layout_marginEnd="16dp"
         android:background="@drawable/input_text_container"
         android:ems="10"
+        android:hint="email"
         android:inputType="textEmailAddress"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,10 +38,9 @@
         android:id="@+id/fp_submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginBottom="327dp"
+        android:background="@drawable/input_text_container"
         android:backgroundTint="@color/secondaryLightColor"
         android:text="Submit"
         android:textColor="#E8EBEC"
@@ -49,6 +61,7 @@
         android:textColor="#E80707"
         android:textColorLink="#E80707"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fp_submit"
-        tools:layout_editor_absoluteX="181dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fp_submit" />
 </androidx.constraintlayout.widget.ConstraintLayout>
