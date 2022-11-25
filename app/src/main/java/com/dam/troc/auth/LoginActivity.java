@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dam.troc.MainActivity;
 import com.dam.troc.ProfilActivity;
 import com.dam.troc.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -85,7 +86,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if (task.isSuccessful()) {
 
                     Toast.makeText(getApplicationContext(),"Login réussi.", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(LoginActivity.this, ProfilActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
 

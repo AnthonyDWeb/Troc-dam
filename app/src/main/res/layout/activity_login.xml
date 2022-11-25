@@ -37,7 +37,9 @@
 
                 android:hint="@string/enter_email"
                 android:inputType="textEmailAddress"
-                android:textColor="@color/black" />
+                android:textColor="@color/primaryDarkColor"
+                android:textSize="@dimen/textSize"
+                android:textStyle="bold" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -55,7 +57,9 @@
                 android:hint="@string/enter_password"
                 android:imeOptions="actionDone"
                 android:inputType="textPassword"
-                android:textColor="@color/black" />
+                android:textColor="@color/primaryDarkColor"
+                android:textSize="@dimen/textSize"
+                android:textStyle="bold" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -69,7 +73,7 @@
             android:padding="10dp"
             android:text="Se connecter"
             android:textColor="@color/primaryTextColor"
-            android:textSize="@dimen/sectionTitle"
+            android:textSize="@dimen/title"
             android:textStyle="bold"
             app:cornerRadius="10dp" />
     </LinearLayout>
