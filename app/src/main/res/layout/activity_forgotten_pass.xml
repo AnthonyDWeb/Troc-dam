@@ -4,64 +4,94 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="15dp"
     tools:context=".auth.Forgotten_Pass">
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="67dp"
-        android:layout_marginEnd="286dp"
-        android:text="Entrer votre adresse mail"
-        android:textColor="@color/secondaryTextColor"
+        android:layout_marginTop="44dp"
+        android:text="Récupération du mot de passe"
+        android:textColor="@color/secondaryDarkColor"
+        android:textSize="@dimen/title"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/fp_email"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/fp_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
-        android:background="@drawable/input_text_container"
-        android:ems="10"
-        android:hint="email"
-        android:inputType="textEmailAddress"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fp_email_container"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/fp_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:hint="@string/enter_email"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textSize" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
     <Button
         android:id="@+id/fp_submit"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="327dp"
-        android:background="@drawable/input_text_container"
-        android:backgroundTint="@color/secondaryLightColor"
-        android:text="Submit"
-        android:textColor="#E8EBEC"
-        android:textColorHighlight="#2196F3"
-        android:textColorHint="#03A9F4"
-        android:textColorLink="#03A9F4"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="40dp"
+        android:backgroundTint="@color/secondaryColor"
+        android:baselineAligned="false"
+        android:padding="10dp"
+        android:text="envoyer"
+        android:textColor="@color/primaryTextColor"
+        android:textSize="@dimen/title"
+        android:textStyle="bold"
+        app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fp_email"
-        app:rippleColor="#2196F3" />
+        app:layout_constraintTop_toBottomOf="@+id/fp_email_container" />
 
-    <TextView
-        android:id="@+id/fp_login"
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Main Menu"
-        android:textColor="#E80707"
-        android:textColorLink="#E80707"
+        android:layout_margin="16dp"
+        android:gravity="bottom"
+        android:onClick="backToLogin"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fp_submit" />
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/newUser2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:gravity="center|center_vertical"
+            android:text="retour"
+            android:textColor="@color/primaryDarkColor"
+            android:textSize="@dimen/textSize"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/ic_arrow_back_right" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

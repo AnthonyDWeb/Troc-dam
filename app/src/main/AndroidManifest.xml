@@ -28,7 +28,8 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="false">
+            android:exported="true">
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -62,15 +63,6 @@
         <activity
             android:name=".auth.LoginActivity"
             android:exported="true">
-
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".HomeActivity"
-            android:exported="true">
-
 
             <meta-data
                 android:name="android.app.lib_name"

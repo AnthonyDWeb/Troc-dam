@@ -17,6 +17,7 @@ import com.dam.troc.ProfilActivity;
 import com.dam.troc.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
@@ -25,7 +26,7 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener{
 
 
-    EditText emailUser, tvPass;
+    TextInputEditText emailUser, password,confirmPassword;
 
     private FirebaseAuth mAuth;
 
@@ -33,14 +34,15 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
+        mAuth = FirebaseAuth.getInstance();
 
         setContentView(R.layout.activity_sign_up);
 
-        mAuth = FirebaseAuth.getInstance();
+
 
         emailUser = findViewById(R.id.et_signup_email);
-        tvPass = findViewById(R.id.et_signup_password);
+        password = findViewById(R.id.et_signup_password);
+        confirmPassword = findViewById(R.id.et_signup_password_verification);
 
 
 
@@ -54,34 +56,30 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     private void registerUser(){
 
         String email = emailUser.getText().toString().trim();
-        String Pass = tvPass.getText().toString().trim();
+        String Pass = password.getText().toString().trim();
+        String ConfirPass = confirmPassword.getText().toString().trim();
         TextView accueil = findViewById(R.id.btn_signup);
 
         if (email.isEmpty()){
             emailUser.setError("Email obligatoire!");
             emailUser.requestFocus();
             return;
-        }
-
-        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+        } else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             emailUser.setError("Adresse email non conforme!!");
             emailUser.requestFocus();
             return;
-
-        }
-
-        if (Pass.isEmpty()) {
-            tvPass.setError("Password obligatoire");
-            tvPass.requestFocus();
+        } else if (Pass.isEmpty()) {
+            password.setError("mot de passe obligatoire");
+            password.requestFocus();
             return;
-
-        }
-
-        if (Pass.length() <6) {
-            tvPass.setError("Minimum 6 chars!");
-            tvPass.requestFocus();
+        } else if (!Pass.equals(ConfirPass)) {
+            confirmPassword.setError("mot de passe non identique");
+            confirmPassword.requestFocus();
             return;
-
+        } else if (Pass.length() <6) {
+            password.setError("Minimum 6 charactere!");
+            password.requestFocus();
+            return;
         }
 
         mAuth.createUserWithEmailAndPassword(email,Pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -96,7 +94,9 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 else {
 
                     if (task.getException() instanceof FirebaseAuthUserCollisionException){
-                        Toast.makeText(getApplicationContext(),"Email déjà enregistrée", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(),"Cette email est déjè pris", Toast.LENGTH_LONG).show();
+                        emailUser.setError("Cette email est déjè pris");
+                        emailUser.requestFocus();
                         accueil.setVisibility(View.VISIBLE);
                     }
                     else {
@@ -117,9 +117,13 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         switch (view.getId()){
             case R.id.btn_signup:
                 registerUser();
-
-            break;
+                break;
         }
 
+    }
+
+    public void backToLogin(View view){
+        Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+        startActivity(intent);
     }
 }
