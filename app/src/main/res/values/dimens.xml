@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="page_title">30sp</dimen>
-    <dimen name="title">20sp</dimen>
-    <dimen name="sectionTitle">18sp</dimen>
-    <dimen name="textSize">16sp</dimen>
+    <dimen name="page_title">36sp</dimen>
+    <dimen name="title">24sp</dimen>
+    <dimen name="textSize">20sp</dimen>
 </resources>

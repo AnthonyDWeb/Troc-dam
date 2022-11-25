@@ -57,6 +57,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         String email = emailUser.getText().toString().trim();
         String Pass = password.getText().toString().trim();
+        String ConfirPass = confirmPassword.getText().toString().trim();
         TextView accueil = findViewById(R.id.btn_signup);
 
         if (email.isEmpty()){
@@ -71,7 +72,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             password.setError("mot de passe obligatoire");
             password.requestFocus();
             return;
-        } else if (password != confirmPassword) {
+        } else if (!Pass.equals(ConfirPass)) {
             confirmPassword.setError("mot de passe non identique");
             confirmPassword.requestFocus();
             return;
@@ -79,8 +80,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             password.setError("Minimum 6 charactere!");
             password.requestFocus();
             return;
-        } else {
-            startActivity(new Intent(this, MainActivity.class));
         }
 
         mAuth.createUserWithEmailAndPassword(email,Pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -88,14 +87,16 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
                     Toast.makeText(getApplicationContext(),"Inscription réussie", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(SignUpActivity.this, ProfilActivity.class);
+                    Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
                 else {
 
                     if (task.getException() instanceof FirebaseAuthUserCollisionException){
-                        Toast.makeText(getApplicationContext(),"Email déjà enregistrée", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(),"Cette email est déjè pris", Toast.LENGTH_LONG).show();
+                        emailUser.setError("Cette email est déjè pris");
+                        emailUser.requestFocus();
                         accueil.setVisibility(View.VISIBLE);
                     }
                     else {
