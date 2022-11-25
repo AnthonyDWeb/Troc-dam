@@ -2,6 +2,8 @@ package com.dam.troc.auth;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -84,6 +86,11 @@ public class Forgotten_Pass extends AppCompatActivity implements View.OnClickLis
                         Toast.makeText(Forgotten_Pass.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    public void backToLogin(View view){
+        Intent intent = new Intent(Forgotten_Pass.this, LoginActivity.class);
+        startActivity(intent);
     }
 }
 
