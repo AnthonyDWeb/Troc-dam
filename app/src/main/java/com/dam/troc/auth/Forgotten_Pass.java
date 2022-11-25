@@ -2,11 +2,15 @@ package com.dam.troc.auth;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dam.troc.R;
@@ -17,7 +21,7 @@ public class Forgotten_Pass extends AppCompatActivity implements View.OnClickLis
     private Button submit;
     private EditText editEmail;
     private FirebaseAuth mFirebaseAuth;
-
+    private TextView tv_menu;
 
 
 
@@ -32,9 +36,11 @@ public class Forgotten_Pass extends AppCompatActivity implements View.OnClickLis
         mFirebaseAuth = FirebaseAuth.getInstance();
         editEmail = findViewById(R.id.fp_email);
         submit= findViewById(R.id.fp_submit);
+        tv_menu = findViewById(R.id.fp_login);
 
         findViewById(R.id.fp_email).setOnClickListener(this);
         findViewById(R.id.fp_submit).setOnClickListener(this);
+        findViewById(R.id.fp_login).setOnClickListener(this);
 
 
     }
@@ -50,10 +56,19 @@ public class Forgotten_Pass extends AppCompatActivity implements View.OnClickLis
 
                 submitForm();
 
-                break;
+            break;
+
+            case R.id.fp_login:
+
+                startActivity( new Intent(this, LoginActivity.class));
+
+           break;
+
+
+            }
 
         }
-    }
+
 
 
     private void submitForm() {
@@ -78,8 +93,8 @@ public class Forgotten_Pass extends AppCompatActivity implements View.OnClickLis
                 .addOnCompleteListener(task -> {
 
                     if (task.isSuccessful()) {
-                        Toast.makeText(Forgotten_Pass.this, "An email has been sent to you.", Toast.LENGTH_SHORT).show();
-                        finish();
+                        Toast.makeText(Forgotten_Pass.this, "Un email vous a été envoyé.", Toast.LENGTH_SHORT).show();
+                        //finish();
                     } else {
                         Toast.makeText(Forgotten_Pass.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }

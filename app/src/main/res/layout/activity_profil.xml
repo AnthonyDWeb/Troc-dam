@@ -208,50 +208,27 @@
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/editTextTextPersonName14"
+                <Spinner
+                    android:id="@+id/spinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
-                    android:background="@drawable/input_text_container"
-                    android:ems="10"
-                    android:hint="comp1"
-                    android:inputType="textPersonName"
-                    android:textAlignment="center"
-                    android:textColor="#03A9F4"
-                    android:textColorHint="#00BCD4"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/editTextTextPersonName15"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:background="@drawable/input_text_container"
-                    android:ems="10"
-                    android:hint="comp2"
-                    android:inputType="textPersonName"
-                    android:textAlignment="center"
-                    android:textColor="#03A9F4"
-                    android:textColorHint="#00BCD4"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/editTextTextPersonName16"
+                    />
+
+
+                <Spinner
+                    android:id="@+id/spinner2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:background="@drawable/input_text_container"
-                    android:ems="10"
-                    android:hint="comp3"
-                    android:inputType="textPersonName"
-                    android:textAlignment="center"
-                    android:textColor="#03A9F4"
-                    android:textColorHint="#00BCD4"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
+                    android:layout_weight="0" />
+
+                <Spinner
+                    android:id="@+id/spinner3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0" />
 
             </LinearLayout>
 

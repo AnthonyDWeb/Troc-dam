@@ -8,6 +8,7 @@ import android.os.Bundle;
 //import android.os.PatternMatcher;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +25,7 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener{
 
 
-    TextView emailUser, tvPass;
+    EditText emailUser, tvPass;
 
     private FirebaseAuth mAuth;
 
@@ -32,11 +33,11 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mAuth = FirebaseAuth.getInstance();
+
 
         setContentView(R.layout.activity_sign_up);
 
-
+        mAuth = FirebaseAuth.getInstance();
 
         emailUser = findViewById(R.id.et_signup_email);
         tvPass = findViewById(R.id.et_signup_password);
@@ -88,7 +89,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
                     Toast.makeText(getApplicationContext(),"Inscription réussie", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(SignUpActivity.this, ProfilActivity.class);
+                    Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
@@ -116,8 +117,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         switch (view.getId()){
             case R.id.btn_signup:
                 registerUser();
-                startActivity(new Intent(this, MainActivity.class));
-                break;
+
+            break;
         }
 
     }
