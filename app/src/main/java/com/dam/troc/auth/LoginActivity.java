@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,7 +20,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
-    TextView emailUser, tvPass;
+    EditText emailUser, tvPass;
     FirebaseAuth mAuth;
 
 
@@ -111,6 +112,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.newUser:
 
                 startActivity( new Intent(this, SignUpActivity.class));
+                finish();
                 break;
 
             case R.id.btn_login:
@@ -121,7 +123,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.forgotPass:
 
                 startActivity( new Intent(this, Forgotten_Pass.class));
+                finish();
                 break;
+
 
         }
 
