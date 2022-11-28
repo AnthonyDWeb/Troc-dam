@@ -4,7 +4,64 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfilActivity">
+    tools:context=".EditProfil">
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        tools:ignore="DuplicateIds">
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView" />
+
+        <EditText
+            android:id="@+id/editTextTextProfilVille"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        tools:ignore="DuplicateIds">
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView" />
+
+        <EditText
+            android:id="@+id/editTextTextProfilcPostal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linear_profil_hearder"
@@ -23,41 +80,97 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/edProfilSubmit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Envoyez" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tv_user_profile_name"
-                android:layout_width="354dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Nom d'utilisateur"
-                android:inputType="textMultiLine|textPersonName"
-                android:textAlignment="center"
-                android:textColorHint="@color/secondaryDarkColor"
-                android:textSize="@dimen/page_title"
-                android:textStyle="bold"
-                android:visibility="visible"
-                tools:ignore="MissingConstraints" />
-
-            <ImageButton
-                android:id="@+id/Submit"
+                android:id="@+id/textView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_menu_edit" />
+                android:layout_weight="1"
+                android:text="TextView" />
 
+            <EditText
+                android:id="@+id/editTextTextProfilPseudo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView" />
+
+            <EditText
+                android:id="@+id/editTextTextProfilNom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView" />
+
+            <EditText
+                android:id="@+id/EditTxtProfilPrenom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
         </LinearLayout>
 
     </LinearLayout>
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
-        android:layout_width="418dp"
-        android:layout_height="0dp"
+        android:layout_width="429dp"
+        android:layout_height="570dp"
         android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linear_profil_hearder">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout1"
+        app:layout_constraintVertical_bias="0.057">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -91,7 +204,7 @@
                     android:textSize="@dimen/textSize"
                     android:textStyle="normal" />
 
-                <TextView
+                <EditText
                     android:id="@+id/editTextProfilEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -105,7 +218,21 @@
                     android:textSize="@dimen/textSize"
                     android:textStyle="bold" />
 
+                <EditText
+                    android:id="@+id/editTextTextProfilcPOstal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="Name" />
+
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"></LinearLayout>
 
             <LinearLayout
                 android:id="@+id/telField"
@@ -133,7 +260,7 @@
                     android:textSize="@dimen/textSize"
                     android:textStyle="normal" />
 
-                <EditText
+                <TextView
 
                     android:id="@+id/editTextTextProfilPhone"
                     android:layout_width="match_parent"
@@ -228,7 +355,7 @@
                         android:textColor="@color/secondaryDarkColor" />
                 </LinearLayout>
 
-                <TextView
+                <EditText
                     android:id="@+id/etprofilcomp1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -241,8 +368,8 @@
                     android:textColor="@color/primaryDarkColor"
                     android:textSize="@dimen/textSize" />
 
-                <TextView
-                    android:id="@+id/etprofilcomp3"
+                <EditText
+                    android:id="@+id/etprofilcomp2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="8dp"
@@ -254,8 +381,8 @@
                     android:textColor="@color/primaryDarkColor"
                     android:textSize="@dimen/textSize" />
 
-                <TextView
-                    android:id="@+id/textView8"
+                <EditText
+                    android:id="@+id/etprofilcomp3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="8dp"
@@ -302,6 +429,33 @@
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linear_profil_hearder">
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView" />
+
+        <EditText
+            android:id="@+id/editTextTextProfilAdress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name" />
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
