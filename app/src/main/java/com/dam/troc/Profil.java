@@ -5,7 +5,7 @@ import android.net.Uri;
 public class Profil {
     private Uri imgUrl;
     private String pseudo;
-    private String nom, prenom;
+    //private String nom, prenom;
     private String email, telephone;
     private String adresse, ville, cpostal;
     private String comp1, comp2, comp3, desc;
@@ -19,12 +19,12 @@ public class Profil {
 
 
 
-    public Profil(Uri imgUrl,String pseudo, String nom, String prenom, String email, String telephone, String adresse,
+    public Profil(Uri imgUrl,String pseudo, String email, String telephone, String adresse,
                   String ville, String cpostal, String comp1, String comp2, String comp3, String desc) {
         this.imgUrl = imgUrl;
         this.pseudo = pseudo;
-        this.nom = nom;
-        this.prenom = prenom;
+        //this.nom = nom;
+        //this.prenom = prenom;
         this.email = email;
         this.telephone = telephone;
         this.adresse = adresse;
@@ -48,13 +48,13 @@ public class Profil {
         return pseudo;
     }
 
-    public String getNom() {
+   /* public String getNom() {
         return nom;
-    }
+    }*/
 
-    public String getPrenom() {
+   /*// public String getPrenom() {
         return prenom;
-    }
+    }*/
 
     public String getEmail() {
         return email;
@@ -103,13 +103,9 @@ public class Profil {
         this.pseudo = pseudo;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
+    //public void setNom(String nom) {this.nom = nom;    }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
+    //public void setPrenom(String prenom) {this.prenom = prenom;    }
 
     public void setEmail(String email) {
         this.email = email;
