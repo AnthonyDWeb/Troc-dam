@@ -11,40 +11,45 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/iv_card_userProfilPhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            tools:srcCompat="@tools:sample/avatars" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="0"
             android:gravity="center_vertical"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:padding="10dp">
 
-            <ImageView
-                android:id="@+id/iv_chat_card_userProfilPhoto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                tools:srcCompat="@tools:sample/avatars" />
-
             <TextView
-                android:id="@+id/tv_chat_card_username"
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_card_username"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
                 android:layout_weight="1"
                 android:text="Nom d'utilisateur"
+                android:textAlignment="viewStart"
                 android:textColor="@color/secondaryDarkColor"
                 android:textSize="@dimen/textSize"
                 android:textStyle="bold" />
 
+            <TextView
+                android:id="@+id/tv_card_userSkill"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/secondaryDarkColor"
+                android:textSize="@dimen/textSize"
+                tools:text="Compétence" />
         </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginTop="5dp"
-            android:background="@color/secondaryColor" />
 
     </LinearLayout>
 

@@ -32,11 +32,11 @@ public class Forgotten_Pass extends AppCompatActivity implements View.OnClickLis
 
 
         mFirebaseAuth = FirebaseAuth.getInstance();
-        editEmail = findViewById(R.id.fp_email);
-        submit= findViewById(R.id.fp_submit);
+        editEmail = findViewById(R.id.tf_forgottenPassword_email);
+        submit= findViewById(R.id.btn_forgottenPassword_submit);
 
-        findViewById(R.id.fp_email).setOnClickListener(this);
-        findViewById(R.id.fp_submit).setOnClickListener(this);
+        findViewById(R.id.tf_forgottenPassword_email).setOnClickListener(this);
+        findViewById(R.id.btn_forgottenPassword_submit).setOnClickListener(this);
 
 
     }
@@ -48,7 +48,7 @@ public class Forgotten_Pass extends AppCompatActivity implements View.OnClickLis
 
         switch (view.getId()) {
 
-            case R.id.fp_submit:
+            case R.id.btn_forgottenPassword_submit:
 
                 submitForm();
 
