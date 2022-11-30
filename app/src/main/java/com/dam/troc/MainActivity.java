@@ -91,34 +91,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    /** Méthodes du cycles de vies **/
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Gol.addLog(emplacement, "onStart");
-    }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Gol.addLog(emplacement, "onResume");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Gol.addLog(emplacement, "onPause");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Gol.addLog(emplacement, "onStop");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Gol.addLog(emplacement, "onDestroy");
-    }
 }

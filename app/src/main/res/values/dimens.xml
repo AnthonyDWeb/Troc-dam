@@ -3,4 +3,5 @@
     <dimen name="page_title">36sp</dimen>
     <dimen name="title">24sp</dimen>
     <dimen name="textSize">20sp</dimen>
+    <dimen name="textOptionSize">16sp</dimen>
 </resources>

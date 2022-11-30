@@ -11,15 +11,11 @@ public class Profil {
     private String comp1, comp2, comp3, desc;
 
     //default constructor!!! Needed by firebase
-
     public Profil (){};
 
 
     // Full constructor
-
-
-
-    public Profil(Uri imgUrl,String pseudo, String email, String telephone, String adresse,
+    public Profil(Uri imgUrl,String pseudo, String nom, String prenom, String email, String telephone, String adresse,
                   String ville, String cpostal, String comp1, String comp2, String comp3, String desc) {
         this.imgUrl = imgUrl;
         this.pseudo = pseudo;
@@ -39,10 +35,6 @@ public class Profil {
 
 
     //getters
-
-
-
-
 
     public String getPseudo() {
         return pseudo;
@@ -95,9 +87,6 @@ public class Profil {
 
 
     //Setters!!!
-
-
-
 
     public void setPseudo(String pseudo) {
         this.pseudo = pseudo;
