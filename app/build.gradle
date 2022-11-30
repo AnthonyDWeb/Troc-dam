@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace 'com.dam.troc'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.dam.troc"
         minSdk 21
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -51,4 +51,7 @@ dependencies {
 
     // GLIDE
     implementation 'com.github.bumptech.glide:glide:4.14.2'
+
+    implementation 'androidx.activity:activity:1.6.1'
+
 }
