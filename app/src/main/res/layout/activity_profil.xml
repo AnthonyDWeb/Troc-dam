@@ -133,7 +133,7 @@
                     android:textSize="@dimen/textSize"
                     android:textStyle="normal" />
 
-                <EditText
+                <TextView
 
                     android:id="@+id/editTextTextProfilPhone"
                     android:layout_width="match_parent"
