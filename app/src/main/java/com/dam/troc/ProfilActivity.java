@@ -1,28 +1,23 @@
 package com.dam.troc;
 
-import static android.widget.Toast.*;
 import static com.dam.troc.R.id.editTextProfilVille;
 import static com.dam.troc.R.id.edittextProfilCpostal;
+import static com.dam.troc.R.id.tv_user_profile_name;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -62,6 +57,22 @@ public class ProfilActivity extends Fragment {
 
         loadUserInformation();
 
+        itemView.findViewById(R.id.btn_profil_editProfil).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putString("username", plPseudo.getText().toString());
+                bundle.putString("email", plMel.getText().toString());
+                bundle.putString("skill1", plComp1.getText().toString());
+                bundle.putString("skill2", plComp2.getText().toString());
+                bundle.putString("skill3", plComp3.getText().toString());
+
+                Intent intent = new Intent(getContext(), EditProfil.class);
+                intent.putExtras(bundle);
+
+                startActivity(intent);
+            }
+        });
         return itemView;
     }
 
@@ -78,8 +89,9 @@ public class ProfilActivity extends Fragment {
 //            boolean emailVerified = user.isEmailVerified();
 //            if (emailVerified)
             plMel.setText(usermail);
-
-            if (plComp1.getText() == null) plComp1.setVisibility(View.GONE);
+            if (plComp1.getText() == "") plComp1.setVisibility(View.GONE);
+            if (plComp2.getText() == "") plComp2.setVisibility(View.GONE);
+            if (plComp3.getText() == "") plComp3.setVisibility(View.GONE);
 
         }
     }

@@ -51,7 +51,6 @@ public class EditProfil extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-
         profilimg = findViewById(R.id.iv_profile_photo);
         plPseudo = findViewById(R.id.tv_user_profile_name);
         //plNom = findViewById(R.id.editTextTextProfilNom);
@@ -66,6 +65,16 @@ public class EditProfil extends AppCompatActivity {
         plComp3 = findViewById(R.id.etprofilcomp3);
         plDescription = findViewById(R.id.et_profil_descriptionText);
 
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            String username = bundle.getString("username");
+            plPseudo.setText(bundle.getString("username"));
+            plMel.setText(bundle.getString("email"));
+            plComp1.setText(bundle.getString("skill1"));
+            plComp2.setText(bundle.getString("skill2"));
+            plComp3.setText(bundle.getString("skill3"));
+        }
+
         profilimg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,7 +83,7 @@ public class EditProfil extends AppCompatActivity {
         });
 
         uploadImageToFirebaseStorage();
-        findViewById(R.id.Submit).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btn_profil_editProfil).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 saveUserInformation();
