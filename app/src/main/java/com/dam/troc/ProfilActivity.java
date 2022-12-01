@@ -1,5 +1,6 @@
 package com.dam.troc;
 
+import static android.widget.Toast.*;
 import static com.dam.troc.R.id.editTextProfilVille;
 import static com.dam.troc.R.id.edittextProfilCpostal;
 
@@ -19,6 +20,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,8 +32,7 @@ public class ProfilActivity extends Fragment {
     Button btnSubmit;
     ImageView profilimg;
     Uri imgUrl;
-    TextView plPseudo, plMel, plTel, plAdress, plVille, plCpostal, plComp1, plComp2,
-            plComp3, plDescription;
+    TextView plPseudo, plMel, plTel, plAdress, plVille, plCpostal, plComp1, plComp2, plComp3, plDescription;
     FirebaseAuth mAuth;
     public static final int PICK_IMAGE = 1;
 
@@ -43,9 +44,8 @@ public class ProfilActivity extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         mAuth = FirebaseAuth.getInstance();
-//        loadUserInformation();
-        ViewGroup itemView = (ViewGroup) inflater.inflate(R.layout.activity_profil, container, false);
 
+        ViewGroup itemView = (ViewGroup) inflater.inflate(R.layout.activity_profil, container, false);
         profilimg = itemView.findViewById(R.id.iv_profile_photo);
         plPseudo = itemView.findViewById(R.id.tv_user_profile_name);
         //plNom = findViewById(R.id.editTextTextProfilNom);
@@ -60,23 +60,27 @@ public class ProfilActivity extends Fragment {
         plComp3 = itemView.findViewById(R.id.etprofilcomp3);
         plDescription = itemView.findViewById(R.id.et_profil_descriptionText);
 
-        return itemView;
+        loadUserInformation();
 
+        return itemView;
     }
 
     private void loadUserInformation() {
-        final FirebaseUser user = mAuth.getCurrentUser();
-
+        FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
-            if (user.getPhotoUrl() != null) {
-                Glide.with(this)
-                        .load(user.getPhotoUrl().toString())
-                        .into(profilimg);
-            } else {
+            String uid = user.getUid();
 
-                ImageView imageView = (ImageView) getActivity().findViewById(R.id.iv_profile_photo);
-                imageView.setImageBitmap(BitmapFactory.decodeFile("R.drawable.unknown.jpg"));
-            }
+            String username = user.getDisplayName();
+            plPseudo.setText(username);
+
+            String usermail = user.getEmail();
+            // Check if user's email is verified
+//            boolean emailVerified = user.isEmailVerified();
+//            if (emailVerified)
+            plMel.setText(usermail);
+
+            if (plComp1.getText() == null) plComp1.setVisibility(View.GONE);
+
         }
     }
 
