@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -42,7 +43,8 @@ public class ProfilActivity extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         mAuth = FirebaseAuth.getInstance();
-      ViewGroup itemView = (ViewGroup)inflater.inflate(R.layout.activity_profil,container,false);
+//        loadUserInformation();
+        ViewGroup itemView = (ViewGroup) inflater.inflate(R.layout.activity_profil, container, false);
 
         profilimg = itemView.findViewById(R.id.iv_profile_photo);
         plPseudo = itemView.findViewById(R.id.tv_user_profile_name);
@@ -58,9 +60,6 @@ public class ProfilActivity extends Fragment {
         plComp3 = itemView.findViewById(R.id.etprofilcomp3);
         plDescription = itemView.findViewById(R.id.et_profil_descriptionText);
 
-
-
-        loadUserInformation();
         return itemView;
 
     }
@@ -73,18 +72,12 @@ public class ProfilActivity extends Fragment {
                 Glide.with(this)
                         .load(user.getPhotoUrl().toString())
                         .into(profilimg);
-            }
-        else {
+            } else {
 
-              ImageView imageView = (ImageView) getActivity().findViewById(R.id.iv_profile_photo);
+                ImageView imageView = (ImageView) getActivity().findViewById(R.id.iv_profile_photo);
                 imageView.setImageBitmap(BitmapFactory.decodeFile("R.drawable.unknown.jpg"));
             }
-
-
-
-
         }
-
     }
 
 }
