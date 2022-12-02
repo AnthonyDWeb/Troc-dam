@@ -30,14 +30,15 @@
                 android:layout_width="354dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Nom d'utilisateur"
                 android:inputType="textMultiLine|textPersonName"
                 android:textAlignment="center"
+                android:textColor="@color/secondaryDarkColor"
                 android:textColorHint="@color/secondaryDarkColor"
                 android:textSize="@dimen/page_title"
                 android:textStyle="bold"
                 android:visibility="visible"
-                tools:ignore="MissingConstraints" />
+                tools:ignore="MissingConstraints"
+                tools:text="Nom d'utilisateur" />
 
             <ImageButton
                 android:id="@+id/Submit"
@@ -98,12 +99,12 @@
                     android:layout_marginLeft="5dp"
                     android:layout_weight="0"
                     android:ems="10"
-                    android:hint="monemail@email.froucom"
                     android:inputType="textPersonName"
-                    android:textColor="@color/black"
+                    android:textColor="@color/secondaryDarkColor"
                     android:textColorHint="@color/primaryDarkColor"
                     android:textSize="@dimen/textSize"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:text="monemail@email.froucom" />
 
             </LinearLayout>
 
@@ -133,7 +134,7 @@
                     android:textSize="@dimen/textSize"
                     android:textStyle="normal" />
 
-                <EditText
+                <TextView
 
                     android:id="@+id/editTextTextProfilPhone"
                     android:layout_width="match_parent"
@@ -141,12 +142,12 @@
                     android:layout_marginLeft="5dp"
                     android:layout_weight="0"
                     android:ems="10"
-                    android:hint="0102030405"
                     android:inputType="textPersonName"
-                    android:textColor="@color/black"
+                    android:textColor="@color/secondaryDarkColor"
                     android:textColorHint="@color/primaryDarkColor"
                     android:textSize="@dimen/textSize"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:text="0102030405" />
 
             </LinearLayout>
 
@@ -181,13 +182,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_weight="0"
-                    android:autoText="false"
                     android:ems="10"
-                    android:hint="10 rue Damtroc, Paris - 75019"
                     android:inputType="textMultiLine"
+                    android:textColor="@color/secondaryDarkColor"
                     android:textColorHint="@color/primaryDarkColor"
                     android:textSize="@dimen/textSize"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:text="10 rue Damtroc, Paris - 75019" />
 
             </LinearLayout>
 
@@ -237,7 +238,7 @@
                     android:layout_weight="0"
                     android:background="@drawable/input_text_container"
                     android:padding="8dp"
-                    android:text="Compétence 1"
+                    tools:text="Compétence 1"
                     android:textColor="@color/primaryDarkColor"
                     android:textSize="@dimen/textSize" />
 
@@ -250,7 +251,7 @@
                     android:layout_weight="0"
                     android:background="@drawable/input_text_container"
                     android:padding="8dp"
-                    android:text="Compétence 2"
+                    tools:text="Compétence 2"
                     android:textColor="@color/primaryDarkColor"
                     android:textSize="@dimen/textSize" />
 
@@ -263,7 +264,7 @@
                     android:layout_weight="0"
                     android:background="@drawable/input_text_container"
                     android:padding="8dp"
-                    android:text="Compétence 3"
+                    tools:text="Compétence 3"
                     android:textColor="@color/primaryDarkColor"
                     android:textSize="@dimen/textSize" />
 
@@ -294,10 +295,11 @@
                     android:layout_margin="8dp"
                     android:layout_weight="0"
                     android:ems="10"
-                    android:hint="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
                     android:inputType="textMultiLine"
+                    android:textColor="@color/secondaryDarkColor"
                     android:textColorHint="@color/primaryDarkColor"
-                    android:textSize="@dimen/textSize" />
+                    android:textSize="@dimen/textSize"
+                    tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." />
             </LinearLayout>
 
         </LinearLayout>

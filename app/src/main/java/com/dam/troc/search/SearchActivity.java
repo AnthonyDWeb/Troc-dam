@@ -59,7 +59,7 @@ public class SearchActivity extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         initFirebaseTools();
-        searchReadDataFromFirestore();
+//        searchReadDataFromFirestore();
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.activity_search, container, false);
         radioButtonProffesion = rootView.findViewById(R.id.radioButtonProffesion);
         radioButtonProffesion.setOnClickListener(this::onClick);
