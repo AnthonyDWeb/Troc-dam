@@ -79,7 +79,9 @@ public class ProfilActivity extends Fragment {
 //            if (emailVerified)
             plMel.setText(usermail);
 
-            if (plComp1.getText() == null) plComp1.setVisibility(View.GONE);
+            if (plComp1.getText() == "") plComp1.setVisibility(View.GONE);
+            if (plComp2.getText() == "") plComp2.setVisibility(View.GONE);
+            if (plComp3.getText() == "") plComp3.setVisibility(View.GONE);
 
         }
     }
