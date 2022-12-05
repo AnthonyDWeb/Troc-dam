@@ -69,8 +69,9 @@
                 android:id="@+id/emailField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_marginLeft="15dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginRight="15dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -102,7 +103,7 @@
                     android:hint="monemail@email.froucom"
                     android:inputType="textPersonName"
                     android:textColor="@color/secondaryDarkColor"
-                    android:textColorHint="@color/primaryDarkColor"
+                    android:textColorHint="@color/secondaryDarkColor"
                     android:textSize="@dimen/textSize"
                     android:textStyle="bold" />
 
@@ -112,7 +113,8 @@
                 android:id="@+id/telField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 android:layout_weight="0"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
@@ -142,12 +144,10 @@
                     android:layout_marginLeft="5dp"
                     android:layout_weight="0"
                     android:ems="10"
-                    android:hint="0102030405"
+                    android:hint="06XXXXXXXX"
                     android:inputType="textPersonName"
                     android:textColor="@color/secondaryDarkColor"
-                    android:textColorHint="@color/primaryDarkColor"
-                    android:textSize="@dimen/textSize"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/textSize" />
 
             </LinearLayout>
 
@@ -155,7 +155,8 @@
                 android:id="@+id/adressField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 android:layout_weight="0"
                 android:gravity="center_vertical"
                 android:orientation="vertical">
@@ -188,20 +189,20 @@
                     android:id="@+id/editTextProfilAdresse"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
                     android:layout_marginLeft="5dp"
                     android:layout_weight="0"
                     android:autoText="false"
                     android:ems="10"
-                    android:hint="10 rue Damtroc, Paris - 75019"
+                    android:hint="n° rue"
                     android:inputType="textMultiLine"
                     android:textColor="@color/secondaryDarkColor"
-                    android:textColorHint="@color/primaryDarkColor"
-                    android:textSize="@dimen/textSize"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/textSize" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="66dp"
+                    android:layout_margin="10dp"
                     android:layout_weight="0"
                     android:orientation="horizontal">
 
@@ -212,7 +213,8 @@
                         android:layout_weight="1"
                         android:ems="10"
                         android:hint="Ville"
-                        android:inputType="textPersonName" />
+                        android:inputType="textPersonName"
+                        android:textColor="@color/secondaryDarkColor" />
 
                     <EditText
                         android:id="@+id/edittextProfilCpostal"
@@ -221,7 +223,8 @@
                         android:layout_weight="1"
                         android:ems="10"
                         android:hint="Code Postal"
-                        android:inputType="textPersonName" />
+                        android:inputType="textPersonName"
+                        android:textColor="@color/secondaryDarkColor" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -230,14 +233,15 @@
                 android:id="@+id/skillField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 android:layout_weight="0"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
                     android:layout_weight="0"
                     android:orientation="horizontal">
 
@@ -245,7 +249,7 @@
                         android:id="@+id/textView7"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="25dp"
+                        android:layout_marginLeft="15dp"
                         android:layout_weight="0"
                         android:gravity="center_vertical"
                         android:text="Competences :"
@@ -253,14 +257,6 @@
                         android:textSize="24sp"
                         android:textStyle="bold" />
 
-                    <Button
-                        android:id="@+id/button2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0"
-                        android:backgroundTint="@color/secondaryColor"
-                        android:text="+"
-                        android:textColor="@color/secondaryDarkColor" />
                 </LinearLayout>
 
                 <EditText
@@ -271,9 +267,11 @@
                     android:layout_marginBottom="5dp"
                     android:layout_weight="0"
                     android:background="@drawable/input_text_container"
-                    android:padding="8dp"
-                    android:text="Compétence 1"
-                    android:textColor="@color/primaryDarkColor"
+                    android:hint="ajouter une compétence"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/secondaryDarkColor"
                     android:textSize="@dimen/textSize" />
 
                 <EditText
@@ -284,9 +282,11 @@
                     android:layout_marginBottom="5dp"
                     android:layout_weight="0"
                     android:background="@drawable/input_text_container"
-                    android:padding="8dp"
-                    android:text="Compétence 2"
-                    android:textColor="@color/primaryDarkColor"
+                    android:hint="ajouter une compétence"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/secondaryDarkColor"
                     android:textSize="@dimen/textSize" />
 
                 <EditText
@@ -297,9 +297,11 @@
                     android:layout_marginBottom="5dp"
                     android:layout_weight="0"
                     android:background="@drawable/input_text_container"
-                    android:padding="8dp"
-                    android:text="Compétence 3"
-                    android:textColor="@color/primaryDarkColor"
+                    android:hint="ajouter une compétence"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/secondaryDarkColor"
                     android:textSize="@dimen/textSize" />
 
             </LinearLayout>
@@ -307,14 +309,16 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="8dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/tv_profil_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginLeft="15dp"
                     android:layout_weight="0"
                     android:gravity="center_vertical"
                     android:text="Description :"
@@ -329,9 +333,8 @@
                     android:layout_margin="8dp"
                     android:layout_weight="0"
                     android:ems="10"
-                    android:hint="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                    android:hint="description..."
                     android:inputType="textMultiLine"
-                    android:textColorHint="@color/primaryDarkColor"
                     android:textSize="@dimen/textSize" />
             </LinearLayout>
 
