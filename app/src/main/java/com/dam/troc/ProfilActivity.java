@@ -1,5 +1,7 @@
 package com.dam.troc;
 
+import static com.dam.troc.commons.Constants.*;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -59,23 +61,19 @@ public class ProfilActivity extends Fragment {
     String name;
     private void loadUserInformation() {
         Log.i("TAG", "loadUserInformation: ");
-        db = FirebaseFirestore.getInstance();
+        db = FIRESTORE_INSTANCE;
 
+        FirebaseUser user = CURRENT_USER;
+        Log.i("TAG", "user.getUid() ------------> " + user.getUid());
 
-        FirebaseUser user = mAuth.getCurrentUser();
-        Log.i("TAG", "===========> " +user);
-        String fuser = user.getUid();
-        Log.i("TAG", "------------> " + fuser);
-
-
-        db.collection("Users").document(fuser)
+        db.collection(USERS).document(user.getUid())
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         if(documentSnapshot.exists()){
                             name = documentSnapshot.getString("name");
-                            Log.i("TAG", "onSuccess: " + name);
+                            Log.i("TAG", "profil onSuccess name: " + name);
 
                             username.setText(name);
                             email.setText(documentSnapshot.getString("email"));
@@ -120,11 +118,8 @@ public class ProfilActivity extends Fragment {
 
     private void getDataToEdit(View view) {
         Bundle bundle = new Bundle();
-        bundle.putString("name", username.getText().toString());
-        bundle.putString("email", email.getText().toString());
-        bundle.putString("skill1", skill1.getText().toString());
-        bundle.putString("skill2", skill2.getText().toString());
-        bundle.putString("skill3", skill3.getText().toString());
+        bundle.putString(NAME, username.getText().toString());
+        bundle.putString(EMAIL, email.getText().toString());
 
         Intent intent = new Intent(getContext(), EditProfil.class);
         intent.putExtras(bundle);
@@ -153,7 +148,7 @@ public class ProfilActivity extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         loadUserInformation();
-
+        Log.i("TAG", "onViewCreated: inside");
         view.findViewById(R.id.btn_profil_editProfil).setOnClickListener(this::getDataToEdit);
     }
 }

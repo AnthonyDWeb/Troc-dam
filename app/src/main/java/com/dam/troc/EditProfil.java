@@ -151,32 +151,32 @@ public class EditProfil extends AppCompatActivity {
             }
 
             if (tel.isEmpty()) {
-                et_tel.setText("");
+                tel = "";
             }
 
             if (address.isEmpty()) {
-                et_address.setText("");
+                address = "";
             }
 
 
             if (postalCode.isEmpty()) {
-                et_postalCode.setText("");
+                postalCode = "";
             }
             if (city.isEmpty()) {
-                et_city.setText("");
+                city = "";
             }
             if (skill1.isEmpty()) {
-                et_skill1.setText("");
+                skill1 = "";
             }
             if (skill2.isEmpty()) {
-                et_skill2.setText("");
+                skill2 = "";
 
             }
             if (skill3.isEmpty()) {
-                et_skill3.setText("");
+                skill3 = "";
             }
             if (description.isEmpty()) {
-                et_description.setText("");
+                description = "";
             }
 
             HashMap<String, Object> map = new HashMap<>();
@@ -190,7 +190,7 @@ public class EditProfil extends AppCompatActivity {
             map.put("skill1 ", skill1);
             map.put("skill2 ", skill2);
             map.put("skill3 ", skill3);
-            map.put("Description ", description);
+            map.put("description ", description);
 
             Log.i("TAG", String.valueOf(map));
 
@@ -201,6 +201,8 @@ public class EditProfil extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             Toast.makeText(EditProfil.this, "Profil sauvegardé !", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(EditProfil.this, MainActivity.class);
+                            startActivity(intent);
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
