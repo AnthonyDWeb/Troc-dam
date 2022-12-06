@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "735944889680-6pbr3om7uh552fq29bcl927mu6ut3cdc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dam.troc",
+            "certificate_hash": "571c7629dbcc4bb5e4b1f417cd653c07768493c0"
+          }
+        },
+        {
           "client_id": "735944889680-4qs2itkffvrejl5sr18n7gnkeak9qmrk.apps.googleusercontent.com",
           "client_type": 3
         }
