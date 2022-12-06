@@ -255,50 +255,23 @@
 
                 </LinearLayout>
 
-                <EditText
+                <Spinner
                     android:id="@+id/et_profile_skill1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="8dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="0"
-                    android:background="@drawable/input_text_container"
-                    android:hint="ajouter une compétence"
-                    android:paddingTop="2dp"
-                    android:paddingBottom="2dp"
-                    android:textAlignment="center"
-                    android:textColor="@color/secondaryDarkColor"
-                    android:textSize="@dimen/textSize" />
+                    android:layout_height="50dp"
+                    android:layout_weight="0" />
 
-                <EditText
+                <Spinner
                     android:id="@+id/et_profile_skill2"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="8dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="0"
-                    android:background="@drawable/input_text_container"
-                    android:hint="ajouter une compétence"
-                    android:paddingTop="2dp"
-                    android:paddingBottom="2dp"
-                    android:textAlignment="center"
-                    android:textColor="@color/secondaryDarkColor"
-                    android:textSize="@dimen/textSize" />
+                    android:layout_height="50dp"
+                    android:layout_weight="0" />
 
-                <EditText
+                <Spinner
                     android:id="@+id/et_profile_skill3"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="8dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="0"
-                    android:background="@drawable/input_text_container"
-                    android:hint="ajouter une compétence"
-                    android:paddingTop="2dp"
-                    android:paddingBottom="2dp"
-                    android:textAlignment="center"
-                    android:textColor="@color/secondaryDarkColor"
-                    android:textSize="@dimen/textSize" />
+                    android:layout_height="50dp"
+                    android:layout_weight="0" />
 
             </LinearLayout>
 

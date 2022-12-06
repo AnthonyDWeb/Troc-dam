@@ -13,10 +13,13 @@ import android.provider.MediaStore;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -33,20 +36,53 @@ import com.google.firebase.storage.UploadTask;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class EditProfil extends AppCompatActivity {
+public class EditProfil extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+    String[] metiers ={"Agriculture","Architecture","Art","Artisanat","Batiment","Bois","Babysitter","Construction","Jardinage",
+            "Culture","Hôtellerie","Restauration","Tourisme","Industries","Developpement web","Transport","Santé","Banque","Assurances",
+            "Immobilier","Commerce","Vente","Marketting",
+            "Transport","Informatique","Internet","Service à la personne","Logistique","Social"};
+
+
 
     FirebaseAuth mAuth;
     private FirebaseUser firebaseUser;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-
+    ArrayAdapter<String> adapter;
     ImageButton et_btnSubmit;
     ImageView et_userProfileImage;
     Uri et_imgUri;
-    EditText et_username, et_email, et_tel, et_address, et_city, et_postalCode, et_skill1, et_skill2, et_skill3, et_description;
+    EditText et_username, et_email, et_tel, et_address, et_city, et_postalCode, et_description;
+    Spinner spinner01, spinner02, spinner03;
     public static final int PICK_IMAGE = 1;
 
+    public String et_skill1 = "";
+    public String et_skill2 = "";
+    public String et_skill3 = "";
 
-    private void InitUI(){
+
+
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_edit_profil);
+
+        mAuth = FirebaseAuth.getInstance();
+        firebaseUser = mAuth.getCurrentUser();
+        InitUI();
+        getDataFromProfile();
+
+        et_userProfileImage.setOnClickListener(this::choixImage);
+        uploadImageToFirebaseStorage();
+        et_btnSubmit.setOnClickListener(this::saveUserInformation);
+    }
+
+
+
+
+
+
+
+
+    public void InitUI(){
         et_userProfileImage = findViewById(R.id.iv_profile_photo);
         et_username = findViewById(R.id.et_profile_username);
         et_email = findViewById(R.id.et_profile_email);
@@ -54,21 +90,40 @@ public class EditProfil extends AppCompatActivity {
         et_address = findViewById(R.id.et_profile_address);
         et_city = findViewById(R.id.et_profile_city);
         et_postalCode = findViewById(R.id.et_profile_postalCode);
-        et_skill1 = findViewById(R.id.et_profile_skill1);
-        et_skill2 = findViewById(R.id.et_profile_skill2);
-        et_skill3 = findViewById(R.id.et_profile_skill3);
+        spinner01 = findViewById(R.id.et_profile_skill1);
+        spinner02 = findViewById(R.id.et_profile_skill2);
+        spinner03 = findViewById(R.id.et_profile_skill3);
         et_description = findViewById(R.id.et_profile_description);
         et_btnSubmit = findViewById(R.id.btn_editProfil_editProfil);
+
+
+
+        spinner01.setOnItemSelectedListener(this);
+        spinner02.setOnItemSelectedListener(this);
+        spinner03.setOnItemSelectedListener(this);
+
+
+        adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item,metiers);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
+
+        spinner01.setAdapter(adapter);
+        spinner02.setAdapter(adapter);
+        spinner03.setAdapter(adapter);
+
+
+
     }
 
     private void getDataFromProfile(){
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            et_username.setText(bundle.getString("username"));
+            et_username.setText(bundle.getString("name"));
             et_email.setText(bundle.getString("email"));
-            et_skill1.setText(bundle.getString("skill1"));
+          /*  et_skill1.setText (bundle.getString("skill1"));
             et_skill2.setText(bundle.getString("skill2"));
-            et_skill3.setText(bundle.getString("skill3"));
+            et_skill3.setText(bundle.getString("skill3"));*/
         }
     }
 
@@ -121,7 +176,7 @@ public class EditProfil extends AppCompatActivity {
         }
     }
 
-    private void saveUserInformation(View view) {
+   public void saveUserInformation(View view) {
 
         String uId = mAuth.getUid();
         Log.i("TAG", "saveUserInformation uid: " + uId);
@@ -132,9 +187,6 @@ public class EditProfil extends AppCompatActivity {
         String address = et_address.getText().toString();
         String city = et_city.getText().toString();
         String postalCode= et_postalCode.getText().toString();
-        String skill1 = et_skill1.getText().toString();
-        String skill2= et_skill2.getText().toString();
-        String skill3= et_skill3.getText().toString();
         String description = et_description.getText().toString();
         if (uId != null) {
             Log.i("TAG", "inside");
@@ -165,16 +217,16 @@ public class EditProfil extends AppCompatActivity {
             if (city.isEmpty()) {
                 et_city.setText("");
             }
-            if (skill1.isEmpty()) {
-                et_skill1.setText("");
+            /*if (et_skill1.isEmpty()) {
+                et_skill1 =("");
             }
-            if (skill2.isEmpty()) {
-                et_skill2.setText("");
+            if (et_skill2.isEmpty()) {
+                et_skill2 = ("");
 
             }
-            if (skill3.isEmpty()) {
-                et_skill3.setText("");
-            }
+            if (et_skill3.isEmpty()) {
+                et_skill3 = ("");
+            }*/
             if (description.isEmpty()) {
                 et_description.setText("");
             }
@@ -187,9 +239,9 @@ public class EditProfil extends AppCompatActivity {
             map.put("address ", address);
             map.put("city ", city);
             map.put("postalCode ", postalCode);
-            map.put("skill1 ", skill1);
-            map.put("skill2 ", skill2);
-            map.put("skill3 ", skill3);
+            map.put("skill1 ", et_skill1);
+            map.put("skill2 ", et_skill2);
+            map.put("skill3 ", et_skill3);
             map.put("Description ", description);
 
             Log.i("TAG", String.valueOf(map));
@@ -219,66 +271,44 @@ public class EditProfil extends AppCompatActivity {
     }
 
 
-    /* private void upLoadToDbase (String id ,String plPseudo,String plNom,String plPrenom,String plMel,String plTel,String plAdress,
-        String plVille,String plCpostal,String plComp1,String plComp2,String plComp3,String plDescription){
-        if(!plPseudo.isEmpty() && !plNom.isEmpty()){
-            // Création d'un tableau qui contoient les data à envoyer sur Firestore
-            HashMap<String, Object> map = new HashMap<>();
-            map.put("id ", id);
-            map.put("Pseudo ", plPseudo);
-            map.put("Nom ", plNom);
-            map.put("Prenom ", plPrenom);
-            map.put("Email ", plMel);
-            map.put("Telephone ", plTel);
-            map.put("Adresse ", plAdress );
-            map.put("Ville ", plVille );
-            map.put("Code Postal ", plCpostal);
-            map.put("Competence 1 ", plComp1 );
-            map.put("Competence 2 ", plComp2);
-            map.put("Competence 3 ", plComp3);
-            map.put("Description ", plDescription );
 
 
-            db.collection("Profiles").document(id).set(map)
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            Toast.makeText(EditProfil.this, "Profil sauvegardé !", Toast.LENGTH_SHORT).show();
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(EditProfil.this, "Une erreur s'est produite " + e, Toast.LENGTH_SHORT).show();
-                        }
-                    });
 
-        } else {
-            Toast.makeText(this, "Empty fields are not allowed ", Toast.LENGTH_SHORT).show();
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+        switch (parent.getId()) {
+            case R.id.et_profile_skill1:
+                Toast.makeText(getApplicationContext(), metiers[position], Toast.LENGTH_SHORT).show();
+                et_skill1 = spinner01.getSelectedItem().toString();
+                spinner01.setSelection(position);
+                break;
+
+            case R.id.et_profile_skill2:
+                Toast.makeText(getApplicationContext(), metiers[position], Toast.LENGTH_SHORT).show();
+                et_skill2 = spinner02.getSelectedItem().toString();
+                spinner02.setSelection(position);
+                break;
+
+            case R.id.et_profile_skill3:
+
+                Toast.makeText(getApplicationContext(), metiers[position], Toast.LENGTH_SHORT).show();
+                et_skill3 = spinner03.getSelectedItem().toString();
+                spinner03.setSelection(position);
+
+                break;
+
+
+            default:
+
+                break;
+
+        }}
+
+        @Override
+        public void onNothingSelected (AdapterView < ? > parent){
+
         }
-    }
-*/
 
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_profil);
-
-        mAuth = FirebaseAuth.getInstance();
-        firebaseUser = mAuth.getCurrentUser();
-        InitUI();
-        getDataFromProfile();
-
-        et_userProfileImage.setOnClickListener(this::choixImage);
-        uploadImageToFirebaseStorage();
-        et_btnSubmit.setOnClickListener(this::saveUserInformation);
-    }
-
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull String name, @NonNull Context context, @NonNull AttributeSet attrs) {
-        return super.onCreateView(name, context, attrs);
-    }
 
 }
