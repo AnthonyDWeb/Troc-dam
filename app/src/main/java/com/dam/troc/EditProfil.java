@@ -1,21 +1,16 @@
 package com.dam.troc;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -179,7 +174,7 @@ public class EditProfil extends AppCompatActivity implements AdapterView.OnItemS
    public void saveUserInformation(View view) {
 
         String uId = mAuth.getUid();
-        Log.i("TAG", "saveUserInformation uid: " + uId);
+
 
         String username = et_username.getText().toString();
         String email = et_email.getText().toString();
@@ -217,7 +212,7 @@ public class EditProfil extends AppCompatActivity implements AdapterView.OnItemS
             if (city.isEmpty()) {
                 et_city.setText("");
             }
-            /*if (et_skill1.isEmpty()) {
+            if (et_skill1.isEmpty()) {
                 et_skill1 =("");
             }
             if (et_skill2.isEmpty()) {
@@ -226,7 +221,7 @@ public class EditProfil extends AppCompatActivity implements AdapterView.OnItemS
             }
             if (et_skill3.isEmpty()) {
                 et_skill3 = ("");
-            }*/
+            }
             if (description.isEmpty()) {
                 et_description.setText("");
             }
@@ -244,7 +239,7 @@ public class EditProfil extends AppCompatActivity implements AdapterView.OnItemS
             map.put("skill3 ", et_skill3);
             map.put("Description ", description);
 
-            Log.i("TAG", String.valueOf(map));
+
 
 
             db.collection("Users").document(uId).set(map)
