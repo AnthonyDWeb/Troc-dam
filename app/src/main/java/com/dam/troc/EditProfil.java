@@ -64,7 +64,7 @@ public class EditProfil extends AppCompatActivity {
     private void getDataFromProfile(){
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            et_username.setText(bundle.getString("username"));
+            et_username.setText(bundle.getString("name"));
             et_email.setText(bundle.getString("email"));
             et_skill1.setText(bundle.getString("skill1"));
             et_skill2.setText(bundle.getString("skill2"));
@@ -200,20 +200,17 @@ public class EditProfil extends AppCompatActivity {
 
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            Log.i("TAG", "inside 2");
                             Toast.makeText(EditProfil.this, "Profil sauvegardé !", Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Log.i("TAG", "inside 3");
                             Toast.makeText(EditProfil.this, "Une erreur s'est produite " + e, Toast.LENGTH_SHORT).show();
                         }
                     });
         }
         else {
-            Log.i("TAG", "inside 4");
             Toast.makeText(EditProfil.this, "Something is wrong ! No UID ", Toast.LENGTH_SHORT).show();
         }
     }

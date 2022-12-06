@@ -42,6 +42,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         emailUser = findViewById(R.id.et_login_email);
         tvPass = findViewById(R.id.et_login_password);
 
+        // To del avant la MEP
+        emailUser.setText("@mail.to");
+        tvPass.setText("123456");
+
 
     }
 

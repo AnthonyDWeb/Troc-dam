@@ -1,41 +1,33 @@
 {
   "project_info": {
-    "project_number": "735944889680",
-    "project_id": "troc-dam",
-    "storage_bucket": "troc-dam.appspot.com"
+    "project_number": "401582771447",
+    "project_id": "trocservice-9c8f4",
+    "storage_bucket": "trocservice-9c8f4.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:735944889680:android:21ce5035ea7b0e34da0855",
+        "mobilesdk_app_id": "1:401582771447:android:9d9955d319a4535b7817f2",
         "android_client_info": {
-          "package_name": "com.dam.troc"
+          "package_name": "com.dam.testdb"
         }
       },
       "oauth_client": [
         {
-          "client_id": "735944889680-6pbr3om7uh552fq29bcl927mu6ut3cdc.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.dam.troc",
-            "certificate_hash": "571c7629dbcc4bb5e4b1f417cd653c07768493c0"
-          }
-        },
-        {
-          "client_id": "735944889680-4qs2itkffvrejl5sr18n7gnkeak9qmrk.apps.googleusercontent.com",
+          "client_id": "401582771447-cvdo383jl4s87qrt1di3dajehg6s51ud.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyClUSGjkFrfGoxkKzr4Wjf7-zzswENZ4bI"
+          "current_key": "AIzaSyCS7R9ETi-bYo3nEXhro6LQl4gEJJasg04"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "735944889680-4qs2itkffvrejl5sr18n7gnkeak9qmrk.apps.googleusercontent.com",
+              "client_id": "401582771447-cvdo383jl4s87qrt1di3dajehg6s51ud.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
@@ -44,27 +36,56 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:735944889680:android:23c0abcc1ab79065da0855",
+        "mobilesdk_app_id": "1:401582771447:android:eb1cb554f2f94f847817f2",
         "android_client_info": {
-          "package_name": "com.example.mytroc"
+          "package_name": "com.dam.troc"
         }
       },
       "oauth_client": [
         {
-          "client_id": "735944889680-4qs2itkffvrejl5sr18n7gnkeak9qmrk.apps.googleusercontent.com",
+          "client_id": "401582771447-cvdo383jl4s87qrt1di3dajehg6s51ud.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyClUSGjkFrfGoxkKzr4Wjf7-zzswENZ4bI"
+          "current_key": "AIzaSyCS7R9ETi-bYo3nEXhro6LQl4gEJJasg04"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "735944889680-4qs2itkffvrejl5sr18n7gnkeak9qmrk.apps.googleusercontent.com",
+              "client_id": "401582771447-cvdo383jl4s87qrt1di3dajehg6s51ud.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:401582771447:android:7900e866e3a929257817f2",
+        "android_client_info": {
+          "package_name": "com.dam.trocservice"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "401582771447-cvdo383jl4s87qrt1di3dajehg6s51ud.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCS7R9ETi-bYo3nEXhro6LQl4gEJJasg04"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "401582771447-cvdo383jl4s87qrt1di3dajehg6s51ud.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
