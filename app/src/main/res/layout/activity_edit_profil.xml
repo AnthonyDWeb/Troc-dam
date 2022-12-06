@@ -26,21 +26,20 @@
             android:layout_height="match_parent">
 
             <EditText
-                android:id="@+id/tv_user_profile_name"
+                android:id="@+id/et_profile_username"
                 android:layout_width="354dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Nom d'utilisateur"
                 android:inputType="textMultiLine|textPersonName"
                 android:textAlignment="center"
-                android:textColorHint="@color/secondaryDarkColor"
+                android:textColor="@color/secondaryDarkColor"
                 android:textSize="@dimen/page_title"
                 android:textStyle="bold"
-                android:visibility="visible"
-                tools:ignore="MissingConstraints" />
+                android:visibility="visible" />
 
             <ImageButton
-                android:id="@+id/Submit"
+                android:id="@+id/btn_editProfil_editProfil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@android:drawable/ic_menu_edit" />
@@ -68,8 +67,9 @@
                 android:id="@+id/emailField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_marginLeft="15dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginRight="15dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -87,12 +87,12 @@
                     android:layout_marginLeft="2dp"
                     android:layout_weight="0"
                     android:text="Email :"
-                    android:textColor="#3F51B5"
+                    android:textColor="@color/secondaryDarkColor"
                     android:textSize="@dimen/textSize"
                     android:textStyle="normal" />
 
                 <EditText
-                    android:id="@+id/editTextProfilEmail"
+                    android:id="@+id/et_profile_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
@@ -100,8 +100,7 @@
                     android:ems="10"
                     android:hint="monemail@email.froucom"
                     android:inputType="textPersonName"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/primaryDarkColor"
+                    android:textColor="@color/secondaryDarkColor"
                     android:textSize="@dimen/textSize"
                     android:textStyle="bold" />
 
@@ -111,7 +110,8 @@
                 android:id="@+id/telField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 android:layout_weight="0"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
@@ -135,18 +135,16 @@
 
                 <EditText
 
-                    android:id="@+id/editTextTextProfilPhone"
+                    android:id="@+id/et_profile_tel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_weight="0"
                     android:ems="10"
-                    android:hint="0102030405"
+                    android:hint="06XXXXXXXX"
                     android:inputType="textPersonName"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/primaryDarkColor"
-                    android:textSize="@dimen/textSize"
-                    android:textStyle="bold" />
+                    android:textColor="@color/secondaryDarkColor"
+                    android:textSize="@dimen/textSize" />
 
             </LinearLayout>
 
@@ -154,76 +152,11 @@
                 android:id="@+id/adressField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 android:layout_weight="0"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:id="@+id/imageView20"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/page_title"
-                    android:layout_weight="0"
-                    app:srcCompat="@drawable/ic_baseline_location_on_24" />
-
-                <TextView
-                    android:id="@+id/textView6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:text="Adresse :"
-                    android:textColor="#3F51B5"
-                    android:textSize="@dimen/textSize"
-                    android:textStyle="normal" />
-
-                <EditText
-                    android:id="@+id/editTextProfilAdresse"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_weight="0"
-                    android:autoText="false"
-                    android:ems="10"
-                    android:hint="10 rue Damtroc, Paris - 75019"
-                    android:inputType="textMultiLine"
-                    android:textColorHint="@color/primaryDarkColor"
-                    android:textSize="@dimen/textSize"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/skillField"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_weight="0"
+                android:gravity="center_vertical"
                 android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="66dp"
-                    android:layout_weight="0"
-                    android:orientation="horizontal">
-
-                    <EditText
-                        android:id="@+id/editTextProfilVille"
-                        android:layout_width="199dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:hint="Ville"
-                        android:inputType="textPersonName" />
-
-                    <EditText
-                        android:id="@+id/edittextProfilCpostal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:hint="Code Postal"
-                        android:inputType="textPersonName" />
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -231,11 +164,88 @@
                     android:layout_weight="0"
                     android:orientation="horizontal">
 
+                    <ImageView
+                        android:id="@+id/imageView20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/page_title"
+                        android:layout_weight="0"
+                        app:srcCompat="@drawable/ic_baseline_location_on_24" />
+
                     <TextView
-                        android:id="@+id/textView7"
+                        android:id="@+id/textView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:text="Adresse :"
+                        android:textColor="#3F51B5"
+                        android:textSize="@dimen/textSize"
+                        android:textStyle="normal" />
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/et_profile_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0"
+                    android:ems="10"
+                    android:hint="n° rue"
+                    android:inputType="textMultiLine"
+                    android:textColor="@color/secondaryDarkColor"
+                    android:textSize="@dimen/textSize" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="66dp"
+                    android:layout_margin="10dp"
+                    android:layout_weight="0"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/et_profile_city"
+                        android:layout_width="199dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="Ville"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/secondaryDarkColor" />
+
+                    <EditText
+                        android:id="@+id/et_profile_postalCode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="Code Postal"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/secondaryDarkColor" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/skillField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_weight="0"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_profil_skillTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="25dp"
+                        android:layout_marginLeft="15dp"
                         android:layout_weight="0"
                         android:gravity="center_vertical"
                         android:text="Competences :"
@@ -243,53 +253,51 @@
                         android:textSize="24sp"
                         android:textStyle="bold" />
 
-                    <Button
-                        android:id="@+id/button2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0"
-                        android:backgroundTint="@color/secondaryColor"
-                        android:text="+"
-                        android:textColor="@color/secondaryDarkColor" />
                 </LinearLayout>
 
                 <EditText
-                    android:id="@+id/etprofilcomp1"
+                    android:id="@+id/et_profile_skill1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="8dp"
                     android:layout_marginBottom="5dp"
                     android:layout_weight="0"
                     android:background="@drawable/input_text_container"
-                    android:padding="8dp"
-                    android:text="Compétence 1"
-                    android:textColor="@color/primaryDarkColor"
+                    android:hint="ajouter une compétence"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/secondaryDarkColor"
                     android:textSize="@dimen/textSize" />
 
                 <EditText
-                    android:id="@+id/etprofilcomp3"
+                    android:id="@+id/et_profile_skill2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="8dp"
                     android:layout_marginBottom="5dp"
                     android:layout_weight="0"
                     android:background="@drawable/input_text_container"
-                    android:padding="8dp"
-                    android:text="Compétence 2"
-                    android:textColor="@color/primaryDarkColor"
+                    android:hint="ajouter une compétence"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/secondaryDarkColor"
                     android:textSize="@dimen/textSize" />
 
                 <EditText
-                    android:id="@+id/etprofilcomp2"
+                    android:id="@+id/et_profile_skill3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="8dp"
                     android:layout_marginBottom="5dp"
                     android:layout_weight="0"
                     android:background="@drawable/input_text_container"
-                    android:padding="8dp"
-                    android:text="Compétence 3"
-                    android:textColor="@color/primaryDarkColor"
+                    android:hint="ajouter une compétence"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/secondaryDarkColor"
                     android:textSize="@dimen/textSize" />
 
             </LinearLayout>
@@ -297,14 +305,16 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="8dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tv_profil_description"
+                    android:id="@+id/tv_profil_descriptionTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginLeft="15dp"
                     android:layout_weight="0"
                     android:gravity="center_vertical"
                     android:text="Description :"
@@ -313,15 +323,14 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/et_profil_descriptionText"
+                    android:id="@+id/et_profile_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:layout_weight="0"
                     android:ems="10"
-                    android:hint="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                    android:hint="description..."
                     android:inputType="textMultiLine"
-                    android:textColorHint="@color/primaryDarkColor"
                     android:textSize="@dimen/textSize" />
             </LinearLayout>
 
