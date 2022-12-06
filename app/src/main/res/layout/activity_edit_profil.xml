@@ -26,7 +26,7 @@
             android:layout_height="match_parent">
 
             <EditText
-                android:id="@+id/tv_user_profile_name"
+                android:id="@+id/et_profile_username"
                 android:layout_width="354dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -34,14 +34,12 @@
                 android:inputType="textMultiLine|textPersonName"
                 android:textAlignment="center"
                 android:textColor="@color/secondaryDarkColor"
-                android:textColorHint="@color/secondaryDarkColor"
                 android:textSize="@dimen/page_title"
                 android:textStyle="bold"
-                android:visibility="visible"
-                tools:ignore="MissingConstraints" />
+                android:visibility="visible" />
 
             <ImageButton
-                android:id="@+id/btn_profil_editProfil"
+                android:id="@+id/btn_editProfil_editProfil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@android:drawable/ic_menu_edit" />
@@ -94,7 +92,7 @@
                     android:textStyle="normal" />
 
                 <EditText
-                    android:id="@+id/editTextProfilEmail"
+                    android:id="@+id/et_profile_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
@@ -103,7 +101,6 @@
                     android:hint="monemail@email.froucom"
                     android:inputType="textPersonName"
                     android:textColor="@color/secondaryDarkColor"
-                    android:textColorHint="@color/secondaryDarkColor"
                     android:textSize="@dimen/textSize"
                     android:textStyle="bold" />
 
@@ -138,7 +135,7 @@
 
                 <EditText
 
-                    android:id="@+id/editTextTextProfilPhone"
+                    android:id="@+id/et_profile_tel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
@@ -186,13 +183,12 @@
                 </LinearLayout>
 
                 <EditText
-                    android:id="@+id/editTextProfilAdresse"
+                    android:id="@+id/et_profile_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:layout_marginLeft="5dp"
                     android:layout_weight="0"
-                    android:autoText="false"
                     android:ems="10"
                     android:hint="n° rue"
                     android:inputType="textMultiLine"
@@ -207,7 +203,7 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/editTextProfilVille"
+                        android:id="@+id/et_profile_city"
                         android:layout_width="199dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -217,7 +213,7 @@
                         android:textColor="@color/secondaryDarkColor" />
 
                     <EditText
-                        android:id="@+id/edittextProfilCpostal"
+                        android:id="@+id/et_profile_postalCode"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -246,7 +242,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/textView7"
+                        android:id="@+id/tv_profil_skillTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
@@ -260,7 +256,7 @@
                 </LinearLayout>
 
                 <EditText
-                    android:id="@+id/etprofilcomp1"
+                    android:id="@+id/et_profile_skill1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="8dp"
@@ -275,7 +271,7 @@
                     android:textSize="@dimen/textSize" />
 
                 <EditText
-                    android:id="@+id/etprofilcomp3"
+                    android:id="@+id/et_profile_skill2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="8dp"
@@ -290,7 +286,7 @@
                     android:textSize="@dimen/textSize" />
 
                 <EditText
-                    android:id="@+id/etprofilcomp2"
+                    android:id="@+id/et_profile_skill3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="8dp"
@@ -315,7 +311,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tv_profil_description"
+                    android:id="@+id/tv_profil_descriptionTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
@@ -327,7 +323,7 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/et_profil_descriptionText"
+                    android:id="@+id/et_profile_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"

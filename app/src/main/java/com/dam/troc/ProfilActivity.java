@@ -1,9 +1,5 @@
 package com.dam.troc;
 
-import static com.dam.troc.R.id.editTextProfilVille;
-import static com.dam.troc.R.id.edittextProfilCpostal;
-import static com.dam.troc.R.id.tv_user_profile_name;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -11,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,83 +15,109 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class ProfilActivity extends Fragment {
 
-    Button btnSubmit;
-    ImageView profilimg;
-    Uri imgUrl;
-    TextView plPseudo, plMel, plTel, plAdress, plVille, plCpostal, plComp1, plComp2, plComp3, plDescription;
     FirebaseAuth mAuth;
-    public static final int PICK_IMAGE = 1;
-
     private FirebaseFirestore db;
 
+    View view;
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    Button btnSubmit;
+    ImageView userProfileImage;
+    Uri imgUri;
+    TextView username, email, tel, address, city, postalCode, skill1, skill2, skill3, description;
+    public static final int PICK_IMAGE = 1;
 
-        mAuth = FirebaseAuth.getInstance();
 
-        ViewGroup itemView = (ViewGroup) inflater.inflate(R.layout.activity_profil, container, false);
-        profilimg = itemView.findViewById(R.id.iv_profile_photo);
-        plPseudo = itemView.findViewById(R.id.tv_user_profile_name);
-        //plNom = findViewById(R.id.editTextTextProfilNom);
-        //plPrenom = findViewById(R.id.EditTxtProfilPrenom);
-        plMel = itemView.findViewById(R.id.editTextProfilEmail);
-        plTel = itemView.findViewById(R.id.editTextTextProfilPhone);
-        plAdress = itemView.findViewById(R.id.editTextProfilAdresse);
-        plVille = itemView.findViewById(editTextProfilVille);
-        plCpostal = itemView.findViewById(edittextProfilCpostal);
-        plComp1 = itemView.findViewById(R.id.etprofilcomp1);
-        plComp2 = itemView.findViewById(R.id.etprofilcomp2);
-        plComp3 = itemView.findViewById(R.id.etprofilcomp3);
-        plDescription = itemView.findViewById(R.id.et_profil_descriptionText);
-
-        loadUserInformation();
-
-        itemView.findViewById(R.id.btn_profil_editProfil).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Bundle bundle = new Bundle();
-                bundle.putString("username", plPseudo.getText().toString());
-                bundle.putString("email", plMel.getText().toString());
-                bundle.putString("skill1", plComp1.getText().toString());
-                bundle.putString("skill2", plComp2.getText().toString());
-                bundle.putString("skill3", plComp3.getText().toString());
-
-                Intent intent = new Intent(getContext(), EditProfil.class);
-                intent.putExtras(bundle);
-
-                startActivity(intent);
-            }
-        });
-        return itemView;
+    private void InitUI() {
+        db = FirebaseFirestore.getInstance();
+        userProfileImage = view.findViewById(R.id.iv_profile_photo);
+        username = view.findViewById(R.id.tv_profile_username);
+        email = view.findViewById(R.id.tv_profile_email);
+        tel = view.findViewById(R.id.tv_profile_tel);
+        address = view.findViewById(R.id.tv_profile_address);
+        city = view.findViewById(R.id.tv_profile_city);
+        postalCode = view.findViewById(R.id.tv_profile_postalCode);
+        skill1 = view.findViewById(R.id.tv_profile_skill1);
+        skill2 = view.findViewById(R.id.tv_profile_skill2);
+        skill3 = view.findViewById(R.id.tv_profile_skill3);
+        description = view.findViewById(R.id.tv_profile_description);
     }
 
     private void loadUserInformation() {
         FirebaseUser user = mAuth.getCurrentUser();
+
+        db.collection("Users").document(user.getUid()).get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if(task.isSuccessful()){
+                            DocumentSnapshot documentSnapshot = task.getResult();
+                            tel.setText(documentSnapshot.getString("tel"));
+                            Log.i("TAG", "Retour de la base " + task.getResult());
+                        }
+                    }
+                });
+
         if (user != null) {
             String uid = user.getUid();
 
-            String username = user.getDisplayName();
-            plPseudo.setText(username);
+
+            String userDisplayName = user.getDisplayName();
 
             String usermail = user.getEmail();
-            // Check if user's email is verified
-//            boolean emailVerified = user.isEmailVerified();
-//            if (emailVerified)
-            plMel.setText(usermail);
-            if (plComp1.getText() == "") plComp1.setVisibility(View.GONE);
-            if (plComp2.getText() == "") plComp2.setVisibility(View.GONE);
-            if (plComp3.getText() == "") plComp3.setVisibility(View.GONE);
+            email.setText(usermail);
 
+            String userTel = user.getPhoneNumber();
+            tel.setText(userTel);
+
+            if (skill1.getText() == "") skill1.setVisibility(View.GONE);
+            if (skill2.getText() == "") skill2.setVisibility(View.GONE);
+            if (skill3.getText() == "") skill3.setVisibility(View.GONE);
         }
     }
 
+    private void getDataToEdit(View view) {
+        Bundle bundle = new Bundle();
+        bundle.putString("username", username.getText().toString());
+        bundle.putString("email", email.getText().toString());
+        bundle.putString("skill1", skill1.getText().toString());
+        bundle.putString("skill2", skill2.getText().toString());
+        bundle.putString("skill3", skill3.getText().toString());
+
+        Intent intent = new Intent(getContext(), EditProfil.class);
+        intent.putExtras(bundle);
+
+        startActivity(intent);
+    }
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mAuth = FirebaseAuth.getInstance();
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.activity_profil, container, false);
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        InitUI();
+        loadUserInformation();
+        view.findViewById(R.id.btn_profil_editProfil).setOnClickListener(this::getDataToEdit);
+    }
 }
 

@@ -65,12 +65,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         password = findViewById(R.id.et_signup_password);
         confirmPassword = findViewById(R.id.et_signup_password_verification);
 
-
-
-        findViewById(R.id.btn_signup).setOnClickListener(this);
-        findViewById(R.id.et_signup_email).setOnClickListener(this);
-        findViewById(R.id.et_signup_username).setOnClickListener(this);
-        findViewById(R.id.et_signup_password).setOnClickListener(this);
         findViewById(R.id.btn_signup).setOnClickListener(this);
 
     }
@@ -148,22 +142,18 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void updateUsername() {
-        // Utilisation de la méthode UserProfileChangeRequest pour charger le nom de l'utilisateur
-        // qui s'est enregistré
+        // Utilisation de la méthode UserProfileChangeRequest pour charger le nom de l'utilisateur qui s'est enregistré
         // Gestion de remplissage d'Authenticator
         UserProfileChangeRequest request = new UserProfileChangeRequest.Builder()
                 .setDisplayName(username.getText().toString().trim())
                 .build();
 
         // Gestion du remplissage de la base de données
-        /** 5.3 Update du nom du profile utilisateur à partir de l'edittext  **/
         firebaseUser.updateProfile(request)
                 // Ajout d'un listener qui affiche un Toast si tout c'est bien déroulé
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull @org.jetbrains.annotations.NotNull Task<Void> task) {
-                        // Tout c'est bien passé
-                        // 11.6 ProgressBar
                         if (task.isSuccessful()) {
                             // Création du HashMap pour la gestion des données
                             HashMap<String, String> hashMap = new HashMap<>();
@@ -172,13 +162,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                             hashMap.put(ONLINE, "true"); // User set ONLINE, true, car il est dans on profile
                             hashMap.put(AVATAR, ""); // Vide pour le moment
                             Log.i(TAG, "Name only " + userID);
-                            // 11.7 ProgressBar
-                            // Envoie des données vers Realtime db
                             collectionReference.document(userID).set(hashMap)
-                                    // On vérifie le bon déroulement avec .addOnCompleteListener()
-                                    // Si tout se passe bien l'utilisateur est dirigé vers la page de login
-                                    // A noter qu'il faut rappeler le contexte (l'endroit où s'exécute la méthode
-                                    // pour que l'action soit validée
                                     .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull @org.jetbrains.annotations.NotNull Task<Void> task) {

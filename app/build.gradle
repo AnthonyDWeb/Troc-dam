@@ -45,7 +45,7 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-auth:8.0.2'
     implementation 'com.firebaseui:firebase-ui-firestore:8.0.2'
     // FIRESTORE
-    implementation 'com.google.firebase:firebase-firestore:24.4.0'
+    implementation 'com.google.firebase:firebase-firestore:24.4.1'
     // STORAGE
     implementation 'com.google.firebase:firebase-storage:20.1.0'
 
