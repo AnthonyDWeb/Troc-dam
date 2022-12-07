@@ -5,7 +5,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.dam.troc.ProfilActivity;
+import com.dam.troc.profile.ProfileActivity;
 import com.dam.troc.search.SearchActivity;
 import com.dam.troc.tchat.TchatActivity;
 
@@ -26,7 +26,7 @@ public class FragmentAdapter extends FragmentStateAdapter {
             case 0:
                 return new SearchActivity();
             case 1:
-                return new ProfilActivity();
+                return new ProfileActivity();
             case 2:
                 return new TchatActivity();
         }
