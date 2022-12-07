@@ -65,19 +65,20 @@
             android:layout_height="wrap_content">
 
             <RadioButton
-                android:id="@+id/radioButtonProffesion"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="Métier"
-                android:textSize="@dimen/textOptionSize" />
-
-            <RadioButton
                 android:id="@+id/radioButtonUsername"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:text="Nom d'utilisateur"
+                android:checked="true"
+                android:textSize="@dimen/textOptionSize" />
+
+            <RadioButton
+                android:id="@+id/radioButtonProffesion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="Métier"
                 android:textSize="@dimen/textOptionSize" />
         </RadioGroup>
 
