@@ -10,35 +10,39 @@ import com.google.firebase.storage.FirebaseStorage;
 
 public interface Constants {
     //************ CONSTANTES FIREBASE ****************/
-    // Auth
+        // Auth
     FirebaseAuth FIREBASE_AUTH = FirebaseAuth.getInstance();
-    // User
+        // User
     FirebaseUser CURRENT_USER = FIREBASE_AUTH.getCurrentUser();
-    // Firestore
+        // Firestore
     @SuppressLint("StaticFieldLeak")
     FirebaseFirestore FIRESTORE_INSTANCE = FirebaseFirestore.getInstance();
-    // Storage
+        // Storage
     FirebaseStorage STORAGE_INSTANCE = FirebaseStorage.getInstance();
 
     //************ CONSTANTS POUR LE DOSSIER DE STORAGE ****************/
-    // Lien vers le dossier de stockage des avatars
+        // Lien vers le dossier de stockage des avatars
     String AVATARS_FOLDER = "avatars_user";
 
     //************ CONSTANTS DES COLLECTIONS ET DE LEURS CHAMPS ****************/
-    //-------------- Collection Users
-    String USERS = "Users";
-
-    String NAME = "name";
-    String EMAIL = "email";
+        //-------------- Collection Users
     String ONLINE = "online";
     String AVATAR = "avatar";
-    //-------------- end Users
+    String ID = "id";
+    String USERS = "Users";
+    String NAME = "name";
+    String EMAIL = "email";
+    String DESCRIPTION = "description";
+    String CITY = "city";
+    String POSTAL_CODE = "postalCode";
+    String ADDRESS = "address";
+    String SKILLS = "skills";
+        //-------------- end Users
 
-    //-------------- Collection Friend request
+        //-------------- Collection Friend request
     String FRIEND_REQUESTS = "FriendRequests";
-
     String REQUEST_TYPE = "request_type";
     String REQUEST_STATUS_SENT = "sent";
     String REQUEST_STATUS_RECEIVED = "received";
-    //-------------- end Friend Request
+        //-------------- end Friend Request
 }

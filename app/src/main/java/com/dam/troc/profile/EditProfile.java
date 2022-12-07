@@ -1,4 +1,4 @@
-package com.dam.troc;
+package com.dam.troc.profile;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,12 +13,13 @@ import android.provider.MediaStore;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.dam.troc.MainActivity;
+import com.dam.troc.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -33,7 +34,7 @@ import com.google.firebase.storage.UploadTask;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class EditProfil extends AppCompatActivity {
+public class EditProfile extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     private FirebaseUser firebaseUser;
@@ -115,7 +116,7 @@ public class EditProfil extends AppCompatActivity {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             //progressBar.setVisibility(View.GONE);
-                            Toast.makeText(EditProfil.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EditProfile.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
         }
@@ -200,20 +201,20 @@ public class EditProfil extends AppCompatActivity {
 
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            Toast.makeText(EditProfil.this, "Profil sauvegardé !", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(EditProfil.this, MainActivity.class);
+                            Toast.makeText(EditProfile.this, "Profil sauvegardé !", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(EditProfile.this, MainActivity.class);
                             startActivity(intent);
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(EditProfil.this, "Une erreur s'est produite " + e, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EditProfile.this, "Une erreur s'est produite " + e, Toast.LENGTH_SHORT).show();
                         }
                     });
         }
         else {
-            Toast.makeText(EditProfil.this, "Something is wrong ! No UID ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(EditProfile.this, "Something is wrong ! No UID ", Toast.LENGTH_SHORT).show();
         }
     }
 

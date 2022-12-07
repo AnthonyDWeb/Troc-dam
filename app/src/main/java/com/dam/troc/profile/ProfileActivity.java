@@ -1,4 +1,4 @@
-package com.dam.troc;
+package com.dam.troc.profile;
 
 import static com.dam.troc.commons.Constants.*;
 
@@ -16,21 +16,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
+import com.dam.troc.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.Map;
-
-public class ProfilActivity extends Fragment {
+public class ProfileActivity extends Fragment {
 
     FirebaseAuth mAuth;
     private FirebaseFirestore db;
@@ -60,11 +55,11 @@ public class ProfilActivity extends Fragment {
 
     String name;
     private void loadUserInformation() {
-        Log.i("TAG", "loadUserInformation: ");
+//        Log.i("TAG", "loadUserInformation: ");
         db = FIRESTORE_INSTANCE;
 
         FirebaseUser user = CURRENT_USER;
-        Log.i("TAG", "user.getUid() ------------> " + user.getUid());
+//        Log.i("TAG", "user.getUid() ------------> " + user.getUid());
 
         db.collection(USERS).document(user.getUid())
                 .get()
@@ -73,7 +68,7 @@ public class ProfilActivity extends Fragment {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         if(documentSnapshot.exists()){
                             name = documentSnapshot.getString("name");
-                            Log.i("TAG", "profil onSuccess name: " + name);
+//                            Log.i("TAG", "profil onSuccess name: " + name);
 
                             username.setText(name);
                             email.setText(documentSnapshot.getString("email"));
@@ -121,7 +116,7 @@ public class ProfilActivity extends Fragment {
         bundle.putString(NAME, username.getText().toString());
         bundle.putString(EMAIL, email.getText().toString());
 
-        Intent intent = new Intent(getContext(), EditProfil.class);
+        Intent intent = new Intent(getContext(), EditProfile.class);
         intent.putExtras(bundle);
 
         startActivity(intent);
@@ -148,7 +143,7 @@ public class ProfilActivity extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         loadUserInformation();
-        Log.i("TAG", "onViewCreated: inside");
+//        Log.i("TAG", "onViewCreated: inside");
         view.findViewById(R.id.btn_profil_editProfil).setOnClickListener(this::getDataToEdit);
     }
 }
