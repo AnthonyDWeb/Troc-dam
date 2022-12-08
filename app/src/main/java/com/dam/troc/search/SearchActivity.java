@@ -4,16 +4,21 @@ import static com.dam.troc.commons.Constants.*;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
@@ -38,57 +43,83 @@ public class SearchActivity extends Fragment {
 
     private View baseView;
     private RecyclerView rv_search_result;
+    private SearchView sv_search_userSearch;
     private Context context;
     private SearchAdapter adapter;
     private RadioButton radioButtonProffesion, radioButtonUsername;
+    private String Filter;
 
 
-    private void initFirebaseTools() { db = FIRESTORE_INSTANCE; }
-    private void initUI(){
+    private void initFirebaseTools() {
+        db = FIRESTORE_INSTANCE;
+    }
+
+    private void initUI() {
         context = getContext();
         baseView = baseView.findViewById(R.id.mainLayout_Search);
+        rv_search_result = baseView.findViewById(R.id.rv_search_result);
+        sv_search_userSearch = baseView.findViewById(R.id.sv_search_userSearch);
         radioButtonProffesion = baseView.findViewById(R.id.radioButtonProffesion);
         radioButtonUsername = baseView.findViewById(R.id.radioButtonUsername);
-        rv_search_result = baseView.findViewById(R.id.rv_search_result);
         rv_search_result.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
     }
 
-    private void getDataFromFirestore(){
-        Query query = db.collection(USERS).orderBy(NAME);
-
-        FirestoreRecyclerOptions<UserSearchModel> users = new FirestoreRecyclerOptions.Builder<UserSearchModel>().setQuery(query,UserSearchModel.class).build();
-        Log.i("TAG", "getDataFromFirestore: " + users);
+    private void getDataFromFirestore() {
+        Query query = db.collection(USERS).whereNotEqualTo(ID,CURRENT_USER.getUid());
+        FirestoreRecyclerOptions<UserSearchModel> users = new FirestoreRecyclerOptions.Builder<UserSearchModel>().setQuery(query, UserSearchModel.class).build();
         adapter = new SearchAdapter(users);
         rv_search_result.setAdapter(adapter);
         adapter.startListening();
     }
 
+    private void getDataSearchFromFirestore(String searchValue) {
+        Query query = db.collection(USERS);
+        if (Filter.equals(NAME)) query = query.orderBy(NAME).startAt(searchValue).endAt(searchValue+"\uf8ff");
+//        if (Filter.equals(SKILLS)) query = query.orderBy(SKILLS).startAt(searchValue).endAt(searchValue+"\uf8ff");
+        if (Filter.equals(SKILLS)) query = query.whereArrayContains(SKILLS, searchValue);
+        FirestoreRecyclerOptions<UserSearchModel> users = new FirestoreRecyclerOptions.Builder<UserSearchModel>().setQuery(query, UserSearchModel.class).build();
+        adapter = new SearchAdapter(users);
+        rv_search_result.setAdapter(adapter);
+        adapter.startListening();
+    }
+
+
+    private void onSearchTextChanged(View view, boolean b) {
+        Log.i(TAG, "onSearchTextChanged: focus change");
+        sv_search_userSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                getDataSearchFromFirestore(newText.toString());
+                return false;
+            }
+        });
+    }
+
     public void onClickRadioButton(View view) {
         boolean checked = ((RadioButton) view).isChecked();
-
+        boolean jobSelection = view.getId() == R.id.radioButtonProffesion && checked;
         // Check which radio button was clicked
-        switch (view.getId()) {
-            case R.id.radioButtonProffesion:
-                if (checked)
-                    radioButtonUsername.setChecked(false);
-                break;
-            case R.id.radioButtonUsername:
-                if (checked)
-                    radioButtonProffesion.setChecked(false);
-                break;
-        }
+        if (jobSelection) { radioButtonUsername.setChecked(false); Filter = SKILLS; }
+        else { radioButtonProffesion.setChecked(false); Filter = NAME; }
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        baseView =  inflater.inflate(R.layout.activity_search, container, false);
-        initFirebaseTools();
+        baseView = inflater.inflate(R.layout.activity_search, container, false);
         initUI();
-//        Gol.showSnackbar(baseView, "Hello " + CURRENT_USER);
+        initFirebaseTools();
+        getDataFromFirestore();
+        if (Filter == null) Filter = NAME;
         radioButtonProffesion.setOnClickListener(this::onClickRadioButton);
         radioButtonUsername.setOnClickListener(this::onClickRadioButton);
-        getDataFromFirestore();
+        sv_search_userSearch.setOnQueryTextFocusChangeListener(this::onSearchTextChanged);
+
         return baseView;
     }
 

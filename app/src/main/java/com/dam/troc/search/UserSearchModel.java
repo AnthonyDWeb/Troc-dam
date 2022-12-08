@@ -1,16 +1,18 @@
 package com.dam.troc.search;
 
+import java.util.List;
+
 public class UserSearchModel {
 
-    private String id, userImage, name, skill;
+    private String id, userImage, name;
+    private List<String> skills;
 
     public UserSearchModel() {}
-
-    public UserSearchModel(String id, String userImage, String name, String skill) {
+    public UserSearchModel(String id, String userImage, String name, List<String> skills) {
         this.id = id;
         this.userImage = userImage;
         this.name = name;
-        this.skill = skill;
+        this.skills = skills;
     }
 
     public String getId() { return id; }
@@ -22,9 +24,8 @@ public class UserSearchModel {
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 
-    public String getSkill() { return skill; }
-    public void setSkill(String skill) { this.skill = skill; }
-
+    public List<String> getSkills() { return skills; }
+    public void setSkills(List<String> skills) { this.skills = skills; }
 
 
 }
