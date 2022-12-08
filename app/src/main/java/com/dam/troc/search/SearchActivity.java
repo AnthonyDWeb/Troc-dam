@@ -4,12 +4,15 @@ import static com.dam.troc.commons.Constants.*;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,12 +43,11 @@ public class SearchActivity extends Fragment {
 
     private View baseView;
     private RecyclerView rv_search_result;
-    private EditText et_search_userSearch;
-    private ImageView iv_search_iconSearch;
+    private SearchView sv_search_userSearch;
     private Context context;
     private SearchAdapter adapter;
     private RadioButton radioButtonProffesion, radioButtonUsername;
-    private String RadioButtonSelection;
+    private String Filter;
 
 
     private void initFirebaseTools() {
@@ -56,51 +58,67 @@ public class SearchActivity extends Fragment {
         context = getContext();
         baseView = baseView.findViewById(R.id.mainLayout_Search);
         rv_search_result = baseView.findViewById(R.id.rv_search_result);
-        et_search_userSearch = baseView.findViewById(R.id.et_search_userSearch);
-        iv_search_iconSearch = baseView.findViewById(R.id.iv_search_iconSearch);
+        sv_search_userSearch = baseView.findViewById(R.id.sv_search_userSearch);
         radioButtonProffesion = baseView.findViewById(R.id.radioButtonProffesion);
         radioButtonUsername = baseView.findViewById(R.id.radioButtonUsername);
         rv_search_result.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
     }
 
     private void getDataFromFirestore() {
-        Query query = db.collection(USERS).whereNotEqualTo(NAME, CURRENT_USER.getDisplayName()).orderBy(NAME);
-        // TODO filter par name & id
-//        .whereNotEqualTo(ID,CURRENT_USER.getUid());
+        Query query = db.collection(USERS).whereNotEqualTo(ID,CURRENT_USER.getUid());
         FirestoreRecyclerOptions<UserSearchModel> users = new FirestoreRecyclerOptions.Builder<UserSearchModel>().setQuery(query, UserSearchModel.class).build();
         adapter = new SearchAdapter(users);
         rv_search_result.setAdapter(adapter);
         adapter.startListening();
     }
 
+    private void getDataSearchFromFirestore(String searchValue) {
+        Query query = db.collection(USERS);
+        if (Filter.equals(NAME)) query = query.orderBy(NAME).startAt(searchValue).endAt(searchValue+"\uf8ff");
+//        if (Filter.equals(SKILLS)) query = query.orderBy(SKILLS).startAt(searchValue).endAt(searchValue+"\uf8ff");
+        if (Filter.equals(SKILLS)) query = query.whereArrayContains(SKILLS, searchValue);
+        FirestoreRecyclerOptions<UserSearchModel> users = new FirestoreRecyclerOptions.Builder<UserSearchModel>().setQuery(query, UserSearchModel.class).build();
+        adapter = new SearchAdapter(users);
+        rv_search_result.setAdapter(adapter);
+        adapter.startListening();
+    }
+
+
+    private void onSearchTextChanged(View view, boolean b) {
+        Log.i(TAG, "onSearchTextChanged: focus change");
+        sv_search_userSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                getDataSearchFromFirestore(newText.toString());
+                return false;
+            }
+        });
+    }
+
     public void onClickRadioButton(View view) {
         boolean checked = ((RadioButton) view).isChecked();
         boolean jobSelection = view.getId() == R.id.radioButtonProffesion && checked;
         // Check which radio button was clicked
-        if (jobSelection) {
-            radioButtonUsername.setChecked(false);
-            RadioButtonSelection = "métier";
-        } else {
-            radioButtonProffesion.setChecked(false);
-            RadioButtonSelection = "nom d'utilisateur";
-        }
-        Log.i("TAG", "onClickRadioButton: " + RadioButtonSelection);
-    }
-
-    private void onSearchSubmit(String searchValue, String filter){
-        Log.i("TAG", "onSearchSubmit searchValue: " + searchValue);
-        Log.i("TAG", "onSearchSubmit filter: " + filter);
+        if (jobSelection) { radioButtonUsername.setChecked(false); Filter = SKILLS; }
+        else { radioButtonProffesion.setChecked(false); Filter = NAME; }
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         baseView = inflater.inflate(R.layout.activity_search, container, false);
-        initFirebaseTools();
         initUI();
+        initFirebaseTools();
+        getDataFromFirestore();
+        if (Filter == null) Filter = NAME;
         radioButtonProffesion.setOnClickListener(this::onClickRadioButton);
         radioButtonUsername.setOnClickListener(this::onClickRadioButton);
-        getDataFromFirestore();
+        sv_search_userSearch.setOnQueryTextFocusChangeListener(this::onSearchTextChanged);
 
         return baseView;
     }

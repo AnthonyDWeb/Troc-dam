@@ -11,6 +11,8 @@
         <item name="colorOnSecondary">#005cb2</item>
         <item name="android:textColorPrimary">#ffffff</item>
         <item name="android:textColorSecondary">#000000</item>
+        <item name="android:editTextColor">#005cb2</item>
+
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->

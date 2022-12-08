@@ -41,9 +41,9 @@ public class SearchAdapter extends FirestoreRecyclerAdapter<UserSearchModel, Sea
         String username = model.getName();
         List<String> skills = model.getSkills();
         holder.tv_card_username.setText(username);
-        holder.tv_card_skill.setText(skills.toString());
+        if (skills != null) holder.tv_card_skill.setText(skills.toString());
 
-        Log.i("TAG", "onBindViewHolder id: " + id);
+        Log.i("TAG", "onBindViewHolder username: " + username);
 
         RequestOptions options = new RequestOptions().centerCrop().placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher_round);
         Context context = holder.iv_card_userImage.getContext();
