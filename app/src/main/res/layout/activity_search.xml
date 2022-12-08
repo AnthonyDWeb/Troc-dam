@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout_Search"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".search.SearchActivity">
@@ -31,32 +32,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_search_title">
 
-        <LinearLayout
-            android:id="@+id/linear_search"
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/sv_search_userSearch"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@drawable/input_text_container"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/et_search_userSearch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="1"
-                android:ems="10"
-                android:hint="Entrez votre recherche..."
-                android:inputType="textPersonName"
-                android:textColor="@color/secondaryDarkColor" />
-
-            <ImageView
-                android:id="@+id/iv_search_iconSearch"
-                android:layout_width="50dp"
-                android:layout_height="35dp"
-                android:layout_weight="0"
-                android:src="@drawable/ic_search" />
-        </LinearLayout>
+            android:paddingVertical="5dp"
+            android:paddingHorizontal="15dp"
+            />
 
 
         <RadioGroup
@@ -64,19 +47,20 @@
             android:layout_height="wrap_content">
 
             <RadioButton
-                android:id="@+id/radioButtonProffesion"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="Métier"
-                android:textSize="@dimen/textOptionSize" />
-
-            <RadioButton
                 android:id="@+id/radioButtonUsername"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:text="Nom d'utilisateur"
+                android:checked="true"
+                android:textSize="@dimen/textOptionSize" />
+
+            <RadioButton
+                android:id="@+id/radioButtonProffesion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="Métier"
                 android:textSize="@dimen/textOptionSize" />
         </RadioGroup>
 

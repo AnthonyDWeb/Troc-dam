@@ -12,14 +12,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dam.troc.MainActivity;
-import com.dam.troc.ProfilActivity;
 import com.dam.troc.R;
-import com.firebase.ui.auth.data.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -61,9 +57,12 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_sign_up);
 
         emailUser = findViewById(R.id.et_signup_email);
+        emailUser.setText("@mail.to");
         username = findViewById(R.id.et_signup_username);
         password = findViewById(R.id.et_signup_password);
+        password.setText("123456");
         confirmPassword = findViewById(R.id.et_signup_password_verification);
+        confirmPassword.setText("123456");
 
         findViewById(R.id.btn_signup).setOnClickListener(this);
 
@@ -158,6 +157,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                             // Création du HashMap pour la gestion des données
                             HashMap<String, String> hashMap = new HashMap<>();
                             hashMap.put(NAME, username.getText().toString().trim());
+                            hashMap.put(ID, userID);
                             hashMap.put(EMAIL, emailUser.getText().toString().trim());
                             hashMap.put(ONLINE, "true"); // User set ONLINE, true, car il est dans on profile
                             hashMap.put(AVATAR, ""); // Vide pour le moment

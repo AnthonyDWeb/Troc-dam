@@ -1,4 +1,4 @@
-package com.dam.troc;
+package com.dam.troc.profile;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,12 +13,13 @@ import android.provider.MediaStore;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.dam.troc.MainActivity;
+import com.dam.troc.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -33,7 +34,7 @@ import com.google.firebase.storage.UploadTask;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class EditProfil extends AppCompatActivity {
+public class EditProfile extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     private FirebaseUser firebaseUser;
@@ -64,7 +65,7 @@ public class EditProfil extends AppCompatActivity {
     private void getDataFromProfile(){
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            et_username.setText(bundle.getString("username"));
+            et_username.setText(bundle.getString("name"));
             et_email.setText(bundle.getString("email"));
             et_skill1.setText(bundle.getString("skill1"));
             et_skill2.setText(bundle.getString("skill2"));
@@ -115,7 +116,7 @@ public class EditProfil extends AppCompatActivity {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             //progressBar.setVisibility(View.GONE);
-                            Toast.makeText(EditProfil.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EditProfile.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
         }
@@ -151,32 +152,32 @@ public class EditProfil extends AppCompatActivity {
             }
 
             if (tel.isEmpty()) {
-                et_tel.setText("");
+                tel = "";
             }
 
             if (address.isEmpty()) {
-                et_address.setText("");
+                address = "";
             }
 
 
             if (postalCode.isEmpty()) {
-                et_postalCode.setText("");
+                postalCode = "";
             }
             if (city.isEmpty()) {
-                et_city.setText("");
+                city = "";
             }
             if (skill1.isEmpty()) {
-                et_skill1.setText("");
+                skill1 = "";
             }
             if (skill2.isEmpty()) {
-                et_skill2.setText("");
+                skill2 = "";
 
             }
             if (skill3.isEmpty()) {
-                et_skill3.setText("");
+                skill3 = "";
             }
             if (description.isEmpty()) {
-                et_description.setText("");
+                description = "";
             }
 
             HashMap<String, Object> map = new HashMap<>();
@@ -190,7 +191,7 @@ public class EditProfil extends AppCompatActivity {
             map.put("skill1 ", skill1);
             map.put("skill2 ", skill2);
             map.put("skill3 ", skill3);
-            map.put("Description ", description);
+            map.put("description ", description);
 
             Log.i("TAG", String.valueOf(map));
 
@@ -200,21 +201,20 @@ public class EditProfil extends AppCompatActivity {
 
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            Log.i("TAG", "inside 2");
-                            Toast.makeText(EditProfil.this, "Profil sauvegardé !", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EditProfile.this, "Profil sauvegardé !", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(EditProfile.this, MainActivity.class);
+                            startActivity(intent);
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Log.i("TAG", "inside 3");
-                            Toast.makeText(EditProfil.this, "Une erreur s'est produite " + e, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EditProfile.this, "Une erreur s'est produite " + e, Toast.LENGTH_SHORT).show();
                         }
                     });
         }
         else {
-            Log.i("TAG", "inside 4");
-            Toast.makeText(EditProfil.this, "Something is wrong ! No UID ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(EditProfile.this, "Something is wrong ! No UID ", Toast.LENGTH_SHORT).show();
         }
     }
 
