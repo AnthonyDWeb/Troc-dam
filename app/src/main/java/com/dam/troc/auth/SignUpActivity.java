@@ -31,6 +31,7 @@ import java.util.HashMap;
 
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener{
+
     private static final String TAG = "SignupActivity";
     TextInputEditText emailUser, username, password,confirmPassword;
 
@@ -48,25 +49,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     // Variable pour la localisation de l'ImageView
     private String userID;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
-        mAuth = FirebaseAuth.getInstance();
-        initFirebase();
-        setContentView(R.layout.activity_sign_up);
-
-        emailUser = findViewById(R.id.et_signup_email);
-        emailUser.setText("@mail.to");
-        username = findViewById(R.id.et_signup_username);
-        password = findViewById(R.id.et_signup_password);
-        password.setText("123456");
-        confirmPassword = findViewById(R.id.et_signup_password_verification);
-        confirmPassword.setText("123456");
-
-        findViewById(R.id.btn_signup).setOnClickListener(this);
-
-    }
 
     // Méthode initFirebase pour initialiser les composants de Firebase
     private void initFirebase() {
@@ -176,7 +159,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 });
     }
 
-
     @Override
     public void onClick(View view) {
         switch (view.getId()){
@@ -190,5 +172,25 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     public void backToLogin(View view){
         Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        mAuth = FirebaseAuth.getInstance();
+        initFirebase();
+        setContentView(R.layout.activity_sign_up);
+
+        emailUser = findViewById(R.id.et_signup_email);
+        emailUser.setText("@mail.to");
+        username = findViewById(R.id.et_signup_username);
+        password = findViewById(R.id.et_signup_password);
+        password.setText("123456");
+        confirmPassword = findViewById(R.id.et_signup_password_verification);
+        confirmPassword.setText("123456");
+
+        findViewById(R.id.btn_signup).setOnClickListener(this);
+
     }
 }
