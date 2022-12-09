@@ -31,6 +31,7 @@ public class ProfileActivity extends Fragment {
     private FirebaseFirestore db;
 
     View view;
+    String name;
 
     Button btnSubmit;
     ImageView userProfileImage;
@@ -53,14 +54,9 @@ public class ProfileActivity extends Fragment {
         description = view.findViewById(R.id.tv_profile_description);
     }
 
-    String name;
     private void loadUserInformation() {
-//        Log.i("TAG", "loadUserInformation: ");
         db = FIRESTORE_INSTANCE;
-
         FirebaseUser user = CURRENT_USER;
-//        Log.i("TAG", "user.getUid() ------------> " + user.getUid());
-
         db.collection(USERS).document(user.getUid())
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -68,8 +64,6 @@ public class ProfileActivity extends Fragment {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         if(documentSnapshot.exists()){
                             name = documentSnapshot.getString("name");
-//                            Log.i("TAG", "profil onSuccess name: " + name);
-
                             username.setText(name);
                             email.setText(documentSnapshot.getString("email"));
                             tel.setText(documentSnapshot.getString("tel"));
@@ -83,32 +77,8 @@ public class ProfileActivity extends Fragment {
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
-                    public void onFailure(@NonNull Exception e) {
-
-                    }
+                    public void onFailure(@NonNull Exception e) {}
                 });
-
-
-//        db.collection("Users").document(user.getUid()).get()
-//                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                        if(task.isSuccessful()){
-//                            DocumentSnapshot documentSnapshot = task.getResult();
-//                            if (documentSnapshot.exists()) {
-//                                Log.i("TAG", "onComplete: " + documentSnapshot.getString("name"));
-//
-////                                Log.i("TAG","First "+ documentSnapshot.getString("name"));
-//                            }
-//                            Log.i("TAG", "onComplete: " + documentSnapshot.getString("id"));
-//
-//                        }
-//                    }
-//                });
-
-
-
-
     }
 
     private void getDataToEdit(View view) {
@@ -118,10 +88,8 @@ public class ProfileActivity extends Fragment {
 
         Intent intent = new Intent(getContext(), EditProfile.class);
         intent.putExtras(bundle);
-
         startActivity(intent);
     }
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -143,7 +111,6 @@ public class ProfileActivity extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         loadUserInformation();
-//        Log.i("TAG", "onViewCreated: inside");
         view.findViewById(R.id.btn_profil_editProfil).setOnClickListener(this::getDataToEdit);
     }
 }

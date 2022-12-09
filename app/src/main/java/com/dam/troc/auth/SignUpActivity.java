@@ -30,91 +30,72 @@ import com.google.firebase.storage.StorageReference;
 import java.util.HashMap;
 
 
-public class SignUpActivity extends AppCompatActivity implements View.OnClickListener{
+public class SignUpActivity extends AppCompatActivity {
 
     private static final String TAG = "SignupActivity";
-    TextInputEditText emailUser, username, password,confirmPassword;
+    TextInputEditText emailUser, username, password, confirmPassword;
 
-    private FirebaseAuth mAuth;
     // Ajout de la variable FirebaseUser
-    private FirebaseUser firebaseUser;
+    private FirebaseUser FIREBASE_USER;
     // Ajout de la variable de liaison avec les collections du Cloud FireStore
-    private CollectionReference collectionReference; // Le reste est dans la méthode initFireStore
+    private CollectionReference COLLECTION_REFERENCE_USER; // Le reste est dans la méthode initFireStore
     // Ajout de la variable de liaison avec FirebaseStorage
-    private StorageReference fileStorage;
-    // Variables des Uri du fichier image de l'avatar utilisateur
-    private Uri localFileUri; // L'Uri du fichier sur le terminal
-    private Uri serverFileUri; // L'UrL du fichier stocké dans le storage (on parle bien ici d'un U R L (ELLE))
-    private String urlStorageAvatar; // Le String de l'url stocké dans le storage pour l'ajouter dans la base Users
-    // Variable pour la localisation de l'ImageView
-    private String userID;
-
-
+    private StorageReference FILE_STORAGE;
+    private String userID, userEmail, userName, userPassword, ConfirmUserPassword;
 
     // Méthode initFirebase pour initialiser les composants de Firebase
     private void initFirebase() {
-        /** 6.2 Insertion dans Firestore **/
-        collectionReference = FIRESTORE_INSTANCE.collection(USERS); // Instance définie dans la classe des constantes
-
-        /** 7.2 Initialisation du bucket pour le stockage des avatars utilisateurs **/
-        fileStorage = STORAGE_INSTANCE.getReference();
+        /** Insertion dans Firestore **/
+        COLLECTION_REFERENCE_USER = FIRESTORE_INSTANCE.collection(USERS);
+        /** Initialisation du bucket pour le stockage des avatars utilisateurs **/
+        FILE_STORAGE = STORAGE_INSTANCE.getReference();
     }
 
-    private void registerUser(){
+    private void registerUser(View view) {
+        userEmail = emailUser.getText().toString().trim();
+        userName = username.getText().toString().trim();
+        userPassword = password.getText().toString().trim();
+        ConfirmUserPassword = confirmPassword.getText().toString().trim();
 
-        String email = emailUser.getText().toString().trim();
-        String userName = username.getText().toString().trim();
-        String Pass = password.getText().toString().trim();
-        String ConfirPass = confirmPassword.getText().toString().trim();
-        TextView accueil = findViewById(R.id.btn_signup);
-
-        if (email.isEmpty()) {
-            emailUser.setError("Email obligatoire!");
+        if (userEmail.isEmpty()) {
+            emailUser.setError(NEED_EMAIL);
             emailUser.requestFocus();
             return;
         } else if (userName.isEmpty()) {
-        } else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            emailUser.setError("Adresse email non conforme!!");
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(userEmail).matches()) {
+            emailUser.setError(INCORRECT_EMAIL);
             emailUser.requestFocus();
             return;
-        } else if (Pass.isEmpty()) {
-            password.setError("mot de passe obligatoire");
+        } else if (userPassword.isEmpty()) {
+            password.setError(NEED_PASSWORD);
             password.requestFocus();
             return;
-        } else if (!Pass.equals(ConfirPass)) {
-            confirmPassword.setError("mot de passe non identique");
+        } else if (!userPassword.equals(ConfirmUserPassword)) {
+            confirmPassword.setError(NO_MATCH_PASSWORD);
             confirmPassword.requestFocus();
             return;
-        } else if (Pass.length() <6) {
-            password.setError("Minimum 6 charactere!");
+        } else if (userPassword.length() < 6) {
+            password.setError(ERROR_LENGTH_PASSWORD);
             password.requestFocus();
             return;
         }
-
-        mAuth.createUserWithEmailAndPassword(email,Pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        FIREBASE_AUTH.createUserWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()){
-                    firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-                    userID = firebaseUser.getUid();
-                    Log.i(TAG, "User creation " + userID);
+                if (task.isSuccessful()) {
+                    userID = CURRENT_USER.getUid();
                     updateUsername();
-                    Toast.makeText(getApplicationContext(),"Inscription réussie", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Inscription réussie", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
-                }
-                else {
-
-                    if (task.getException() instanceof FirebaseAuthUserCollisionException){
-                        Toast.makeText(getApplicationContext(),"Cette email est déjè pris", Toast.LENGTH_LONG).show();
-                        emailUser.setError("Cette email est déjè pris");
+                } else {
+                    if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                        Toast.makeText(getApplicationContext(), USED_EMAIL, Toast.LENGTH_LONG).show();
+                        emailUser.setError(USED_EMAIL);
                         emailUser.requestFocus();
-                        accueil.setVisibility(View.VISIBLE);
-                    }
-                    else {
-                        Toast.makeText(getApplicationContext(), task.getException().getMessage(),Toast.LENGTH_LONG).show();
-                        accueil.setVisibility(View.VISIBLE);
+                    } else {
+                        Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     }
                 }
 
@@ -125,72 +106,44 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     private void updateUsername() {
         // Utilisation de la méthode UserProfileChangeRequest pour charger le nom de l'utilisateur qui s'est enregistré
-        // Gestion de remplissage d'Authenticator
-        UserProfileChangeRequest request = new UserProfileChangeRequest.Builder()
-                .setDisplayName(username.getText().toString().trim())
-                .build();
-
+        UserProfileChangeRequest request = new UserProfileChangeRequest.Builder().setDisplayName(userName).build();
         // Gestion du remplissage de la base de données
-        firebaseUser.updateProfile(request)
-                // Ajout d'un listener qui affiche un Toast si tout c'est bien déroulé
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull @org.jetbrains.annotations.NotNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            // Création du HashMap pour la gestion des données
-                            HashMap<String, String> hashMap = new HashMap<>();
-                            hashMap.put(NAME, username.getText().toString().trim());
-                            hashMap.put(ID, userID);
-                            hashMap.put(EMAIL, emailUser.getText().toString().trim());
-                            hashMap.put(ONLINE, "true"); // User set ONLINE, true, car il est dans on profile
-                            hashMap.put(AVATAR, ""); // Vide pour le moment
-                            Log.i(TAG, "Name only " + userID);
-                            collectionReference.document(userID).set(hashMap)
-                                    .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull @org.jetbrains.annotations.NotNull Task<Void> task) {
-                                            // Lancement de l'activité suivante
-                                            startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
-                                        }
-                                    });
-
-                        } else {}
-                    }
-                });
+        FIREBASE_USER.updateProfile(request).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull @org.jetbrains.annotations.NotNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    // Création du HashMap pour la gestion des données
+                    HashMap<String, String> hashMap = new HashMap<>();
+                    hashMap.put(ID, userID);
+                    hashMap.put(ONLINE, "true"); // User set ONLINE, true, car il est dans on profile
+                    hashMap.put(NAME, userName);
+                    hashMap.put(EMAIL, userEmail);
+                    hashMap.put(AVATAR, "");
+                    COLLECTION_REFERENCE_USER.document(userID).set(hashMap).addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull @org.jetbrains.annotations.NotNull Task<Void> task) {
+                            startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+                        }
+                    });
+                } else { }
+            }
+        });
     }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.btn_signup:
-                registerUser();
-                break;
-        }
-
-    }
-
-    public void backToLogin(View view){
-        Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
-        startActivity(intent);
-    }
+    public void backToLogin(View view) { Intent intent = new Intent(SignUpActivity.this, LoginActivity.class); startActivity(intent); }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        mAuth = FirebaseAuth.getInstance();
-        initFirebase();
         setContentView(R.layout.activity_sign_up);
-
+        initFirebase();
         emailUser = findViewById(R.id.et_signup_email);
-        emailUser.setText("@mail.to");
         username = findViewById(R.id.et_signup_username);
         password = findViewById(R.id.et_signup_password);
-        password.setText("123456");
         confirmPassword = findViewById(R.id.et_signup_password_verification);
+        findViewById(R.id.btn_signup).setOnClickListener(this::registerUser);
+        emailUser.setText("@mail.to");
+        password.setText("123456");
         confirmPassword.setText("123456");
-
-        findViewById(R.id.btn_signup).setOnClickListener(this);
-
     }
 }

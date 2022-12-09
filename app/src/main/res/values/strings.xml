@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">Troc</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="enter_email">Entrer votre Email</string>
+    <string name="need_email">Email obligatoire</string>
     <string name="enter_username">Entrer votre nom d\'utilisateur</string>
     <string name="enter_password">Entrer votre mot de passe</string>
+    <string name="need_password">Mot de passe obligatoire</string>
     <string name="password_verification">Confirmation du mot de passe</string>
 
 </resources>

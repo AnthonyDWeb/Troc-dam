@@ -1,5 +1,7 @@
 package com.dam.troc.auth;
 
+import static com.dam.troc.commons.Constants.*;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,26 +17,24 @@ import com.dam.troc.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
-    EditText emailUser, tvPass;
-    FirebaseAuth mAuth;
+    EditText emailUser, passwordUser;
 
     private boolean checkForm(String email, String Pass) {
-        if (email.isEmpty()) { emailUser.setError("Email obligatoire!"); emailUser.requestFocus(); return false; }
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) { emailUser.setError("Adresse email non conforme!!"); emailUser.requestFocus(); return false; }
-        if (Pass.isEmpty()) { tvPass.setError("Password obligatoire"); tvPass.requestFocus(); return false; }
-        if (Pass.length() < 6) { tvPass.setError("Minimum 6 chars!"); tvPass.requestFocus(); return false; }
+        if (email.isEmpty()) { emailUser.setError(NEED_EMAIL); emailUser.requestFocus(); return false; }
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) { emailUser.setError(INCORRECT_EMAIL); emailUser.requestFocus(); return false; }
+        if (Pass.isEmpty()) { passwordUser.setError(NEED_PASSWORD); passwordUser.requestFocus(); return false; }
+        if (Pass.length() < 6) { passwordUser.setError(ERROR_LENGTH_PASSWORD); passwordUser.requestFocus(); return false; }
         return true;
     }
 
     private void userLogin() {
         String email = emailUser.getText().toString().trim();
-        String Pass = tvPass.getText().toString().trim();
+        String Pass = passwordUser.getText().toString().trim();
         boolean formChecked = checkForm(email, Pass);
         if (formChecked) {
-            mAuth.signInWithEmailAndPassword(email, Pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            FIREBASE_AUTH.signInWithEmailAndPassword(email, Pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
@@ -72,8 +72,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mAuth = FirebaseAuth.getInstance();
-
         findViewById(R.id.tv_login_createUser).setOnClickListener(this);
         findViewById(R.id.tv_login_forgotPassword).setOnClickListener(this);
         findViewById(R.id.et_login_email).setOnClickListener(this);
@@ -81,10 +79,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         findViewById(R.id.btn_login).setOnClickListener(this);
 
         emailUser = findViewById(R.id.et_login_email);
-        tvPass = findViewById(R.id.et_login_password);
+        passwordUser = findViewById(R.id.et_login_password);
         // To del avant la MEP
         emailUser.setText("a@mail.to");
-        tvPass.setText("123456");
-
+        passwordUser.setText("123456");
     }
 }
