@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="15dp"
-    tools:context=".auth.Forgotten_Pass">
+    tools:context=".auth.ForgotPasswordActivity">
 
     <TextView
         android:id="@+id/tv_forgottenPassword_title"
@@ -34,7 +34,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_forgottenPassword_title">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tf_forgottenPassword_email"
+            android:id="@+id/tiet_forgotPassword_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 

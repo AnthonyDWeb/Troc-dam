@@ -43,12 +43,15 @@ public interface Constants {
     String USERS = "Users";
     String NAME = "name";
     String EMAIL = "email";
+    String TEL = "tel";
     String DESCRIPTION = "description";
     String CITY = "city";
     String POSTAL_CODE = "postalCode";
     String ADDRESS = "address";
     String SKILLS = "skills";
     //-------------- end Users
+
+    String NEEDED = "Champ obligatoire";
 
     //-------------- Collection Friend request
     String FRIEND_REQUESTS = "FriendRequests";

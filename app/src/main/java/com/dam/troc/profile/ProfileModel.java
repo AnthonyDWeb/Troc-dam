@@ -47,5 +47,4 @@ public class ProfileModel {
     public void setPostalCode(String postalCode) { this.postalCode = postalCode; }
     public void setDescription(String description) { this.description = description; }
     public void setSkills(List<String> skills) { this.skills = skills; }
-
 }

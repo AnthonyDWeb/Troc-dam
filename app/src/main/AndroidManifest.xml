@@ -20,7 +20,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".auth.Forgotten_Pass"
+            android:name=".auth.ForgotPasswordActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

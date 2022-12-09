@@ -27,12 +27,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class ProfileActivity extends Fragment {
 
-    FirebaseAuth mAuth;
-    private FirebaseFirestore db;
-
     View view;
-    String name;
-
     Button btnSubmit;
     ImageView userProfileImage;
     Uri imgUri;
@@ -55,23 +50,18 @@ public class ProfileActivity extends Fragment {
     }
 
     private void loadUserInformation() {
-        db = FIRESTORE_INSTANCE;
-        FirebaseUser user = CURRENT_USER;
-        db.collection(USERS).document(user.getUid())
+        FIRESTORE_INSTANCE.collection(USERS).document(CURRENT_USER.getUid())
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         if(documentSnapshot.exists()){
-                            name = documentSnapshot.getString("name");
-                            username.setText(name);
-                            email.setText(documentSnapshot.getString("email"));
-                            tel.setText(documentSnapshot.getString("tel"));
-
+                            username.setText(documentSnapshot.getString(NAME));
+                            email.setText(documentSnapshot.getString(EMAIL));
+                            tel.setText(documentSnapshot.getString(TEL));
                             if (skill1.getText() == "") skill1.setVisibility(View.GONE);
                             if (skill2.getText() == "") skill2.setVisibility(View.GONE);
                             if (skill3.getText() == "") skill3.setVisibility(View.GONE);
-
                         }
                     }
                 })
@@ -92,10 +82,10 @@ public class ProfileActivity extends Fragment {
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mAuth = FirebaseAuth.getInstance();
-
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        // loadUserInformation();
+        view.findViewById(R.id.btn_profil_editProfil).setOnClickListener(this::getDataToEdit);
     }
 
     @Nullable
@@ -103,15 +93,13 @@ public class ProfileActivity extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_profil, container, false);
         InitUI();
-
+        loadUserInformation();
         return view;
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        loadUserInformation();
-        view.findViewById(R.id.btn_profil_editProfil).setOnClickListener(this::getDataToEdit);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 }
 
