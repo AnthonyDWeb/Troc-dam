@@ -8,11 +8,9 @@ import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dam.troc.MainActivity;
-import com.dam.troc.ProfilActivity;
 import com.dam.troc.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -41,6 +39,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         emailUser = findViewById(R.id.et_login_email);
         tvPass = findViewById(R.id.et_login_password);
+
+        // To del avant la MEP
+        emailUser.setText("@mail.to");
+        tvPass.setText("123456");
 
 
     }
