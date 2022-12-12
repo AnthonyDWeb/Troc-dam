@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -100,6 +101,7 @@ import java.util.List;
 
         class MyViewHolder extends RecyclerView.ViewHolder{
 
+            public ImageView imageView;
             TextView messagetext, seen;
             //CircleImageView imageView;
 
@@ -108,7 +110,7 @@ import java.util.List;
                 super(itemView);
 
                 messagetext = itemView.findViewById(R.id.show_message);
-                //imageView = itemView.findViewById(R.id.chat_image);
+                imageView = itemView.findViewById(R.id.chat_image);
                 seen = itemView.findViewById(R.id.text_Seen);
             }
         }

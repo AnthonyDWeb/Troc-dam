@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,8 +16,6 @@ import com.bumptech.glide.Glide;
 import com.dam.troc.Models.Chats;
 import com.dam.troc.R;
 import com.dam.troc.profile.ProfileModel;
-import com.example.mychatapp.Model.Chats;
-import com.example.mychatapp.Model.Users;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -27,9 +26,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-import swordbliss.com.mychat.MessageActivity;
-import swordbliss.com.mychat.R;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyHolder> {
 
@@ -37,7 +33,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyHolder> {
     List<ProfileModel> userlist;
     boolean isChat;
 
-    String friendid;
+    String ProfessionId;
     String thelastmessage;
     FirebaseUser firebaseUser;
 
@@ -62,7 +58,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyHolder> {
 
         ProfileModel user = userlist.get(position);
 
-        friendid = user.getId();
+        ProfessionId = user.getId();
 
 
         holder.username.setText(user.getName());
@@ -70,7 +66,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyHolder> {
         if (user.getImgUri().equals("default")) {
 
             holder.imageView.setImageResource(R.drawable.unkown);
-
 
         } else {
 
@@ -80,7 +75,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyHolder> {
 
         if (isChat) {
 
-            if (user.getStatus().equals("online")) {
+            if (user.getStatut().equals("online")) {
 
                 holder.image_on.setVisibility(View.VISIBLE);
                 holder.image_off.setVisibility(View.GONE);
@@ -124,7 +119,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyHolder> {
 
 
         TextView username, last_msg;
-        CircleImageView imageView, image_on, image_off;
+        ImageView imageView, image_on, image_off;
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
@@ -145,10 +140,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyHolder> {
 
             ProfileModel users = userlist.get(getAdapterPosition());
 
-            friendid = users.getId();
+            ProfessionId = users.getId();
 
-            Intent intent = new Intent(context, MessageActiviy.class);
-            intent.putExtra("friendid", friendid);
+            Intent intent = new Intent(context, com.dam.troc.MessageActivity.class);
+            intent.putExtra("friendid", ProfessionId);
             context.startActivity(intent);
 
 

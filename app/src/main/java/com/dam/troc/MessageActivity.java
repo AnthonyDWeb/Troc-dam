@@ -176,8 +176,7 @@ public class MessageActivity extends AppCompatActivity {
     }
 
 
-
-    private void seenMessage(final String friendid) {
+    private void seenMessage(final String ProfessionId) {
 
         reference = FirebaseDatabase.getInstance().getReference("Chats");
 
@@ -190,7 +189,7 @@ public class MessageActivity extends AppCompatActivity {
 
                     Chats chats = ds.getValue(Chats.class);
 
-                    if (chats.getReciever().equals(myid) && chats.getSender().equals(friendid)) {
+                    if (chats.getReciever().equals(myid) && chats.getSender().equals(ProfessionId)) {
 
                         HashMap<String, Object> hashMap = new HashMap<>();
                         hashMap.put("isseen", true);
@@ -218,7 +217,7 @@ public class MessageActivity extends AppCompatActivity {
 
     }
 
-    private void readMessages(final String myid, final String friendid, final String imageURL) {
+    private void readMessages(final String myid, final String ProfessionId, final String imageURL) {
 
         chatsList = new ArrayList<>();
 
@@ -233,8 +232,8 @@ public class MessageActivity extends AppCompatActivity {
 
                     Chats chats = ds.getValue(Chats.class);
 
-                    if (chats.getSender().equals(myid) && chats.getReciever().equals(friendid) ||
-                            chats.getSender().equals(friendid) && chats.getReciever().equals(myid)) {
+                    if (chats.getSender().equals(myid) && chats.getReciever().equals(ProfessionId) ||
+                            chats.getSender().equals(ProfessionId) && chats.getReciever().equals(myid)) {
 
                         chatsList.add(chats);
                     }
@@ -280,7 +279,7 @@ public class MessageActivity extends AppCompatActivity {
                 if (!snapshot.exists()) {
 
 
-                    reference1.child("id").setValue(friendid);
+                    reference1.child("id").setValue(ProfessionId);
                 }
 
             }
