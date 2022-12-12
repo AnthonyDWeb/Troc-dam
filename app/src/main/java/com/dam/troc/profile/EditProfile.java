@@ -43,7 +43,7 @@ public class EditProfile extends AppCompatActivity {
     EditText et_username, et_email, et_tel, et_address, et_city, et_postalCode, et_skill1, et_skill2, et_skill3, et_description;
     public static final int PICK_IMAGE = 1;
 
-    private void InitUI(){
+    private void InitUI() {
         et_userProfileImage = findViewById(R.id.iv_profile_photo);
         et_username = findViewById(R.id.et_profile_username);
         et_email = findViewById(R.id.et_profile_email);
@@ -58,7 +58,7 @@ public class EditProfile extends AppCompatActivity {
         et_btnSubmit = findViewById(R.id.btn_editProfil_editProfil);
     }
 
-    private void getDataFromProfile(){
+    private void getDataFromProfile() {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             et_username.setText(bundle.getString(NAME));
@@ -69,7 +69,7 @@ public class EditProfile extends AppCompatActivity {
         }
     }
 
-    private void choixImage (View view){
+    private void choixImage(View view) {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -84,28 +84,23 @@ public class EditProfile extends AppCompatActivity {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), et_imgUri);
                 et_userProfileImage.setImageBitmap(bitmap);
                 uploadImageToFirebaseStorage();
-            } catch (IOException e) { e.printStackTrace(); }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     private void uploadImageToFirebaseStorage() {
-        StorageReference profileImageRef =
-                STORAGE_INSTANCE.getReference("profilepics/" + FIREBASE_AUTH.getUid() + ".jpg");
-        if (et_imgUri != null) {
-            profileImageRef.putFile(et_imgUri)
-                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            et_imgUri = Uri.parse(taskSnapshot.getUploadSessionUri().toString());
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            //progressBar.setVisibility(View.GONE);
-                            Toast.makeText(EditProfile.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
+        StorageReference profileImageRef = STORAGE_INSTANCE.getReference("profilepics/" + FIREBASE_AUTH.getUid() + ".jpg");
+        if (et_imgUri != null) { profileImageRef.putFile(et_imgUri)
+            .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) { et_imgUri = Uri.parse(taskSnapshot.getUploadSessionUri().toString()); }
+            })
+            .addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) { Toast.makeText(EditProfile.this, e.getMessage(), Toast.LENGTH_SHORT).show(); }
+            });
         }
     }
 
@@ -113,17 +108,19 @@ public class EditProfile extends AppCompatActivity {
         String uId = FIREBASE_AUTH.getUid();
         String username = et_username.getText().toString();
         String email = et_email.getText().toString();
-        String tel= et_tel.getText().toString();
+        String tel = et_tel.getText().toString();
         String address = et_address.getText().toString();
         String city = et_city.getText().toString();
-        String postalCode= et_postalCode.getText().toString();
+        String postalCode = et_postalCode.getText().toString();
         String skill1 = et_skill1.getText().toString();
-        String skill2= et_skill2.getText().toString();
-        String skill3= et_skill3.getText().toString();
+        String skill2 = et_skill2.getText().toString();
+        String skill3 = et_skill3.getText().toString();
         String description = et_description.getText().toString();
         if (uId != null) {
             HashMap<String, Object> map = new HashMap<>();
-            map.put(ID, uId); map.put(NAME, username); map.put(EMAIL, email);
+            map.put(ID, uId);
+            map.put(NAME, username);
+            map.put(EMAIL, email);
             if (username.isEmpty()) { et_username.setError(NEEDED); et_username.requestFocus(); return; }
             if (email.isEmpty()) { et_email.setError(NEEDED); et_email.requestFocus(); return; }
             if (!tel.isEmpty()) { map.put(TEL, tel); }
@@ -133,7 +130,7 @@ public class EditProfile extends AppCompatActivity {
             if (!description.isEmpty()) { map.put(DESCRIPTION, description); }
             if (!skill1.isEmpty()) { map.put("skill1 ", skill1); }
             if (!skill2.isEmpty()) { map.put("skill2 ", skill2); }
-            if (!skill3.isEmpty()) { map.put("skill3 ", skill3); }
+            if (!skill3.isEmpty()) {  map.put("skill3 ", skill3); }
 
             Log.i("TAG", String.valueOf(map));
 
@@ -148,21 +145,14 @@ public class EditProfile extends AppCompatActivity {
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(EditProfile.this, "Une erreur s'est produite " + e, Toast.LENGTH_SHORT).show();
-                        }
+                        public void onFailure(@NonNull Exception e) { Toast.makeText(EditProfile.this, "Une erreur s'est produite " + e, Toast.LENGTH_SHORT).show(); }
                     });
-        }
-        else {
-            Toast.makeText(EditProfile.this, "Something is wrong ! No UID ", Toast.LENGTH_SHORT).show();
-        }
+        } else { Toast.makeText(EditProfile.this, "Something is wrong ! No UID ", Toast.LENGTH_SHORT).show(); }
     }
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull String name, @NonNull Context context, @NonNull AttributeSet attrs) {
-        return super.onCreateView(name, context, attrs);
-    }
+    public View onCreateView(@NonNull String name, @NonNull Context context, @NonNull AttributeSet attrs) { return super.onCreateView(name, context, attrs); }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

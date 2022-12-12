@@ -30,9 +30,7 @@ public class SearchAdapter extends FirestoreRecyclerAdapter<UserSearchModel, Sea
      *
      * @param options
      */
-    public SearchAdapter(@NonNull FirestoreRecyclerOptions<UserSearchModel> options) {
-        super(options);
-    }
+    public SearchAdapter(@NonNull FirestoreRecyclerOptions<UserSearchModel> options) { super(options); }
 
     @Override
     protected void onBindViewHolder(@NonNull SearchViewHolder holder, int position, @NonNull UserSearchModel model) {
@@ -69,14 +67,8 @@ public class SearchAdapter extends FirestoreRecyclerAdapter<UserSearchModel, Sea
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
-                    int pos = getBindingAdapterPosition();
-                    if (pos != RecyclerView.NO_POSITION) {
-                        DocumentSnapshot userDocument = getSnapshots().getSnapshot(pos);
-                    }
-                }
+                public void onClick(View v) { int pos = getBindingAdapterPosition(); if (pos != RecyclerView.NO_POSITION) { DocumentSnapshot userDocument = getSnapshots().getSnapshot(pos); } }
             });
-
         }
     }
 

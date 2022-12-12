@@ -12,21 +12,6 @@ import com.google.firebase.storage.StorageReference;
 
 public interface Constants {
 
-    //************ CONSTANTES FIREBASE ****************/
-    // Auth
-    FirebaseAuth FIREBASE_AUTH = FirebaseAuth.getInstance();
-    // User
-    FirebaseUser CURRENT_USER = FIREBASE_AUTH.getCurrentUser();
-    // Firestore
-    @SuppressLint("StaticFieldLeak")
-    FirebaseFirestore FIRESTORE_INSTANCE = FirebaseFirestore.getInstance();
-    // Storage
-    FirebaseStorage STORAGE_INSTANCE = FirebaseStorage.getInstance();
-
-    //************ CONSTANTS POUR LE DOSSIER DE STORAGE ****************/
-    // Lien vers le dossier de stockage des avatars
-    String AVATARS_FOLDER = "avatars_user";
-
     //************ CONSTANTS AUTH ****************/
     String NEED_EMAIL = "E-mail obligatoire";
     String USED_EMAIL = "E-mail déjà utiliser";
@@ -52,6 +37,23 @@ public interface Constants {
     //-------------- end Users
 
     String NEEDED = "Champ obligatoire";
+
+
+    //************ CONSTANTES FIREBASE ****************/
+    // Auth
+    FirebaseAuth FIREBASE_AUTH = FirebaseAuth.getInstance();
+    // User
+    FirebaseUser CURRENT_USER = FIREBASE_AUTH.getCurrentUser();
+    // Firestore
+    @SuppressLint("StaticFieldLeak")
+    FirebaseFirestore FIRESTORE_INSTANCE = FirebaseFirestore.getInstance();
+    CollectionReference FIRESTORE_INSTANCE_USERS = FIRESTORE_INSTANCE.collection(USERS);
+    // Storage
+    FirebaseStorage STORAGE_INSTANCE = FirebaseStorage.getInstance();
+
+    //************ CONSTANTS POUR LE DOSSIER DE STORAGE ****************/
+    // Lien vers le dossier de stockage des avatars
+    String AVATARS_FOLDER = "avatars_user";
 
     //-------------- Collection Friend request
     String FRIEND_REQUESTS = "FriendRequests";

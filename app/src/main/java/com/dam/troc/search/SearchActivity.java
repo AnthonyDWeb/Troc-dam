@@ -39,7 +39,6 @@ import java.util.List;
 public class SearchActivity extends Fragment {
 
     private static final String TAG = "SearchActivity";
-    private FirebaseFirestore db;
 
     private View baseView;
     private RecyclerView rv_search_result;
@@ -48,11 +47,6 @@ public class SearchActivity extends Fragment {
     private SearchAdapter adapter;
     private RadioButton radioButtonProffesion, radioButtonUsername;
     private String Filter;
-
-
-    private void initFirebaseTools() {
-        db = FIRESTORE_INSTANCE;
-    }
 
     private void initUI() {
         context = getContext();
@@ -65,15 +59,13 @@ public class SearchActivity extends Fragment {
     }
 
     private void getDataFromFirestore() {
-        Query query = db.collection(USERS).whereNotEqualTo(ID,CURRENT_USER.getUid());
+        Query query = FIRESTORE_INSTANCE_USERS.whereNotEqualTo(ID,CURRENT_USER.getUid());
         FirestoreRecyclerOptions<UserSearchModel> users = new FirestoreRecyclerOptions.Builder<UserSearchModel>().setQuery(query, UserSearchModel.class).build();
-        adapter = new SearchAdapter(users);
-        rv_search_result.setAdapter(adapter);
-        adapter.startListening();
+        adapter = new SearchAdapter(users); rv_search_result.setAdapter(adapter); adapter.startListening();
     }
 
     private void getDataSearchFromFirestore(String searchValue) {
-        Query query = db.collection(USERS);
+        Query query = FIRESTORE_INSTANCE_USERS;
         if (Filter.equals(NAME)) query = query.orderBy(NAME).startAt(searchValue).endAt(searchValue+"\uf8ff");
 //        if (Filter.equals(SKILLS)) query = query.orderBy(SKILLS).startAt(searchValue).endAt(searchValue+"\uf8ff");
         if (Filter.equals(SKILLS)) query = query.whereArrayContains(SKILLS, searchValue);
@@ -113,7 +105,6 @@ public class SearchActivity extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         baseView = inflater.inflate(R.layout.activity_search, container, false);
         initUI();
-        initFirebaseTools();
         getDataFromFirestore();
         if (Filter == null) Filter = NAME;
         radioButtonProffesion.setOnClickListener(this::onClickRadioButton);
