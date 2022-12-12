@@ -35,7 +35,8 @@ public interface Constants {
     String ADDRESS = "address";
     String SKILLS = "skills";
     //-------------- end Users
-
+    String JOBS = "Jobs";
+    String SKILLNAME = "skillname";
     String NEEDED = "Champ obligatoire";
 
 
@@ -48,6 +49,7 @@ public interface Constants {
     @SuppressLint("StaticFieldLeak")
     FirebaseFirestore FIRESTORE_INSTANCE = FirebaseFirestore.getInstance();
     CollectionReference FIRESTORE_INSTANCE_USERS = FIRESTORE_INSTANCE.collection(USERS);
+    CollectionReference FIRESTORE_INSTANCE_JOBS = FIRESTORE_INSTANCE.collection(JOBS);
     // Storage
     FirebaseStorage STORAGE_INSTANCE = FirebaseStorage.getInstance();
 

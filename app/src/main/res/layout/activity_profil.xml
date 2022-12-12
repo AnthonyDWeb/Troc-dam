@@ -230,86 +230,8 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/skillField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_weight="0"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/tv_profil_skillTitle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="25dp"
-                        android:layout_weight="0"
-                        android:gravity="center_vertical"
-                        android:text="Competences :"
-                        android:textColor="@color/secondaryDarkColor"
-                        android:textSize="24sp"
-                        android:textStyle="bold" />
-
-                    <Button
-                        android:id="@+id/button2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0"
-                        android:backgroundTint="@color/secondaryColor"
-                        android:text="+"
-                        android:textColor="@color/secondaryDarkColor" />
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/tv_profile_skill1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="8dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="0"
-                    android:background="@drawable/input_text_container"
-                    android:padding="8dp"
-                    tools:text="Compétence 1"
-                    android:textColor="@color/primaryDarkColor"
-                    android:textSize="@dimen/textSize" />
-
-                <TextView
-                    android:id="@+id/tv_profile_skill2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="8dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="0"
-                    android:background="@drawable/input_text_container"
-                    android:padding="8dp"
-                    tools:text="Compétence 2"
-                    android:textColor="@color/primaryDarkColor"
-                    android:textSize="@dimen/textSize" />
-
-                <TextView
-                    android:id="@+id/tv_profile_skill3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="8dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="0"
-                    android:background="@drawable/input_text_container"
-                    android:padding="8dp"
-                    tools:text="Compétence 3"
-                    android:textColor="@color/primaryDarkColor"
-                    android:textSize="@dimen/textSize" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
                 android:layout_margin="8dp"
                 android:orientation="vertical">
 
@@ -337,6 +259,43 @@
                     android:textColorHint="@color/primaryDarkColor"
                     android:textSize="@dimen/textSize"
                     tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/skillField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="0"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_profil_skillTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:layout_weight="0"
+                        android:gravity="center_vertical"
+                        android:text="Competences :"
+                        android:textColor="@color/secondaryDarkColor"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_profile_skills"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0" />
+
             </LinearLayout>
 
         </LinearLayout>

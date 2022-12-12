@@ -226,83 +226,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/skillField"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_weight="0"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="10dp"
-                    android:layout_weight="0"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/tv_profil_skillTitle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_weight="0"
-                        android:gravity="center_vertical"
-                        android:text="Competences :"
-                        android:textColor="@color/secondaryDarkColor"
-                        android:textSize="24sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <EditText
-                    android:id="@+id/et_profile_skill1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="8dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="0"
-                    android:background="@drawable/input_text_container"
-                    android:hint="ajouter une compétence"
-                    android:paddingTop="2dp"
-                    android:paddingBottom="2dp"
-                    android:textAlignment="center"
-                    android:textColor="@color/secondaryDarkColor"
-                    android:textSize="@dimen/textSize" />
-
-                <EditText
-                    android:id="@+id/et_profile_skill2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="8dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="0"
-                    android:background="@drawable/input_text_container"
-                    android:hint="ajouter une compétence"
-                    android:paddingTop="2dp"
-                    android:paddingBottom="2dp"
-                    android:textAlignment="center"
-                    android:textColor="@color/secondaryDarkColor"
-                    android:textSize="@dimen/textSize" />
-
-                <EditText
-                    android:id="@+id/et_profile_skill3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="8dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="0"
-                    android:background="@drawable/input_text_container"
-                    android:hint="ajouter une compétence"
-                    android:paddingTop="2dp"
-                    android:paddingBottom="2dp"
-                    android:textAlignment="center"
-                    android:textColor="@color/secondaryDarkColor"
-                    android:textSize="@dimen/textSize" />
-
-            </LinearLayout>
-
-            <LinearLayout
+                android:id="@+id/descriptionField"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="15dp"
@@ -332,6 +256,89 @@
                     android:hint="description..."
                     android:inputType="textMultiLine"
                     android:textSize="@dimen/textSize" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/skillField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_weight="0"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_profil_skillTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_weight="0"
+                        android:gravity="center_vertical"
+                        android:text="Competences :"
+                        android:textColor="@color/secondaryDarkColor"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_profile_skill1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="0"
+                    android:background="@drawable/input_text_container"
+                    android:onClick="addSkill"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:text="ajouter une compétence"
+                    android:textAlignment="center"
+                    android:textColor="@color/primaryTextColor"
+                    android:textSize="@dimen/textSize"
+                    app:rippleColor="@color/primaryTextColor" />
+
+                <Button
+                    android:id="@+id/btn_profile_skill2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="0"
+                    android:background="@drawable/input_text_container"
+                    android:onClick="addSkill"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:text="ajouter une compétence"
+                    android:textAlignment="center"
+                    android:textColor="@color/primaryTextColor"
+                    android:textSize="@dimen/textSize"
+                    app:rippleColor="@color/primaryTextColor" />
+
+                <Button
+                    android:id="@+id/btn_profile_skill3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="0"
+                    android:background="@drawable/input_text_container"
+                    android:onClick="addSkill"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:text="ajouter une compétence"
+                    android:textAlignment="center"
+                    android:textColor="@color/primaryTextColor"
+                    android:textSize="@dimen/textSize"
+                    app:rippleColor="@color/primaryTextColor" />
+
             </LinearLayout>
 
         </LinearLayout>

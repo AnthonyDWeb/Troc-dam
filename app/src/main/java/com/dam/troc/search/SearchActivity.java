@@ -64,10 +64,10 @@ public class SearchActivity extends Fragment {
         adapter = new SearchAdapter(users); rv_search_result.setAdapter(adapter); adapter.startListening();
     }
 
+
     private void getDataSearchFromFirestore(String searchValue) {
         Query query = FIRESTORE_INSTANCE_USERS;
         if (Filter.equals(NAME)) query = query.orderBy(NAME).startAt(searchValue).endAt(searchValue+"\uf8ff");
-//        if (Filter.equals(SKILLS)) query = query.orderBy(SKILLS).startAt(searchValue).endAt(searchValue+"\uf8ff");
         if (Filter.equals(SKILLS)) query = query.whereArrayContains(SKILLS, searchValue);
         FirestoreRecyclerOptions<UserSearchModel> users = new FirestoreRecyclerOptions.Builder<UserSearchModel>().setQuery(query, UserSearchModel.class).build();
         adapter = new SearchAdapter(users);
