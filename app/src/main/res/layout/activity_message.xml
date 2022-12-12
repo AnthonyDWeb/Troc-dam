@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MessageActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
+
+    <ImageView
+        android:id="@+id/profil_img"
+        android:layout_width="50dp"
+        android:layout_height="51dp"
+        app:srcCompat="@drawable/female_index" />
+
+    <TextView
+        android:id="@+id/profil_username"
+        android:layout_width="343dp"
+        android:layout_height="55dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="5dp"
+        android:layout_toEndOf="@+id/profil_img"
+        android:text="TextView" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/message_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="53dp" />
+
+    <EditText
+        android:id="@+id/chat_edit_message"
+        android:layout_width="292dp"
+        android:layout_height="84dp"
+        android:layout_below="@+id/message_recyclerview"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="-51dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="21dp"
+        android:layout_toStartOf="@+id/chat_btn_send"
+        android:text="TextView" />
+
+    <Button
+        android:id="@+id/chat_btn_send"
+        android:layout_width="109dp"
+        android:layout_height="105dp"
+        android:layout_below="@+id/message_recyclerview"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="-48dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="-4dp"
+        android:text="Button" />
+
+</RelativeLayout>

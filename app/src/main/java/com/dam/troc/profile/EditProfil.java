@@ -1,4 +1,4 @@
-package com.dam.troc;
+package com.dam.troc.profile;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.dam.troc.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -171,7 +172,7 @@ public class EditProfil extends AppCompatActivity implements AdapterView.OnItemS
         }
     }
 
-   public void saveUserInformation(View view) {
+    public void saveUserInformation(View view) {
 
         String uId = mAuth.getUid();
 
@@ -300,10 +301,10 @@ public class EditProfil extends AppCompatActivity implements AdapterView.OnItemS
 
         }}
 
-        @Override
-        public void onNothingSelected (AdapterView < ? > parent){
+    @Override
+    public void onNothingSelected (AdapterView < ? > parent){
 
-        }
+    }
 
 
 }

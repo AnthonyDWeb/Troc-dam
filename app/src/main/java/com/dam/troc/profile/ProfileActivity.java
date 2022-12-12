@@ -116,7 +116,7 @@ public class ProfileActivity extends Fragment {
         bundle.putString(NAME, username.getText().toString());
         bundle.putString(EMAIL, email.getText().toString());
 
-        Intent intent = new Intent(getContext(), EditProfile.class);
+        Intent intent = new Intent(getContext(), EditProfil.class);
         intent.putExtras(bundle);
 
         startActivity(intent);

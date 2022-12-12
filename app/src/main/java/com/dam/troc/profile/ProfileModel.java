@@ -8,10 +8,12 @@ public class ProfileModel {
     private Uri imgUri;
     private String id, name, email, tel, address, city, postalCode, description;
     private List<String> skills;
+    private String statut;
 
     //default constructor!!! Needed by firebase
     public ProfileModel(){};
-    public ProfileModel(Uri imgUri, String id, String name, String email, String tel, String address, String city, String postalCode, String description, List<String> skills) {
+    public ProfileModel(Uri imgUri, String id, String name, String email, String tel, String address, String city,
+                        String postalCode, String description, List<String> skills, String statut) {
         this.imgUri = imgUri;
         this.id = id;
         this.name = name;
@@ -22,9 +24,12 @@ public class ProfileModel {
         this.postalCode = postalCode;
         this.description = description;
         this.skills = skills;
+        this.statut = statut;
     }
 
     //getters
+
+
     public Uri getImgUri() { return imgUri; }
     public String getId() { return id; }
     public String getName() { return name; }
@@ -35,6 +40,19 @@ public class ProfileModel {
     public String getPostalCode() { return postalCode; }
     public String getDescription() { return description; }
     public List<String> getSkills() { return skills; }
+    public String getStatut() {
+        return statut;
+    }
+
+
+    //Setters!!!
+
+
+
+
+    public void setStatut(String statut) {
+        this.statut = statut;
+    }
 
     //Setters!!!
     public void setImgUri(Uri imgUri) { this.imgUri = imgUri; }
