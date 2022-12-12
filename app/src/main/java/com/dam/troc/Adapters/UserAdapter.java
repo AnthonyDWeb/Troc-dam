@@ -1,6 +1,5 @@
 package com.dam.troc.Adapters;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -8,10 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.dam.troc.Models.Chats;
 import com.dam.troc.R;
@@ -23,7 +20,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.List;
 
 
@@ -63,7 +59,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyHolder> {
 
         holder.username.setText(user.getName());
 
-        if (user.getImgUri().equals("default")) {
+        if (user.getImgUri().equals(null)) {
 
             holder.imageView.setImageResource(R.drawable.unkown);
 
@@ -143,7 +139,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyHolder> {
             ProfessionId = users.getId();
 
             Intent intent = new Intent(context, com.dam.troc.MessageActivity.class);
-            intent.putExtra("friendid", ProfessionId);
+            intent.putExtra("ProfessionId", ProfessionId);
             context.startActivity(intent);
 
 

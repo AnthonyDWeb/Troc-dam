@@ -20,7 +20,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".profile.EditProfile"
+            android:name=".profile.EditProfil"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

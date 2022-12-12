@@ -74,9 +74,9 @@ public class MessageActivity extends AppCompatActivity {
         et_message = findViewById(R.id.chat_edit_message);
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        myid = firebaseUser.getUid(); // my id or the one who is loggedin
+        myid = firebaseUser.getUid(); // my id
 
-        ProfessionId = getIntent().getStringExtra("friendid"); // retreive the friendid when we click on the item
+        ProfessionId = getIntent().getStringExtra("ProfessionId"); // Id donnée par item OnClick.
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -90,7 +90,7 @@ public class MessageActivity extends AppCompatActivity {
 
                 usernameonToolbar.setText(users.getName()); // set the text of the user on textivew in toolbar
 
-                if (users.getImgUri().equals("default")) {
+                if (users.getImgUri().equals(null)) {
 
                     user_img.setImageResource(R.drawable.unkown);
                 } else {
@@ -197,9 +197,6 @@ public class MessageActivity extends AppCompatActivity {
 
                     }
 
-
-
-
                 }
 
             }
@@ -209,11 +206,6 @@ public class MessageActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
 
     }
 

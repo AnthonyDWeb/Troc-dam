@@ -6,27 +6,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.dam.troc.Models.Chats;
 import com.dam.troc.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
 import java.util.List;
 
-    public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHolder> {
+public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHolder> {
 
 
         Context context;
         List<Chats> chatslist;
         String imageURL;
 
-        public static final int MESSAGE_RIGHT = 0; // FOR ME (
-        public static final int MESSAGE_LEFT = 1; // FOR FRIEND
+        public static final int MESSAGE_RIGHT = 0; // moi
+        public static final int MESSAGE_LEFT = 1; // le pro
 
 
 
@@ -103,7 +100,7 @@ import java.util.List;
 
             public ImageView imageView;
             TextView messagetext, seen;
-            //CircleImageView imageView;
+
 
 
             public MyViewHolder(@NonNull View itemView) {
