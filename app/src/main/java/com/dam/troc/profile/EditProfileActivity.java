@@ -32,8 +32,6 @@ import android.widget.Toast;
 
 import com.dam.troc.MainActivity;
 import com.dam.troc.R;
-import com.dam.troc.search.SearchAdapter;
-import com.dam.troc.search.UserSearchModel;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -280,7 +278,6 @@ public class EditProfileActivity extends AppCompatActivity {
                 map.put(DESCRIPTION, description);
             }
 
-            Log.i("TAG", String.valueOf(map));
 
             FIRESTORE_INSTANCE.collection(USERS).document(uId).set(map)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {

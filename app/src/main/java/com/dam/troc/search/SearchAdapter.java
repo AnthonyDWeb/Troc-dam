@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,32 +15,31 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.dam.troc.R;
+import com.dam.troc.profile.ProfileModel;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
 
-import java.util.Arrays;
 import java.util.List;
 
-public class SearchAdapter extends FirestoreRecyclerAdapter<UserSearchModel, SearchAdapter.SearchViewHolder> {
+public class SearchAdapter extends FirestoreRecyclerAdapter<ProfileModel, SearchAdapter.SearchViewHolder> {
     /**
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
      * FirestoreRecyclerOptions} for configuration options.
      *
      * @param options
      */
-    public SearchAdapter(@NonNull FirestoreRecyclerOptions<UserSearchModel> options) { super(options); }
+    public SearchAdapter(@NonNull FirestoreRecyclerOptions<ProfileModel> options) { super(options); }
 
     @Override
-    protected void onBindViewHolder(@NonNull SearchViewHolder holder, int position, @NonNull UserSearchModel model) {
+    protected void onBindViewHolder(@NonNull SearchViewHolder holder, int position, @NonNull ProfileModel model) {
         String id = model.getId();
-        String userImage = model.getUserImage();
+        String userImage = model.getImgUri();
         String username = model.getName();
         List<String> skills = model.getSkills();
         holder.tv_card_username.setText(username);
         if (skills != null) holder.tv_card_skill.setText(skills.toString());
 
-        Log.i("TAG", "onBindViewHolder username: " + username);
 
         RequestOptions options = new RequestOptions().centerCrop().placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher_round);
         Context context = holder.iv_card_userImage.getContext();
@@ -51,7 +49,7 @@ public class SearchAdapter extends FirestoreRecyclerAdapter<UserSearchModel, Sea
     @NonNull
     @Override
     public SearchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.search_card_item, parent, false);
         return new SearchViewHolder(view);
     }
 

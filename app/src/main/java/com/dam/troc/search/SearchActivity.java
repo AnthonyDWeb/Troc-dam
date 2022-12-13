@@ -59,8 +59,9 @@ public class SearchActivity extends Fragment {
     }
 
     private void getDataFromFirestore() {
+        assert CURRENT_USER != null;
         Query query = FIRESTORE_INSTANCE_USERS.whereNotEqualTo(ID,CURRENT_USER.getUid());
-        FirestoreRecyclerOptions<UserSearchModel> users = new FirestoreRecyclerOptions.Builder<UserSearchModel>().setQuery(query, UserSearchModel.class).build();
+        FirestoreRecyclerOptions<ProfileModel> users = new FirestoreRecyclerOptions.Builder<ProfileModel>().setQuery(query, ProfileModel.class).build();
         adapter = new SearchAdapter(users); rv_search_result.setAdapter(adapter); adapter.startListening();
     }
 
@@ -69,7 +70,7 @@ public class SearchActivity extends Fragment {
         Query query = FIRESTORE_INSTANCE_USERS;
         if (Filter.equals(NAME)) query = query.orderBy(NAME).startAt(searchValue).endAt(searchValue+"\uf8ff");
         if (Filter.equals(SKILLS)) query = query.whereArrayContains(SKILLS, searchValue);
-        FirestoreRecyclerOptions<UserSearchModel> users = new FirestoreRecyclerOptions.Builder<UserSearchModel>().setQuery(query, UserSearchModel.class).build();
+        FirestoreRecyclerOptions<ProfileModel> users = new FirestoreRecyclerOptions.Builder<ProfileModel>().setQuery(query, ProfileModel.class).build();
         adapter = new SearchAdapter(users);
         rv_search_result.setAdapter(adapter);
         adapter.startListening();
@@ -77,7 +78,6 @@ public class SearchActivity extends Fragment {
 
 
     private void onSearchTextChanged(View view, boolean b) {
-        Log.i(TAG, "onSearchTextChanged: focus change");
         sv_search_userSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {

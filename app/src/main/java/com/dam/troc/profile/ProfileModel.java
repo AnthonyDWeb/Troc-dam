@@ -5,13 +5,13 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ProfileModel {
-    private Uri imgUri;
+    private String imgUri;
     private String id, name, email, tel, address, city, postalCode, description;
     private List<String> skills;
 
     //default constructor!!! Needed by firebase
     public ProfileModel(){};
-    public ProfileModel(Uri imgUri, String id, String name, String email, String tel, String address, String city, String postalCode, String description, List<String> skills) {
+    public ProfileModel(String imgUri, String id, String name, String email, String tel, String address, String city, String postalCode, String description, List<String> skills) {
         this.imgUri = imgUri;
         this.id = id;
         this.name = name;
@@ -25,7 +25,7 @@ public class ProfileModel {
     }
 
     //getters
-    public Uri getImgUri() { return imgUri; }
+    public String getImgUri() { return imgUri; }
     public String getId() { return id; }
     public String getName() { return name; }
     public String getEmail() { return email; }
@@ -37,9 +37,9 @@ public class ProfileModel {
     public List<String> getSkills() { return skills; }
 
     //Setters!!!
-    public void setImgUri(Uri imgUri) { this.imgUri = imgUri; }
+    public void setImgUri(String imgUri) { this.imgUri = imgUri; }
     public void setId(String id) { this.id = id; }
-    public void setName(String ame) { this.name = name; }
+    public void setName(String name) { this.name = name; }
     public void setEmail(String email) { this.email = email; }
     public void setTel(String tel) { this.tel = tel; }
     public void setAddress(String address) { this.address = address; }

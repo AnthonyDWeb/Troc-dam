@@ -1,6 +1,5 @@
 package com.dam.troc.profile;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dam.troc.R;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.firebase.firestore.DocumentSnapshot;
 
 public class EditSkillAdapter extends FirestoreRecyclerAdapter<EditSkillModel, EditSkillAdapter.EditSkillHolder> {
     /**
@@ -32,7 +30,7 @@ public class EditSkillAdapter extends FirestoreRecyclerAdapter<EditSkillModel, E
     @NonNull
     @Override
     public EditSkillHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_skill, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dialog_card_skill, parent, false);
         return new EditSkillHolder(view);
     }
 

@@ -43,6 +43,7 @@ public interface Constants {
     //************ CONSTANTES FIREBASE ****************/
     // Auth
     FirebaseAuth FIREBASE_AUTH = FirebaseAuth.getInstance();
+    // FirebaseAuth FIREBASE_AUTH = FIREBASE_AUTH_INITIALISATION;
     // User
     FirebaseUser CURRENT_USER = FIREBASE_AUTH.getCurrentUser();
     // Firestore
