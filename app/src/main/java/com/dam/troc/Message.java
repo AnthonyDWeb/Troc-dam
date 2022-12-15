@@ -4,10 +4,9 @@ public class Message {
 
     private String userMel;
     private String UserId;
+    private String professionId;
     private String message;
     private String dateTime;
-    private String professionId;
-
 
     public Message() {
     }
@@ -19,15 +18,6 @@ public class Message {
         this.message = message;
         this.dateTime = dateTime;
     }
-
-    public String getProfessionId() {
-        return professionId;
-    }
-
-    public void setProfessionId(String professionId) {
-        this.professionId = professionId;
-    }
-
 
     public String getUserMel() {
         return userMel;
