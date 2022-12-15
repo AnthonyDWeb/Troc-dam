@@ -42,13 +42,13 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class EditProfileActivity extends AppCompatActivity {
     ImageButton et_btnSubmit;
     ImageView et_userProfileImage;
     Uri et_imgUri;
-    String skillnameSelected;
     EditSkillAdapter adapter;
     RecyclerView rc_dialog_skill;
     TextView job1, job2, job3;
@@ -78,7 +78,7 @@ public class EditProfileActivity extends AppCompatActivity {
         descriptionField = findViewById(R.id.descriptionField);
 
         Log.i("TAG", "InitUI: " + btn_skill1.getText());
-        if (btn_skill1.getText().equals("ajouter une compétence")){
+        if (btn_skill1.getText().equals("ajouter une compétence")) {
             btn_skill2.setVisibility(View.GONE);
             btn_skill3.setVisibility(View.GONE);
         }
@@ -97,9 +97,17 @@ public class EditProfileActivity extends AppCompatActivity {
         }
     }
 
+    private void getDataSearchFromFirestore(String searchValue) {
+        Query query = FIRESTORE_INSTANCE_JOBS.orderBy(SKILLNAME).startAt(searchValue).endAt(searchValue+"\uf8ff");
+        FirestoreRecyclerOptions<EditSkillModel> jobs = new FirestoreRecyclerOptions.Builder<EditSkillModel>().setQuery(query, EditSkillModel.class).build();
+        adapter = new EditSkillAdapter(jobs);
+        rc_dialog_skill.setAdapter(adapter);
+        adapter.startListening();
+    }
+
     public void addValue(View view) {
         TextView itemSelection = view.findViewById(R.id.tv_card_skill);
-        skillnameSelected = itemSelection.getText().toString();
+        String skillnameSelected = itemSelection.getText().toString();
         if(job1.getText().equals("aucun")){
             job1.setText(skillnameSelected);
         } else if (!job1.getText().equals("aucun") && job2.getText().equals("aucun")) {
@@ -113,7 +121,7 @@ public class EditProfileActivity extends AppCompatActivity {
         LayoutInflater inflater = LayoutInflater.from(this);
         View subView = inflater.inflate(R.layout.dialog_add_skill, null);
         rc_dialog_skill = (RecyclerView) subView.findViewById(R.id.rc_dialog_skill);
-        searchView = (SearchView) subView.findViewById(R.id.dialog_skill_searchview);
+        final SearchView searchView = (SearchView) subView.findViewById(R.id.dialog_skill_searchview);
         job1 = (TextView) subView.findViewById(R.id.tv_dialog_skill_job1_selection);
         job2 = (TextView) subView.findViewById(R.id.tv_dialog_skill_job2_selection);
         job3 = (TextView) subView.findViewById(R.id.tv_dialog_skill_job3_selection);
@@ -137,9 +145,7 @@ public class EditProfileActivity extends AppCompatActivity {
         builder.setPositiveButton("Valider", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                btn_skill1.setText(job1.getText());
-                btn_skill2.setText(job2.getText());
-                btn_skill3.setText(job3.getText());
+                dialogSkillUpdate();
             }
         });
         /** Gestion du bouton réponse négative **/
@@ -152,10 +158,6 @@ public class EditProfileActivity extends AppCompatActivity {
         builder.setView(subView);
         builder.create();
         builder.show();
-
-        if(!btn_skill1.getText().equals("ajouter une compétence")) { job1.setText(btn_skill1.getText()); }
-        if(!btn_skill2.getText().equals("ajouter une compétence")) { job2.setText(btn_skill2.getText()); }
-        if(!btn_skill3.getText().equals("ajouter une compétence")) { job3.setText(btn_skill3.getText()); }
 
         if (job1.getText().equals("aucun")) {
             job2_section.setVisibility(View.GONE);
@@ -188,12 +190,34 @@ public class EditProfileActivity extends AppCompatActivity {
         });
     }
 
-    private void getDataSearchFromFirestore(String searchValue) {
-        Query query = FIRESTORE_INSTANCE_JOBS.orderBy(SKILLNAME).startAt(searchValue).endAt(searchValue+"\uf8ff");
-        FirestoreRecyclerOptions<EditSkillModel> jobs = new FirestoreRecyclerOptions.Builder<EditSkillModel>().setQuery(query, EditSkillModel.class).build();
-        adapter = new EditSkillAdapter(jobs);
-        rc_dialog_skill.setAdapter(adapter);
-        adapter.startListening();
+    private void dialogSkillUpdate() {
+        String uId = CURRENT_USER.getUid();
+        if (uId != null) {
+            HashMap<String, Object> map = new HashMap<>();
+            ArrayList<String> arrSkills = new ArrayList<>();
+            if (!job1.getText().equals("aucun")) arrSkills.add(job1.getText().toString());
+            if (!job2.getText().equals("aucun")) arrSkills.add(job2.getText().toString());
+            if (!job3.getText().equals("aucun")) arrSkills.add(job3.getText().toString());
+            Log.i("TAG", "dialogSkillUpdate: " + arrSkills);
+            map.put(SKILLS,arrSkills);
+            FIRESTORE_INSTANCE.collection(USERS).document(uId).update(map)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            Toast.makeText(EditProfileActivity.this, "Profil sauvegardé !", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(EditProfileActivity.this, MainActivity.class);
+                            startActivity(intent);
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(EditProfileActivity.this, "Une erreur s'est produite " + e, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        } else {
+            Toast.makeText(EditProfileActivity.this, "Something is wrong ! No UID ", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void choixImage(View view) {
@@ -277,12 +301,12 @@ public class EditProfileActivity extends AppCompatActivity {
             }
 
 
-            FIRESTORE_INSTANCE.collection(USERS).document(uId).set(map)
+            FIRESTORE_INSTANCE.collection(USERS).document(uId).update(map)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             Toast.makeText(EditProfileActivity.this, "Profil sauvegardé !", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(EditProfileActivity.this, MainActivity.class);
+                            Intent intent = new Intent(EditProfileActivity.this, com.dam.troc.MainActivity.class);
                             startActivity(intent);
                         }
                     })

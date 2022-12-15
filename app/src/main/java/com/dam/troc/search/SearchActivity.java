@@ -29,6 +29,8 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -59,7 +61,8 @@ public class SearchActivity extends Fragment {
     }
 
     private void getDataFromFirestore() {
-        Query query = FIRESTORE_INSTANCE_USERS.whereNotEqualTo(ID,CURRENT_USER.getUid());
+        FirebaseUser user = CURRENT_USER;
+        Query query = FIRESTORE_INSTANCE_USERS.whereNotEqualTo(ID,user.getUid());
         FirestoreRecyclerOptions<ProfileModel> users = new FirestoreRecyclerOptions.Builder<ProfileModel>().setQuery(query, ProfileModel.class).build();
         adapter = new SearchAdapter(users); rv_search_result.setAdapter(adapter); adapter.startListening();
     }

@@ -54,7 +54,7 @@
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
-        android:layout_width="418dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -212,18 +212,18 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        tools:text=" Paris "
                         android:textColor="@color/secondaryDarkColor"
-                        android:textSize="@dimen/textSize" />
+                        android:textSize="@dimen/textSize"
+                        tools:text=" Paris " />
 
                     <TextView
                         android:id="@+id/tv_profile_postalCode"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        tools:text="75019"
                         android:textColor="@color/secondaryDarkColor"
-                        android:textSize="@dimen/textSize" />
+                        android:textSize="@dimen/textSize"
+                        tools:text="75019" />
 
                 </LinearLayout>
 
@@ -295,6 +295,54 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0" />
+
+                <TextView
+                    android:id="@+id/tv_profile_arrSkill1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="0"
+                    android:background="@drawable/input_text_container"
+                    android:gravity="center"
+                    android:hint="ajouter une compétence"
+                    android:padding="5dp"
+                    android:textColor="@color/secondaryDarkColor"
+                    android:textSize="@dimen/textSize" />
+
+                <TextView
+                    android:id="@+id/tv_profile_arrSkill2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="0"
+                    android:background="@drawable/input_text_container"
+                    android:gravity="center"
+                    android:hint="ajouter une compétence"
+                    android:padding="5dp"
+                    android:textColor="@color/secondaryDarkColor"
+                    android:textSize="@dimen/textSize" />
+
+                <TextView
+                    android:id="@+id/tv_profile_arrSkill3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="0"
+                    android:background="@drawable/input_text_container"
+                    android:gravity="center"
+                    android:hint="ajouter une compétence"
+                    android:padding="5dp"
+                    android:textColor="@color/secondaryDarkColor"
+                    android:textSize="@dimen/textSize" />
 
                 <Button
                     android:id="@+id/btn_profile_addskill"

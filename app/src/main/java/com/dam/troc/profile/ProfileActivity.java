@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,9 +19,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.dam.troc.MainActivity;
 import com.dam.troc.R;
-import com.dam.troc.search.SearchAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -32,10 +29,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import org.checkerframework.checker.units.qual.A;
-
 import java.util.ArrayList;
-import java.util.Map;
 
 public class ProfileActivity extends Fragment {
 
@@ -44,11 +38,12 @@ public class ProfileActivity extends Fragment {
     ImageView userProfileImage;
     String imgUri;
     TextView username, email, tel, address, city, postalCode, description;
+    TextView tv_arrSkill1,tv_arrSkill2,tv_arrSkill3;
     private Context context;
     RecyclerView skillsList;
     public static final int PICK_IMAGE = 1;
     private ProfileAdapter adapter;
-    MainActivity mainActivity;
+    com.dam.troc.MainActivity mainActivity;
 
     private void InitUI() {
         userProfileImage = view.findViewById(R.id.iv_profile_photo);
@@ -60,6 +55,9 @@ public class ProfileActivity extends Fragment {
         address = view.findViewById(R.id.tv_profile_address);
         description = view.findViewById(R.id.tv_profile_description);
         btn_addskill = view.findViewById(R.id.btn_profile_addskill);
+        tv_arrSkill1 = view.findViewById(R.id.tv_profile_arrSkill1);
+        tv_arrSkill2 = view.findViewById(R.id.tv_profile_arrSkill2);
+        tv_arrSkill3 = view.findViewById(R.id.tv_profile_arrSkill3);
         skillsList = view.findViewById(R.id.rv_profile_skills);
         skillsList.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
     }
@@ -85,15 +83,18 @@ public class ProfileActivity extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if (task.isSuccessful()) {
-                            ArrayList<String> skillsArrayList = new ArrayList<>();
                             DocumentSnapshot documentSnapshot = task.getResult();
                             if (documentSnapshot.exists() && documentSnapshot.get(SKILLS) != null) {
-
-                                Object toto = documentSnapshot.get(SKILLS);
-//                                for (Map.Entry<String, Object> entry : map.entrySet()) {
-//                                    skillsArrayList.add(entry.getValue().toString());
-//                                }
-                                Log.i("TAG", "onComplete: " + toto);
+                                ArrayList<String> skillsArrayList  = (ArrayList<String>) documentSnapshot.get(SKILLS);
+                                for (int i = 0; i < skillsArrayList.size(); i++){
+                                    if (i == 0) tv_arrSkill1.setText(skillsArrayList.get(0));
+                                    if (i == 1) tv_arrSkill2.setText(skillsArrayList.get(1));
+                                    if (i == 2) tv_arrSkill3.setText(skillsArrayList.get(2));
+                                    Log.i("TAG", "onComplete: " + "INSIDE");
+                                }
+                                if (tv_arrSkill1.getText().length() == 0) tv_arrSkill1.setVisibility(View.GONE);
+                                if (tv_arrSkill2.getText().length() == 0) tv_arrSkill2.setVisibility(View.GONE);
+                                if (tv_arrSkill3.getText().length() == 0) tv_arrSkill3.setVisibility(View.GONE);
                             }
                         }
                     }
@@ -146,7 +147,7 @@ public class ProfileActivity extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mainActivity = (MainActivity) getActivity();
+        mainActivity = (com.dam.troc.MainActivity) getActivity();
         view.findViewById(R.id.btn_profil_editProfil).setOnClickListener(this::getDataToEdit);
         btn_addskill.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,6 +164,7 @@ public class ProfileActivity extends Fragment {
         InitUI();
         loadUserInformation();
         getDataSkillsFromFirestore();
+        Log.i("TAG", "onCreateView: " + (tv_arrSkill1.getText().length() == 0));
         return view;
     }
 

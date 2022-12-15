@@ -1,9 +1,6 @@
 package com.dam.troc;
 
-import static com.dam.troc.commons.Constants.CURRENT_USER;
-import static com.dam.troc.commons.Constants.FIREBASE_AUTH;
-import static com.dam.troc.commons.Constants.FIRESTORE_INSTANCE_JOBS;
-import static com.dam.troc.commons.Constants.SKILLNAME;
+import static com.dam.troc.commons.Constants.*;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -29,19 +26,22 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dam.troc.auth.LoginActivity;
-import com.dam.troc.profile.EditProfileActivity;
 import com.dam.troc.profile.EditSkillAdapter;
 import com.dam.troc.profile.EditSkillModel;
-import com.dam.troc.utils.Gol;
 import com.dam.troc.viewpager.FragmentAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.Query;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         builder.setPositiveButton("Valider", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
+                dialogSkillUpdate();
             }
         });
         /** Gestion du bouton réponse négative **/
@@ -150,6 +150,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
             }
         });
+    }
+
+    private void dialogSkillUpdate() {
+        String uId = CURRENT_USER.getUid();
+        if (uId != null) {
+            HashMap<String, Object> map = new HashMap<>();
+            ArrayList<String> arrSkills = new ArrayList<>();
+            if (!job1.getText().equals("aucun")) arrSkills.add(job1.getText().toString());
+            if (!job2.getText().equals("aucun")) arrSkills.add(job2.getText().toString());
+            if (!job3.getText().equals("aucun")) arrSkills.add(job3.getText().toString());
+            Log.i("TAG", "dialogSkillUpdate: " + arrSkills);
+            map.put(SKILLS,arrSkills);
+        FIRESTORE_INSTANCE.collection(USERS).document(uId).update(map)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Toast.makeText(MainActivity.this, "Profil sauvegardé !", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(MainActivity.this, "Une erreur s'est produite " + e, Toast.LENGTH_SHORT).show();
+                    }
+                });
+        } else {
+            Toast.makeText(MainActivity.this, "Something is wrong ! No UID ", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
