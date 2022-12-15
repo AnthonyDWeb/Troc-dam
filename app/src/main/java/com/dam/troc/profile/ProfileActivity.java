@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.dam.troc.MainActivity;
 import com.dam.troc.R;
 import com.dam.troc.search.SearchAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -39,7 +40,7 @@ import java.util.Map;
 public class ProfileActivity extends Fragment {
 
     View view;
-    Button btnSubmit;
+    Button btnSubmit, btn_addskill;
     ImageView userProfileImage;
     String imgUri;
     TextView username, email, tel, address, city, postalCode, description;
@@ -47,7 +48,7 @@ public class ProfileActivity extends Fragment {
     RecyclerView skillsList;
     public static final int PICK_IMAGE = 1;
     private ProfileAdapter adapter;
-
+    MainActivity mainActivity;
 
     private void InitUI() {
         userProfileImage = view.findViewById(R.id.iv_profile_photo);
@@ -58,6 +59,7 @@ public class ProfileActivity extends Fragment {
         postalCode = view.findViewById(R.id.tv_profile_postalCode);
         address = view.findViewById(R.id.tv_profile_address);
         description = view.findViewById(R.id.tv_profile_description);
+        btn_addskill = view.findViewById(R.id.btn_profile_addskill);
         skillsList = view.findViewById(R.id.rv_profile_skills);
         skillsList.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
     }
@@ -85,13 +87,13 @@ public class ProfileActivity extends Fragment {
                         if (task.isSuccessful()) {
                             ArrayList<String> skillsArrayList = new ArrayList<>();
                             DocumentSnapshot documentSnapshot = task.getResult();
-                            if (documentSnapshot.exists()) {
+                            if (documentSnapshot.exists() && documentSnapshot.get(SKILLS) != null) {
 
-                                String toto = documentSnapshot.get(SKILLS).toString();
+                                Object toto = documentSnapshot.get(SKILLS);
 //                                for (Map.Entry<String, Object> entry : map.entrySet()) {
 //                                    skillsArrayList.add(entry.getValue().toString());
 //                                }
-                                //Log.i("TAG", "onComplete: " + toto);
+                                Log.i("TAG", "onComplete: " + toto);
                             }
                         }
                     }
@@ -144,8 +146,14 @@ public class ProfileActivity extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        // loadUserInformation();
+        mainActivity = (MainActivity) getActivity();
         view.findViewById(R.id.btn_profil_editProfil).setOnClickListener(this::getDataToEdit);
+        btn_addskill.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainActivity.addSkill(view);
+            }
+        });
     }
 
     @Nullable
@@ -161,6 +169,7 @@ public class ProfileActivity extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 }
 

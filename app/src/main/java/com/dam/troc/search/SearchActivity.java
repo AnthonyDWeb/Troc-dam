@@ -59,7 +59,6 @@ public class SearchActivity extends Fragment {
     }
 
     private void getDataFromFirestore() {
-        assert CURRENT_USER != null;
         Query query = FIRESTORE_INSTANCE_USERS.whereNotEqualTo(ID,CURRENT_USER.getUid());
         FirestoreRecyclerOptions<ProfileModel> users = new FirestoreRecyclerOptions.Builder<ProfileModel>().setQuery(query, ProfileModel.class).build();
         adapter = new SearchAdapter(users); rv_search_result.setAdapter(adapter); adapter.startListening();

@@ -76,6 +76,12 @@ public class EditProfileActivity extends AppCompatActivity {
         telField = findViewById(R.id.telField);
         adressField = findViewById(R.id.adressField);
         descriptionField = findViewById(R.id.descriptionField);
+
+        Log.i("TAG", "InitUI: " + btn_skill1.getText());
+        if (btn_skill1.getText().equals("ajouter une compétence")){
+            btn_skill2.setVisibility(View.GONE);
+            btn_skill3.setVisibility(View.GONE);
+        }
     }
 
     private void getDataFromProfile() {
@@ -101,14 +107,6 @@ public class EditProfileActivity extends AppCompatActivity {
         } else if (!job1.getText().equals("aucun") && !job2.getText().equals("aucun")){
             job3.setText(skillnameSelected);
         }
-    }
-
-    private void hideAllExceptSkill(boolean hide) {
-        linear_profil_hearder.setVisibility(View.GONE);
-        emailField.setVisibility(View.GONE);
-        telField.setVisibility(View.GONE);
-        adressField.setVisibility(View.GONE);
-        descriptionField.setVisibility(View.GONE);
     }
 
     public void addSkill(View view) {
@@ -314,9 +312,6 @@ public class EditProfileActivity extends AppCompatActivity {
         uploadImageToFirebaseStorage();
         et_userProfileImage.setOnClickListener(this::choixImage);
         et_btnSubmit.setOnClickListener(this::saveUserInformation);
-//        et_skill1.setOnClickListener(this::addSkill);
-//        et_skill2.setOnClickListener(this::addSkill);
-//        et_skill3.setOnClickListener(this::addSkill);
     }
 
 }

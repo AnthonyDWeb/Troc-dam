@@ -296,6 +296,16 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0" />
 
+                <Button
+                    android:id="@+id/btn_profile_addskill"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="0"
+                    android:text="ajouter une compétence"
+                    android:textColor="@color/primaryTextColor"
+                    android:textSize="@dimen/textSize" />
+
             </LinearLayout>
 
         </LinearLayout>
