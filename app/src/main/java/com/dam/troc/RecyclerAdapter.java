@@ -9,12 +9,21 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.util.ArrayList;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
     private Context context;
     private ArrayList<Message> list;
+    FirebaseAuth mAuth;
+    FirebaseUser user;
+    String uId;
+    String useremail;
+    String dateTime;
+    String professionId; //Transmise par activity recherche.
 
     public RecyclerAdapter(Context context, ArrayList<Message> list) {
         this.context = context;

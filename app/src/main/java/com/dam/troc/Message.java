@@ -6,22 +6,26 @@ public class Message {
     private String UserId;
     private String message;
     private String dateTime;
+    private String professionId;
+
 
     public Message() {
     }
 
-
-    public Message(String userMel, String userId, String message, String dateTime) {
+    public Message(String userMel, String userId, String professionId, String message, String dateTime) {
         this.userMel = userMel;
         this.UserId = userId;
+        this.professionId = professionId;
         this.message = message;
         this.dateTime = dateTime;
     }
 
-    public Message(String userMel, String message, String dateTime) {
-        this.userMel = userMel;
-        this.message = message;
-        this.dateTime = dateTime;
+    public String getProfessionId() {
+        return professionId;
+    }
+
+    public void setProfessionId(String professionId) {
+        this.professionId = professionId;
     }
 
 

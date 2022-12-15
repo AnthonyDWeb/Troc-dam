@@ -2,6 +2,7 @@ package com.dam.troc;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,6 +38,7 @@ public class ChatActivity extends AppCompatActivity {
     String uId;
     String useremail;
     String dateTime;
+    String professionId; //Transmise par activity recherche.
 
     @Override
 
@@ -65,7 +67,7 @@ public class ChatActivity extends AppCompatActivity {
                     dateTime = new SimpleDateFormat("dd-MM-YY_HH:mm:ss").format(Calendar.getInstance().getTime());
                 }
                 String msg = message.getEditText().getText().toString();
-                db.child("Messages").push().setValue(new Message(useremail, uId, msg, dateTime)).addOnCompleteListener(new OnCompleteListener<Void>() {
+                db.child("Messages").push().setValue(new Message(useremail, uId, professionId, msg, dateTime)).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         message.getEditText().setText("");
@@ -110,6 +112,8 @@ public class ChatActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                String e = error.getMessage();
+                Toast.makeText(getApplicationContext(), e, Toast.LENGTH_LONG).show();
 
             }
         });
