@@ -13,7 +13,4 @@
         android:id="@+id/recyclerview_users"/>
 
 
-
-
-
 </RelativeLayout>

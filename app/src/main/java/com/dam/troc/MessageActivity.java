@@ -46,7 +46,7 @@ public class MessageActivity extends AppCompatActivity {
 
     DatabaseReference reference;
 
-    List<Chats> chatsList;
+    List<Chats> Chatslist;
     MessageAdapter messageAdapter;
     RecyclerView recyclerView;
     ValueEventListener seenlistener;
@@ -211,14 +211,14 @@ public class MessageActivity extends AppCompatActivity {
 
     private void readMessages(final String myid, final String ProfessionId, final String imageURL) {
 
-        chatsList = new ArrayList<>();
+        Chatslist = new ArrayList<>();
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Chats");
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                chatsList.clear();
+                Chatslist.clear();
 
                 for (DataSnapshot ds: snapshot.getChildren()) {
 
@@ -227,10 +227,10 @@ public class MessageActivity extends AppCompatActivity {
                     if (chats.getSender().equals(myid) && chats.getReciever().equals(ProfessionId) ||
                             chats.getSender().equals(ProfessionId) && chats.getReciever().equals(myid)) {
 
-                        chatsList.add(chats);
+                        Chatslist.add(chats);
                     }
 
-                    messageAdapter = new MessageAdapter(MessageActivity.this, chatsList, imageURL);
+                    messageAdapter = new MessageAdapter(MessageActivity.this, Chatslist, imageURL);
                     recyclerView.setAdapter(messageAdapter);
 
                 }
