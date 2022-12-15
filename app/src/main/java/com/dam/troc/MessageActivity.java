@@ -245,7 +245,7 @@ public class MessageActivity extends AppCompatActivity {
 
     }
 
-    private void sendMessage(final String myid, final String friendid, final String message) {
+    private void sendMessage(final String myid, final String ProfessionId, final String message) {
 
 
         final DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
@@ -254,14 +254,14 @@ public class MessageActivity extends AppCompatActivity {
 
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("sender", myid);
-        hashMap.put("reciever", friendid);
+        hashMap.put("reciever", ProfessionId);
         hashMap.put("message", message);
         hashMap.put("isseen", false);
 
         reference.child("Chats").push().setValue(hashMap);
 
 
-        final DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("Chatslist").child(myid).child(friendid);
+        final DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("Chatslist").child(myid).child(ProfessionId);
 
         reference1.addValueEventListener(new ValueEventListener() {
             @Override
@@ -271,7 +271,7 @@ public class MessageActivity extends AppCompatActivity {
                 if (!snapshot.exists()) {
 
 
-                    reference1.child("id").setValue(ProfessionId);
+                    reference1.child("id").setValue(MessageActivity.this.ProfessionId);
                 }
 
             }
