@@ -1,6 +1,7 @@
 package com.dam.troc.search;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.dam.troc.MainActivity;
 import com.dam.troc.R;
+import com.dam.troc.profile.ProfileActivity;
 import com.dam.troc.profile.ProfileModel;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -29,11 +32,14 @@ public class SearchAdapter extends FirestoreRecyclerAdapter<ProfileModel, Search
      *
      * @param options
      */
+
+    String id;
+
     public SearchAdapter(@NonNull FirestoreRecyclerOptions<ProfileModel> options) { super(options); }
 
     @Override
     protected void onBindViewHolder(@NonNull SearchViewHolder holder, int position, @NonNull ProfileModel model) {
-        String id = model.getId();
+        id = model.getId();
         String userImage = model.getImgUri();
         String username = model.getName();
         List<String> skills = model.getSkills();
@@ -65,9 +71,14 @@ public class SearchAdapter extends FirestoreRecyclerAdapter<ProfileModel, Search
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) { int pos = getBindingAdapterPosition(); if (pos != RecyclerView.NO_POSITION) { DocumentSnapshot userDocument = getSnapshots().getSnapshot(pos); } }
+                public void onClick(View v) { int pos = getBindingAdapterPosition(); if (pos != RecyclerView.NO_POSITION) {
+                    onItemClickListener.onItemClicked(id);
+                } }
             });
         }
     }
-
+    // Déclaration et création de l'interface
+    public OnItemClickListener onItemClickListener;
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener){ this.onItemClickListener = onItemClickListener; }
+    public interface OnItemClickListener{void onItemClicked(String id);}
 }

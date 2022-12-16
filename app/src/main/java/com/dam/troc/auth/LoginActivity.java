@@ -109,11 +109,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onStart();
         FIREBASE_AUTH_INITIALISATION = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = CURRENT_USER;
-        if (firebaseUser != null) {
-            FirebaseAuth.getInstance();
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
+//        if (firebaseUser != null) {
+//            FirebaseAuth.getInstance();
+//            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//            startActivity(intent);
+//            finish();
+//        }
     }
 }
